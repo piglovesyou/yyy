@@ -9,7 +9,7 @@ import { makeExecutableSchema } from 'graphql-tools';
 // Put schema together into one array of schema strings
 const resolvers = {
   RootQuery: {
-    async getAucItem(_: any, args: { id: string }) {
+    async getAucItemDetail(_: any, args: { id: string }) {
       const res = await fetch(
         `https://page.auctions.yahoo.co.jp/jp/auction/${args.id}`,
       );
@@ -78,7 +78,7 @@ const schema = [
     height: Int
   }
   
-  type AucItem {
+  type AucItemDetail {
     id: String
     title: String
     state: String
@@ -87,7 +87,7 @@ const schema = [
   }
   
   type RootQuery {
-    getAucItem(id: String): AucItem
+    getAucItemDetail(id: String): AucItemDetail
   }
   
   schema {
