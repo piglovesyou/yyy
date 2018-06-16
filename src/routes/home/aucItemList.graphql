@@ -2,6 +2,7 @@ query {
   getAucItemList {
     totalCount
     items {
+      id
       imgSrc
     }
   }

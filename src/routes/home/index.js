@@ -9,19 +9,15 @@
 
 import React from 'react';
 import Home from './Home';
-import aucItemListQuery from './aucItemList.graphql';
 import Layout from '../../components/Layout';
 
 async function action({ client }) {
-  const data = await client.query({
-    query: aucItemListQuery,
-  });
   return {
     title: 'React Starter Kit',
     chunks: ['home'],
     component: (
       <Layout>
-        <Home aucItemList={data.getAucItemList} />
+        <Home />
       </Layout>
     ),
   };

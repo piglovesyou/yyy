@@ -8,10 +8,9 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
-import {compose, graphql} from 'react-apollo';
+import {compose, Query} from 'react-apollo';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import newsQuery from './aucItemList.graphql';
+import gql from './aucItemList.graphql';
 import s from './Home.css';
 
 class Home extends React.Component {
@@ -23,23 +22,29 @@ class Home extends React.Component {
   // };
 
   render() {
-    const {data: {getAucItemList}} = this.props;
-
-    if (!getAucItemList) {
-      return <div>boom</div>
-    }
-    const {totalCount, items} = getAucItemList;
-
     return (
-      <div className={s.root}>
-        <div className={s.container}>
-          {items.map(item => {
-            return <img src={item.imgSrc} />
-          })}
-        </div>
-      </div>
+      <Query query={gql}>
+        {({loading, error, data}) => {
+          if (loading) {
+            return <div>loading....</div>;
+          }
+          if (error) {
+            return <div>boom!!!</div>;
+          }
+          const {getAucItemList: {totalCount, items}} = data;
+          return (
+            <div className={s.root}>
+              <div className={s.container}>
+                {items.map(item => {
+                  return <img key={item.id} src={item.imgSrc}/>;
+                })}
+              </div>
+            </div>
+          );
+        }}
+      </Query>
     );
   }
 }
 
-export default compose(withStyles(s), graphql(newsQuery))(Home);
+export default withStyles(s)(Home);
