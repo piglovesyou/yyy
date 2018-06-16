@@ -7,10 +7,11 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
+import gql from 'graphql-tag';
 import React from 'react';
 import {compose, Query} from 'react-apollo';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import gql from './aucItemList.graphql';
+// import gql from './aucItemList.graphql';
 import s from './Home.css';
 
 class Home extends React.Component {
@@ -23,7 +24,17 @@ class Home extends React.Component {
 
   render() {
     return (
-      <Query query={gql}>
+      <Query query={gql`
+        query ($query: String!) {
+          getAucItemList(query: $query) {
+            totalCount
+            items {
+              id
+              imgSrc
+            }
+          }
+        }
+      `} variables={{query: 'アーロンチェア B フル'}}>
         {({loading, error, data}) => {
           if (loading) {
             return <div>loading....</div>;
