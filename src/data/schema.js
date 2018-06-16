@@ -53,9 +53,10 @@ const schema = [
 // Put schema together into one array of schema strings
 const resolvers = {
   RootQuery: {
-    async getAucItemList(_: any, {query}: { query: string, }) {
+    async getAucItemList(_: any, {query, from = 1}: { query: string, from: number}) {
       const url = makeURL('https://auctions.yahoo.co.jp/search/search', {
         p: query,
+        b: from, // item from
         n: 20, // per page
         mode: 1, // grid view
         select: 22, // 新着順
@@ -63,7 +64,6 @@ const resolvers = {
         // price_type: currentprice
         // max: 40000
         exflg: 1, // ?
-        b: 1, // ?
       });
       const res = await fetch(url);
       const html = await res.text();
@@ -162,7 +162,7 @@ export default makeExecutableSchema({
   ...(__DEV__ ? {log: e => console.error(e.stack)} : {}),
 });
 
-function makeURL(base, params) {
+function makeURL(base, params: Object) {
   const url = new URL(base);
   Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
   return url;
