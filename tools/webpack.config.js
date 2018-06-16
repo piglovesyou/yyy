@@ -45,6 +45,7 @@ const minimizeCssOptions = {
 // client-side (client.js) and server-side (server.js) bundles
 // -----------------------------------------------------------------------------
 
+// noinspection JSUnusedGlobalSymbols
 const config = {
   context: ROOT_DIR,
 
@@ -309,6 +310,7 @@ const config = {
 // Configuration for the client-side bundle (client.js)
 // -----------------------------------------------------------------------------
 
+// noinspection JSUnusedGlobalSymbols
 const clientConfig = {
   ...config,
 
