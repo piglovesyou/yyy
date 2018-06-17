@@ -6,6 +6,17 @@ import {merge} from 'lodash';
 import {makeExecutableSchema} from 'graphql-tools';
 import {basename} from 'path';
 import {URL} from 'url';
+import {fromArray} from 'hole';
+import range from 'lodash.range'
+
+import LRU from 'lru-cache';
+
+const cache = LRU({
+  max: 500,
+  // length: function (n, key) { return n * 2 + key.length; } ,
+  // dispose: function (key, n) { n.close(); } ,
+  maxAge: 1000 * 60 * 60
+});
 
 const schema = [
   `
@@ -40,7 +51,7 @@ const schema = [
   
   type RootQuery {
     getAucItemDetail(id: String): AucItemDetail
-    getAucItemList(query: String): AucItemList
+    getAucItemList(query: String, from: Int, count: Int): AucItemList
   }
   
   schema {
@@ -49,52 +60,88 @@ const schema = [
 `
 ];
 
+
+const AUC_LIST_PER_PAGE = 20;
+
 // Merge all of the resolver objects together
 // Put schema together into one array of schema strings
 const resolvers = {
   RootQuery: {
-    async getAucItemList(_: any, {query, from = 1}: { query: string, from: number}) {
-      const url = makeURL('https://auctions.yahoo.co.jp/search/search', {
-        p: query,
-        b: from, // item from
-        n: 20, // per page
-        mode: 1, // grid view
-        select: 22, // 新着順
-        // aucmaxprice: 40000
-        // price_type: currentprice
-        // max: 40000
-        exflg: 1, // ?
-      });
-      const res = await fetch(url);
-      const html = await res.text();
-      const {
-        window: {document},
-      } = new JSDOM(html);
+    async getAucItemList(_: any, {query, from = 1, count = 4}: { query: string, from: number, count: number }) {
+      // TODO: start "fromIndex"
+      // TODO: consider requesting out of totalCount range
 
-      const totalCount = Number(document.querySelector('#AS-m19 .total em').textContent);
+      const reqFirstPage = getPageIndex(from);
+      const reqLastPage = getPageIndex(from + count);
 
-      const items = Array.from(document.querySelectorAll('#list01 .inner .cf'))
-        .map(e => {
-          const imgEl = e.querySelector('img');
-          if (!imgEl) return; // TODO: why
-          const imgAncEl = imgEl.parentNode;
-          const price = parsePrice(e.querySelector('.pri1').textContent);
+      const xs = await fromArray(range(reqFirstPage, reqLastPage + 1))
+        .pipe(page => {
+          const paramFrom = (page * AUC_LIST_PER_PAGE) + 1; // 21, 41, ...
+          return requestItemList(query, paramFrom);
+        })
+        .collect();
 
-          const title = imgEl.alt;
-          const imgSrc = imgEl.src;
-          const imgWidth = imgEl.width;
-          const imgHeight = imgEl.height;
-          const itemURL = imgAncEl.href;
-          const id = basename(itemURL);
+      const {totalCount} = xs[0];
+      const fullItems = xs.reduce((items, rv) => {
+        return [...items, ...rv.items];
+      }, []);
 
-          return {id, title, imgSrc, imgWidth, imgHeight, itemURL, price};
-        }).filter(e => e);
+      const fromIndex = (from % AUC_LIST_PER_PAGE) - 1;
+      const items = fullItems.slice(fromIndex, fromIndex + count);
 
       return {
         totalCount,
-        returnedCount: items.length,
+        returnedCount: fullItems.length,
         items,
       };
+
+      async function requestItemList(query, paramFrom) {
+        const cacheKey = `${query}%${paramFrom}`;
+        if (cache.has(cacheKey)) {
+          return cache.get(cacheKey);
+        }
+
+        const url = makeURL('https://auctions.yahoo.co.jp/search/search', {
+          p: query,
+          b: paramFrom, // item from
+          n: AUC_LIST_PER_PAGE, // per page
+          mode: 1, // grid view
+          select: 22, // 新着順
+          // aucmaxprice: 40000
+          // price_type: currentprice
+          // max: 40000
+          exflg: 1, // ?
+        });
+        const res = await fetch(url);
+        const html = await res.text();
+        const {
+          window: {document},
+        } = new JSDOM(html);
+
+        const totalCount = Number(document.querySelector('#AS-m19 .total em').textContent);
+
+        const items = Array.from(document.querySelectorAll('#list01 .inner .cf'))
+          .map(e => {
+            const imgEl = e.querySelector('img');
+            if (!imgEl) return; // TODO: why
+            const imgAncEl = imgEl.parentNode;
+            const price = parsePrice(e.querySelector('.pri1').textContent);
+
+            const title = imgEl.alt;
+            const imgSrc = imgEl.src;
+            const imgWidth = imgEl.width;
+            const imgHeight = imgEl.height;
+            const itemURL = imgAncEl.href;
+            const id = basename(itemURL);
+
+            return {id, title, imgSrc, imgWidth, imgHeight, itemURL, price};
+          }).filter(e => e);
+
+        const resolvedValue = {totalCount, items};
+        cache.set(cacheKey, resolvedValue);
+
+        return resolvedValue;
+      }
     },
 
     async getAucItemDetail(_: any, args: { id: string }) {
@@ -179,3 +226,8 @@ function extractTextNodes(node: any) {
 function parsePrice(str) {
   return Number(str.replace(/[^\d]/g, ''));
 }
+
+function getPageIndex(from) {
+  return (Math.floor(from / AUC_LIST_PER_PAGE));
+}
+

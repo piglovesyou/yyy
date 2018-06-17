@@ -25,8 +25,8 @@ class Home extends React.Component {
   render() {
     return (
       <Query query={gql`
-        query ($query: String!) {
-          getAucItemList(query: $query) {
+        query ($query: String!, $from: Int, $count: Int) {
+          getAucItemList(query: $query, from: $from, count: $count) {
             totalCount
             items {
               id
@@ -34,7 +34,7 @@ class Home extends React.Component {
             }
           }
         }
-      `} variables={{query: 'アーロンチェア B フル'}}>
+      `} variables={{query: 'アーロンチェア B フル', from: 1, count: 2}}>
         {({loading, error, data}) => {
           if (loading) {
             return <div>loading....</div>;
