@@ -22,43 +22,59 @@ class Home extends React.Component {
   //   }).isRequired,
   // };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {queryKeywords: ''};
+
+    this.handleQueryChange = this.handleQueryChange.bind(this);
+  }
+
+  handleQueryChange(e) {
+    this.setState({
+      queryKeywords: e.target.value,
+    });
+  }
+
   render() {
+    const {queryKeywords} = this.state;
+
     return (
-      <Query query={gql`
-        query ($query: String!, $from: Int, $count: Int) {
-          getAucItemList(query: $query, from: $from, count: $count) {
-            totalCount
-            items {
-              id
-              imgSrc
-              itemURL
+      <div className={s.root}>
+        <div>
+          <input type="text" value={queryKeywords} onChange={this.handleQueryChange}/>
+        </div>
+        <div className={s.container}>
+          <Query query={gql`
+            query ($query: String!, $from: Int, $count: Int) {
+              getAucItemList(query: $query, from: $from, count: $count) {
+                totalCount
+                items {
+                  id
+                  imgSrc
+                  itemURL
+                }
+              }
             }
-          }
-        }
-      `} variables={{query: 'アーロンチェア B フル', from: 0, count: 10}}>
-        {({loading, error, data}) => {
-          if (loading) {
-            return <div>loading....</div>;
-          }
-          if (error) {
-            return <div>boom!!!</div>;
-          }
-          const {getAucItemList: {totalCount, items}} = data;
-          return (
-            <div className={s.root}>
-              <div className={s.container}>
-                {items.map(item => {
+          `} variables={{query: queryKeywords, from: 0, count: 10}}>
+            {({loading, error, data}) => {
+              if (loading) return <div>loading....</div>;
+              if (error) return <div>boom!!!</div>;
+
+              const {getAucItemList: {totalCount, items}} = data;
+              return (
+                items.map(item => {
                   return (
                     <a href={item.itemURL} target="_blank">
                       <img key={item.id} src={item.imgSrc}/>
                     </a>
                   );
-                })}
-              </div>
-            </div>
-          );
-        }}
-      </Query>
+                })
+              );
+            }}
+          </Query>
+        </div>
+      </div>
     );
   }
 }

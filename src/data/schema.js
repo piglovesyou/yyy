@@ -42,6 +42,7 @@ const schema = [
     imgHeight: Int
     itemURL: String
     price: Int
+    # detail: AucItemDetail
   }
   
   type AucItemList {
