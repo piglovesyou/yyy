@@ -31,10 +31,11 @@ class Home extends React.Component {
             items {
               id
               imgSrc
+              itemURL
             }
           }
         }
-      `} variables={{query: 'アーロンチェア B フル', from: 1, count: 2}}>
+      `} variables={{query: 'アーロンチェア B フル', from: 0, count: 10}}>
         {({loading, error, data}) => {
           if (loading) {
             return <div>loading....</div>;
@@ -47,7 +48,11 @@ class Home extends React.Component {
             <div className={s.root}>
               <div className={s.container}>
                 {items.map(item => {
-                  return <img key={item.id} src={item.imgSrc}/>;
+                  return (
+                    <a href={item.itemURL} target="_blank">
+                      <img key={item.id} src={item.imgSrc}/>
+                    </a>
+                  );
                 })}
               </div>
             </div>

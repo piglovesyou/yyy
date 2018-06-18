@@ -7,7 +7,7 @@ import {makeExecutableSchema} from 'graphql-tools';
 import {basename} from 'path';
 import {URL} from 'url';
 import {fromArray} from 'hole';
-import range from 'lodash.range'
+import range from 'lodash.range';
 
 import LRU from 'lru-cache';
 
@@ -67,8 +67,7 @@ const AUC_LIST_PER_PAGE = 20;
 // Put schema together into one array of schema strings
 const resolvers = {
   RootQuery: {
-    async getAucItemList(_: any, {query, from = 1, count = 4}: { query: string, from: number, count: number }) {
-      // TODO: start "fromIndex"
+    async getAucItemList(_: any, {query, from = 0, count = 4}: { query: string, from: number, count: number }) {
       // TODO: consider requesting out of totalCount range
 
       const reqFirstPage = getPageIndex(from);
@@ -76,9 +75,9 @@ const resolvers = {
 
       const xs = await fromArray(range(reqFirstPage, reqLastPage + 1))
         .pipe(page => {
-          const paramFrom = (page * AUC_LIST_PER_PAGE) + 1; // 21, 41, ...
-          return requestItemList(query, paramFrom);
-        })
+          const from = (page * AUC_LIST_PER_PAGE); // 20, 40, ...
+          return requestItemList(query, from);
+        }, 1)
         .collect();
 
       const {totalCount} = xs[0];
@@ -86,8 +85,8 @@ const resolvers = {
         return [...items, ...rv.items];
       }, []);
 
-      const fromIndex = (from % AUC_LIST_PER_PAGE) - 1;
-      const items = fullItems.slice(fromIndex, fromIndex + count);
+      const sliceFrom = (from % AUC_LIST_PER_PAGE);
+      const items = fullItems.slice(sliceFrom, sliceFrom + count);
 
       return {
         totalCount,
@@ -95,15 +94,26 @@ const resolvers = {
         items,
       };
 
-      async function requestItemList(query, paramFrom) {
-        const cacheKey = `${query}%${paramFrom}`;
-        if (cache.has(cacheKey)) {
-          return cache.get(cacheKey);
+      async function requestItemList(query, from) {
+        const totalCountCacheKey = `total:${query}`;
+        const pageCacheKey = `page:${query}${from}`;
+
+        const cachedTotalCount = cache.get(totalCountCacheKey);
+        if (typeof cachedTotalCount === 'number' && cachedTotalCount < from) {
+          // Being requested over search result
+          return {
+            totalCount: cachedTotalCount,
+            items: [],
+          };
+        }
+
+        if (cache.has(pageCacheKey)) {
+          return cache.get(pageCacheKey);
         }
 
         const url = makeURL('https://auctions.yahoo.co.jp/search/search', {
           p: query,
-          b: paramFrom, // item from
+          b: from + 1, // Item number starting from 1
           n: AUC_LIST_PER_PAGE, // per page
           mode: 1, // grid view
           select: 22, // 新着順
@@ -118,7 +128,20 @@ const resolvers = {
           window: {document},
         } = new JSDOM(html);
 
-        const totalCount = Number(document.querySelector('#AS-m19 .total em').textContent);
+        let totalEl = document.querySelector('#AS-m19 .total em');
+        if (!totalEl) {
+          // Zero search result
+          const totalCount = 0;
+          const rv = {
+            totalCount,
+            items: [],
+          };
+          cache.set(totalCountCacheKey, totalCount);
+          cache.set(pageCacheKey, rv);
+          return rv;
+        }
+
+        const totalCount = Number(totalEl.textContent);
 
         const items = Array.from(document.querySelectorAll('#list01 .inner .cf'))
           .map(e => {
@@ -138,7 +161,8 @@ const resolvers = {
           }).filter(e => e);
 
         const resolvedValue = {totalCount, items};
-        cache.set(cacheKey, resolvedValue);
+        cache.set(pageCacheKey, resolvedValue);
+        cache.set(totalCountCacheKey, totalCount);
 
         return resolvedValue;
       }
