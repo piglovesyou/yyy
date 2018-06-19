@@ -71,6 +71,8 @@ const resolvers = {
     async getAucItemList(_: any, {query, from = 0, count = 4}: { query: string, from: number, count: number }) {
       // TODO: consider requesting out of totalCount range
 
+      query = query.replace(/　+/g, ' ').trim();
+
       const reqFirstPage = getPageIndex(from);
       const reqLastPage = getPageIndex(from + count);
 
