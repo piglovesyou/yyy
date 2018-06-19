@@ -32,7 +32,7 @@ class Home extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleQueryChange = this.handleQueryChange.bind(this);
 
-    const q = context.query ? context.query.q : '';
+    const q = context.query && context.query.q || '';
     this.q = q;
     this.state = {q};
   }
