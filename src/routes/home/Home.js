@@ -9,10 +9,12 @@
 
 import gql from 'graphql-tag';
 import React from 'react';
-import {compose, Query} from 'react-apollo';
+import {Query} from 'react-apollo';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 // import gql from './aucItemList.graphql';
 import s from './Home.css';
+import history from '../../history';
+import ContextType from '../../ContextType';
 
 class Home extends React.Component {
   // static propTypes = {
@@ -22,28 +24,44 @@ class Home extends React.Component {
   //   }).isRequired,
   // };
 
-  constructor(props) {
+  static contextTypes = ContextType;
+
+  constructor(props, context) {
     super(props);
 
-    this.state = {queryKeywords: ''};
-
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleQueryChange = this.handleQueryChange.bind(this);
+
+    const q = context.query ? context.query.q : '';
+    this.q = q;
+    this.state = {q};
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    history.push({
+      pathname: location.pathname,
+      search: `q=${encodeURIComponent(this.state.q)}`,
+    });
+
+    this.q = this.state.q;
   }
 
   handleQueryChange(e) {
-    this.setState({
-      queryKeywords: e.target.value,
-    });
+    const q = e.target.value;
+
+    this.setState({q});
   }
 
   render() {
-    const {queryKeywords} = this.state;
 
     return (
       <div className={s.root}>
-        <div>
-          <input type="text" value={queryKeywords} onChange={this.handleQueryChange}/>
-        </div>
+        <form onSubmit={this.handleSubmit}>
+          <input tabIndex="1" type="text" value={this.state.q} onChange={this.handleQueryChange}/>
+          <button disabled={this.q === this.state.q}>Go</button>
+        </form>
         <div className={s.container}>
           <Query query={gql`
             query ($query: String!, $from: Int, $count: Int) {
@@ -56,20 +74,23 @@ class Home extends React.Component {
                 }
               }
             }
-          `} variables={{query: queryKeywords, from: 0, count: 10}}>
+          `} variables={{query: this.q, from: 0, count: 10}}>
             {({loading, error, data}) => {
               if (loading) return <div>loading....</div>;
               if (error) return <div>boom!!!</div>;
 
               const {getAucItemList: {totalCount, items}} = data;
               return (
-                items.map(item => {
-                  return (
-                    <a href={item.itemURL} target="_blank">
-                      <img key={item.id} src={item.imgSrc}/>
-                    </a>
-                  );
-                })
+                <div>
+                  <div>total: {totalCount}</div>
+                  {items.map(item => {
+                    return (
+                      <a href={item.itemURL} target="_blank">
+                        <img key={item.id} src={item.imgSrc}/>
+                      </a>
+                    );
+                  })}
+                </div>
               );
             }}
           </Query>

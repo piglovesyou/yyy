@@ -22,9 +22,6 @@ class Header extends React.Component {
         <div className={s.container}>
           <Navigation />
           <Link className={s.brand} to="/">YYY</Link>
-          <div className={s.banner}>
-            <p className={s.bannerDesc}>Complex web apps made easy</p>
-          </div>
         </div>
       </div>
     );
