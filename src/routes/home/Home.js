@@ -86,7 +86,7 @@ class Home extends React.Component {
                   {items.map(item => {
                     return (
                       <a href={item.itemURL} target="_blank">
-                        <img key={item.id} src={item.imgSrc}/>
+                        <img className={s.aucItemImg} key={item.id} src={item.imgSrc}/>
                       </a>
                     );
                   })}
