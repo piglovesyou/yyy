@@ -143,7 +143,7 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "yarn lint-js",
+      "yarn fix-js",
       "git add --force"
     ],
     "*.{json,md,graphql}": [
@@ -151,7 +151,7 @@
       "git add --force"
     ],
     "*.{css,less,styl,scss,sass,sss}": [
-      "stylelint --fix",
+      "yarn fix-css",
       "git add --force"
     ]
   },
