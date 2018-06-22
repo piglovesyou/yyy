@@ -90,7 +90,7 @@ app.use((err, req, res, next) => {
 // https://github.com/graphql/express-graphql#options
 const graphqlMiddleware = expressGraphQL(req => ({
   schema,
-  graphiql: __DEV__,
+  graphiql: true, // __DEV__,
   rootValue: {request: req},
   pretty: __DEV__,
 }));

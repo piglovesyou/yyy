@@ -178,6 +178,6 @@
     "render": "babel-node tools/run render",
     "serve": "babel-node tools/run runServer",
     "dev": "node --require @babel/register $NODE_DEBUG_OPTION tools/run start",
-    "start": "npm run build && NODE_ENV=production node build/server.js"
+    "start": "npm run build --release && NODE_ENV=production node build/server.js"
   }
 }
