@@ -15,6 +15,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Home.css';
 import history from '../../history';
 import ContextType from '../../ContextType';
+import Link from '../../components/Link';
 
 class Home extends React.Component {
   // static propTypes = {
@@ -76,18 +77,27 @@ class Home extends React.Component {
             }
           `} variables={{query: this.q, from: 0, count: 10}}>
             {({loading, error, data}) => {
-              if (loading) return <div>loading....</div>;
               if (error) return <div>boom!!!</div>;
-
-              const {getAucItemList: {totalCount, items}} = data;
+              const aucItemList =
+                loading ?
+                  {
+                    totalCount: <span style={{width: '4em',}}
+                                      className={s.loadingPlaceholder}>&nbsp;</span>,
+                    items: Array.from(Array(3)).map((_, i) => {
+                      return <span style={{width: 400, maxWidth: '100%', height: 300, margin: '0 0.5em 0.5em 0'}}
+                                   key={i} className={s.loadingPlaceholder}>&nbsp;</span>;
+                    }),
+                  }
+                  : data.getAucItemList;
+              const {totalCount, items} = aucItemList;
               return (
                 <div>
-                  <div>total: {totalCount}</div>
+                  <div><span>total: </span>{totalCount}</div>
                   {items.map(item => {
-                    return (
-                      <a href={item.itemURL} target="_blank">
-                        <img className={s.aucItemImg} key={item.id} src={item.imgSrc}/>
-                      </a>
+                    return item.props ? item : (
+                      <Link to={`/detail/${item.id}`}>
+                        <img className={s.aucItemImg} src={item.imgSrc}/>
+                      </Link>
                     );
                   })}
                 </div>

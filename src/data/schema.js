@@ -31,6 +31,7 @@ const schema = [
     title: String
     state: String
     price: Int
+    priceText: String
     images: [AucItemImage]
   }
   
@@ -181,9 +182,8 @@ const resolvers = {
       } = new JSDOM(html);
 
       const title = document.querySelector('.ProductTitle__text').textContent;
-      const price = parsePrice(extractTextNodes(
-        document.querySelector('.Price__value'),
-      ));
+      const priceText = extractText(document.querySelector('.Price__value'));
+      const price = parsePrice(priceText);
 
       const images = Array.from(
         document.querySelectorAll('.ProductImage__images img'),
@@ -222,6 +222,7 @@ const resolvers = {
       return {
         id: bodyValues['オークションID'],
         price,
+        priceText,
         title,
         state: bodyValues['状態'],
         images,
@@ -242,7 +243,7 @@ function makeURL(base, params: Object) {
   return url;
 }
 
-function extractTextNodes(node: any) {
+function extractText(node: any) {
   const textNodeType = 3;
   return Array.from(node.childNodes)
     .filter(e => e.nodeType === textNodeType)
