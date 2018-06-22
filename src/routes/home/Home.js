@@ -93,9 +93,9 @@ class Home extends React.Component {
               return (
                 <div>
                   <div><span>total: </span>{totalCount}</div>
-                  {items.map(item => {
+                  {items.map((item, i) => {
                     return item.props ? item : (
-                      <Link to={`/detail/${item.id}`}>
+                      <Link to={`/detail/${item.id}`} key={i}>
                         <img className={s.aucItemImg} src={item.imgSrc}/>
                       </Link>
                     );
