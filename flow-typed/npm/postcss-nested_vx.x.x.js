@@ -23,7 +23,6 @@ declare module 'postcss-nested' {
  * needed.
  */
 
-
 // Filename aliases
 declare module 'postcss-nested/index' {
   declare module.exports: $Exports<'postcss-nested'>;

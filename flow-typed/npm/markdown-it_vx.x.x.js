@@ -270,7 +270,9 @@ declare module 'markdown-it/lib/helpers/index.js' {
   declare module.exports: $Exports<'markdown-it/lib/helpers/index'>;
 }
 declare module 'markdown-it/lib/helpers/parse_link_destination.js' {
-  declare module.exports: $Exports<'markdown-it/lib/helpers/parse_link_destination'>;
+  declare module.exports: $Exports<
+    'markdown-it/lib/helpers/parse_link_destination',
+  >;
 }
 declare module 'markdown-it/lib/helpers/parse_link_label.js' {
   declare module.exports: $Exports<'markdown-it/lib/helpers/parse_link_label'>;
@@ -369,7 +371,9 @@ declare module 'markdown-it/lib/rules_inline/backticks.js' {
   declare module.exports: $Exports<'markdown-it/lib/rules_inline/backticks'>;
 }
 declare module 'markdown-it/lib/rules_inline/balance_pairs.js' {
-  declare module.exports: $Exports<'markdown-it/lib/rules_inline/balance_pairs'>;
+  declare module.exports: $Exports<
+    'markdown-it/lib/rules_inline/balance_pairs',
+  >;
 }
 declare module 'markdown-it/lib/rules_inline/emphasis.js' {
   declare module.exports: $Exports<'markdown-it/lib/rules_inline/emphasis'>;
@@ -396,10 +400,14 @@ declare module 'markdown-it/lib/rules_inline/state_inline.js' {
   declare module.exports: $Exports<'markdown-it/lib/rules_inline/state_inline'>;
 }
 declare module 'markdown-it/lib/rules_inline/strikethrough.js' {
-  declare module.exports: $Exports<'markdown-it/lib/rules_inline/strikethrough'>;
+  declare module.exports: $Exports<
+    'markdown-it/lib/rules_inline/strikethrough',
+  >;
 }
 declare module 'markdown-it/lib/rules_inline/text_collapse.js' {
-  declare module.exports: $Exports<'markdown-it/lib/rules_inline/text_collapse'>;
+  declare module.exports: $Exports<
+    'markdown-it/lib/rules_inline/text_collapse',
+  >;
 }
 declare module 'markdown-it/lib/rules_inline/text.js' {
   declare module.exports: $Exports<'markdown-it/lib/rules_inline/text'>;

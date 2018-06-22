@@ -28,7 +28,9 @@ type Options = {
  */
 function createFetch(
   fetch: Fetch,
-  { baseUrl, cookie, schema, graphql }: Options,
+  {
+    baseUrl, cookie, schema, graphql,
+  }: Options,
 ) {
   // NOTE: Tweak the default options to suite your application needs
   const defaults = {
@@ -62,13 +64,13 @@ function createFetch(
 
     return isGraphQL || url.startsWith('/api')
       ? fetch(`${baseUrl}${url}`, {
-          ...defaults,
-          ...options,
-          headers: {
-            ...defaults.headers,
-            ...(options && options.headers),
-          },
-        })
+        ...defaults,
+        ...options,
+        headers: {
+          ...defaults.headers,
+          ...(options && options.headers),
+        },
+      })
       : fetch(url, options);
   };
 }

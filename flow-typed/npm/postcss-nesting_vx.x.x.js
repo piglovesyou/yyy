@@ -81,13 +81,19 @@ declare module 'postcss-nesting/lib/transform-after-nodes.js' {
   declare module.exports: $Exports<'postcss-nesting/lib/transform-after-nodes'>;
 }
 declare module 'postcss-nesting/lib/transform-bubbling-atrule.js' {
-  declare module.exports: $Exports<'postcss-nesting/lib/transform-bubbling-atrule'>;
+  declare module.exports: $Exports<
+    'postcss-nesting/lib/transform-bubbling-atrule',
+  >;
 }
 declare module 'postcss-nesting/lib/transform-nesting-atrule.js' {
-  declare module.exports: $Exports<'postcss-nesting/lib/transform-nesting-atrule'>;
+  declare module.exports: $Exports<
+    'postcss-nesting/lib/transform-nesting-atrule',
+  >;
 }
 declare module 'postcss-nesting/lib/transform-nesting-rule.js' {
-  declare module.exports: $Exports<'postcss-nesting/lib/transform-nesting-rule'>;
+  declare module.exports: $Exports<
+    'postcss-nesting/lib/transform-nesting-rule',
+  >;
 }
 declare module 'postcss-nesting/lib/transform.js' {
   declare module.exports: $Exports<'postcss-nesting/lib/transform'>;

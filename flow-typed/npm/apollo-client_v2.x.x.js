@@ -1,7 +1,7 @@
 // flow-typed signature: 0d02f15b125c45c1078bc160f58c9a9d
 // flow-typed version: 9ed2af6be6/apollo-client_v2.x.x/flow_>=v0.57.x
 
-declare module "apollo-client" {
+declare module 'apollo-client' {
   /**
    * Types From graphql
    * graphql types are maintained in the graphql-js repo
@@ -10,7 +10,7 @@ declare module "apollo-client" {
   declare type ExecutionResult<T> = {
     data?: T,
     extensions?: { [string]: any },
-    errors?: any[]
+    errors?: any[],
   };
   declare type GraphQLError = any;
   /** End From graphql */
@@ -20,7 +20,7 @@ declare module "apollo-client" {
   declare export function print(ast: any): string;
 
   declare export class ObservableQuery<T> extends Observable<
-    ApolloQueryResult<T>
+    ApolloQueryResult<T>,
   > {
     options: WatchQueryOptions;
     queryId: string;
@@ -39,7 +39,7 @@ declare module "apollo-client" {
     constructor(data: {
       scheduler: QueryScheduler<any>,
       options: WatchQueryOptions,
-      shouldSubscribe?: boolean
+      shouldSubscribe?: boolean,
     }): this;
 
     result(): Promise<ApolloQueryResult<T>>;
@@ -49,19 +49,19 @@ declare module "apollo-client" {
     resetLastResults(): void;
     refetch(variables?: any): Promise<ApolloQueryResult<T>>;
     fetchMore(
-      fetchMoreOptions: FetchMoreQueryOptions<any> & FetchMoreOptions<any, any>
+      fetchMoreOptions: FetchMoreQueryOptions<any> & FetchMoreOptions<any, any>,
     ): Promise<ApolloQueryResult<T>>;
     subscribeToMore(options: SubscribeToMoreOptions<any, any>): () => void;
     setOptions(
-      opts: ModifiableWatchQueryOptions
+      opts: ModifiableWatchQueryOptions,
     ): Promise<ApolloQueryResult<T>>;
     setVariables(
       variables: any,
       tryFetch?: boolean,
-      fetchResults?: boolean
+      fetchResults?: boolean,
     ): Promise<ApolloQueryResult<T>>;
     updateQuery(
-      mapFn: (previousQueryResult: any, options: UpdateQueryOptions) => any
+      mapFn: (previousQueryResult: any, options: UpdateQueryOptions) => any,
     ): void;
     stopPolling(): void;
     startPolling(pollInterval: number): void;
@@ -79,7 +79,7 @@ declare module "apollo-client" {
       queryDeduplication?: boolean,
       store: DataStore<TStore>,
       onBroadcast?: () => void,
-      ssrMode?: boolean
+      ssrMode?: boolean,
     }): this;
 
     mutate<T>(options: MutationOptions<>): Promise<FetchResult<T>>;
@@ -87,16 +87,16 @@ declare module "apollo-client" {
       queryId: string,
       options: WatchQueryOptions,
       fetchType?: FetchType,
-      fetchMoreForQueryId?: string
+      fetchMoreForQueryId?: string,
     ): Promise<FetchResult<T>>;
     queryListenerForObserver<T>(
       queryId: string,
       options: WatchQueryOptions,
-      observer: Observer<ApolloQueryResult<T>>
+      observer: Observer<ApolloQueryResult<T>>,
     ): QueryListener;
     watchQuery<T>(
       options: WatchQueryOptions,
-      shouldSubscribe?: boolean
+      shouldSubscribe?: boolean,
     ): ObservableQuery<T>;
     query<T>(options: WatchQueryOptions): Promise<ApolloQueryResult<T>>;
     generateQueryId(): string;
@@ -105,18 +105,18 @@ declare module "apollo-client" {
     updateQueryWatch(
       queryId: string,
       document: DocumentNode,
-      options: WatchQueryOptions
+      options: WatchQueryOptions,
     ): void;
     addFetchQueryPromise<T>(
       requestId: number,
       promise: Promise<ApolloQueryResult<T>>,
       resolve: (result: ApolloQueryResult<T>) => void,
-      reject: (error: Error) => void
+      reject: (error: Error) => void,
     ): void;
     removeFetchQueryPromise(requestId: number): void;
     addObservableQuery<T>(
       queryId: string,
-      observableQuery: ObservableQuery<T>
+      observableQuery: ObservableQuery<T>,
     ): void;
     removeObservableQuery(queryId: string): void;
     clearStore(): Promise<void>;
@@ -134,17 +134,17 @@ declare module "apollo-client" {
       isPoll: boolean,
       isRefetch: boolean,
       metadata: any,
-      fetchMoreForQueryId: string | void
+      fetchMoreForQueryId: string | void,
     }): void;
     markQueryResult(
       queryId: string,
       result: ExecutionResult<>,
-      fetchMoreForQueryId: string | void
+      fetchMoreForQueryId: string | void,
     ): void;
     markQueryError(
       queryId: string,
       error: Error,
-      fetchMoreForQueryId: string | void
+      fetchMoreForQueryId: string | void,
     ): void;
     markQueryResultClient(queryId: string, complete: boolean): void;
     stopQuery(queryId: string): void;
@@ -158,27 +158,27 @@ declare module "apollo-client" {
     queryManager: QueryManager<TCacheShape>;
     constructor({
       queryManager: QueryManager<TCacheShape>,
-      ssrMode?: boolean
+      ssrMode?: boolean,
     }): this;
     checkInFlight(queryId: string): ?boolean;
     fetchQuery<T>(
       queryId: string,
       options: WatchQueryOptions,
-      fetchType: FetchType
+      fetchType: FetchType,
     ): Promise<FetchResult<T>>;
     startPollingQuery<T>(
       options: WatchQueryOptions,
       queryId: string,
-      listener?: QueryListener
+      listener?: QueryListener,
     ): string;
     stopPollingQuery(queryId: string): void;
     fetchQueriesOnInterval<T>(interval: number): void;
     addQueryOnInterval<T>(
       queryId: string,
-      queryOptions: WatchQueryOptions
+      queryOptions: WatchQueryOptions,
     ): void;
     registerPollingQuery<T>(
-      queryOptions: WatchQueryOptions
+      queryOptions: WatchQueryOptions,
     ): ObservableQuery<T>;
     markMutationError(mutationId: string, error: Error): void;
     reset(): void;
@@ -192,12 +192,12 @@ declare module "apollo-client" {
       document: DocumentNode,
       variables: any,
       fetchMoreForQueryId: string | void,
-      ignoreErrors?: boolean
+      ignoreErrors?: boolean,
     ): void;
     markSubscriptionResult(
       result: ExecutionResult<>,
       document: DocumentNode,
-      variables: any
+      variables: any,
     ): void;
     markMutationInit(mutation: {
       mutationId: string,
@@ -205,7 +205,7 @@ declare module "apollo-client" {
       variables: any,
       updateQueries: { [queryId: string]: QueryWithUpdater },
       update: ((proxy: DataProxy, mutationResult: Object) => void) | void,
-      optimisticResponse: Object | Function | void
+      optimisticResponse: Object | Function | void,
     }): void;
     markMutationResult(mutation: {
       mutationId: string,
@@ -213,23 +213,23 @@ declare module "apollo-client" {
       document: DocumentNode,
       variables: any,
       updateQueries: { [queryId: string]: QueryWithUpdater },
-      update: ((proxy: DataProxy, mutationResult: Object) => void) | void
+      update: ((proxy: DataProxy, mutationResult: Object) => void) | void,
     }): void;
     markMutationComplete({
       mutationId: string,
-      optimisticResponse?: any
+      optimisticResponse?: any,
     }): void;
     markUpdateQueryResult(
       document: DocumentNode,
       variables: any,
-      newResult: any
+      newResult: any,
     ): void;
     reset(): Promise<void>;
   }
 
   declare type QueryWithUpdater = {
     updater: MutationQueryReducer<Object>,
-    query: QueryStoreValue
+    query: QueryStoreValue,
   };
 
   declare interface MutationStoreValue {
@@ -245,7 +245,7 @@ declare module "apollo-client" {
     initMutation(
       mutationId: string,
       mutationString: string,
-      variables: Object | void
+      variables: Object | void,
     ): void;
   }
 
@@ -254,8 +254,8 @@ declare module "apollo-client" {
       previousQueryResult: TData,
       options: {
         fetchMoreResult?: TData,
-        variables: TVariables
-      }
+        variables: TVariables,
+      },
     ) => TData;
   }
 
@@ -269,7 +269,7 @@ declare module "apollo-client" {
     loading: boolean,
     networkStatus: NetworkStatus,
     error?: ApolloError,
-    partial?: boolean
+    partial?: boolean,
   };
 
   declare interface ModifiableWatchQueryOptions {
@@ -315,14 +315,14 @@ declare module "apollo-client" {
   }
 
   declare export type FetchPolicy =
-    | "cache-first"
-    | "cache-and-network"
-    | "network-only"
-    | "cache-only"
-    | "no-cache"
-    | "standby";
+    | 'cache-first'
+    | 'cache-and-network'
+    | 'network-only'
+    | 'cache-only'
+    | 'no-cache'
+    | 'standby';
 
-  declare export type ErrorPolicy = "none" | "ignore" | "all";
+  declare export type ErrorPolicy = 'none' | 'ignore' | 'all';
 
   declare export interface FetchMoreQueryOptions<TVariables> {
     variables: $Shape<TVariables>;
@@ -331,7 +331,7 @@ declare module "apollo-client" {
   declare export type SubscribeToMoreOptions<
     TData,
     TSubscriptionData,
-    TSubscriptionVariables = void
+    TSubscriptionVariables = void,
   > = {
     document?: DocumentNode,
     variables?: TSubscriptionVariables,
@@ -339,22 +339,22 @@ declare module "apollo-client" {
       previousResult: TData,
       result: {
         subscriptionData: { data?: TSubscriptionData },
-        variables: TSubscriptionVariables
-      }
+        variables: TSubscriptionVariables,
+      },
     ) => TData,
-    onError?: (error: Error) => void
+    onError?: (error: Error) => void,
   };
 
   declare export type MutationUpdaterFn<T = OperationVariables> = (
     proxy: DataProxy,
-    mutationResult: FetchResult<T>
+    mutationResult: FetchResult<T>,
   ) => void;
 
   declare export type NetworkStatus = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
   declare export type QueryListener = (
     queryStoreValue: QueryStoreValue,
-    newData?: any
+    newData?: any,
   ) => void;
 
   declare export type QueryStoreValue = {
@@ -364,12 +364,12 @@ declare module "apollo-client" {
     networkStatus: NetworkStatus,
     networkError: Error | null,
     graphQLErrors: GraphQLError[],
-    metadata: any
+    metadata: any,
   };
 
   declare export type PureQueryOptions = {
     query: DocumentNode,
-    variables?: { [key: string]: any }
+    variables?: { [key: string]: any },
   };
 
   declare export type ApolloQueryResult<T> = {
@@ -377,7 +377,7 @@ declare module "apollo-client" {
     errors?: Array<GraphQLError>,
     loading: boolean,
     networkStatus: NetworkStatus,
-    stale: boolean
+    stale: boolean,
   };
 
   declare export type FetchType = 1 | 2 | 3;
@@ -387,12 +387,12 @@ declare module "apollo-client" {
     options: {
       mutationResult: FetchResult<T>,
       queryName: string | void,
-      queryVariables: { [key: string]: any }
-    }
+      queryVariables: { [key: string]: any },
+    },
   ) => { [key: string]: any };
 
   declare export type MutationQueryReducersMap<T = { [key: string]: any }> = {
-    [queryName: string]: MutationQueryReducer<T>
+    [queryName: string]: MutationQueryReducer<T>,
   };
 
   declare export class ApolloError extends Error {
@@ -423,7 +423,7 @@ declare module "apollo-client" {
     ssrForceFetchDelay?: number,
     connectToDevTools?: boolean,
     queryDeduplication?: boolean,
-    defaultOptions?: DefaultOptions
+    defaultOptions?: DefaultOptions,
   };
 
   declare export class ApolloClient<TCacheShape> {
@@ -456,7 +456,7 @@ declare module "apollo-client" {
     resetStore(): Promise<Array<ApolloQueryResult<any>> | null>;
     onResetStore(cb: () => Promise<any>): () => void;
     reFetchObservableQueries(
-      includeStandby?: boolean
+      includeStandby?: boolean,
     ): Promise<ApolloQueryResult<any>[]> | Promise<null>;
     extract(optimistic?: boolean): TCacheShape;
     restore(serializedState: TCacheShape): ApolloCache<TCacheShape>;
@@ -473,24 +473,24 @@ declare module "apollo-client" {
     static split(
       test: (op: Operation) => boolean,
       left: ApolloLink | RequestHandler,
-      right: ApolloLink | RequestHandler
+      right: ApolloLink | RequestHandler,
     ): ApolloLink;
     static execute(
       link: ApolloLink,
-      operation: GraphQLRequest
+      operation: GraphQLRequest,
     ): Observable<FetchResult<>>;
 
     split(
       test: (op: Operation) => boolean,
       left: ApolloLink | RequestHandler,
-      right: ApolloLink | RequestHandler
+      right: ApolloLink | RequestHandler,
     ): ApolloLink;
 
     concat(next: ApolloLink | RequestHandler): ApolloLink;
 
     request(
       operation: Operation,
-      forward?: NextLink
+      forward?: NextLink,
     ): Observable<FetchResult<>> | null;
   }
 
@@ -514,21 +514,21 @@ declare module "apollo-client" {
 
   declare type FetchResult<
     C = { [key: string]: any },
-    E = { [key: string]: any }
+    E = { [key: string]: any },
   > = ExecutionResult<C> & { extension?: E, context?: C };
 
   declare type NextLink = (operation: Operation) => Observable<FetchResult<>>;
 
   declare type RequestHandler = (
     operation: Operation,
-    forward?: NextLink
+    forward?: NextLink,
   ) => Observable<FetchResult<>> | null;
 
   declare class Observable<T> {
     subscribe(
       observerOrNext: ((value: T) => void) | ZenObservableObserver<T>,
       error?: (error: any) => void,
-      complete?: () => void
+      complete?: () => void,
     ): ZenObservableSubscription;
 
     forEach(fn: (value: T) => void): Promise<void>;
@@ -539,13 +539,13 @@ declare module "apollo-client" {
 
     reduce<R>(
       fn: (previousValue: R | T, currentValue: T) => R | T,
-      initialValue?: R | T
+      initialValue?: R | T,
     ): Observable<R | T>;
 
     flatMap<R>(fn: (value: T) => ZenObservableObservableLike<R>): Observable<R>;
 
     from<R>(
-      observable: Observable<R> | ZenObservableObservableLike<R> | Array<R>
+      observable: Observable<R> | ZenObservableObservableLike<R> | Array<R>,
     ): Observable<R>;
 
     of<R>(...args: Array<R>): Observable<R>;
@@ -583,7 +583,7 @@ declare module "apollo-client" {
   }
 
   declare type ZenObservableSubscriber<T> = (
-    observer: ZenObservableSubscriptionObserver<T>
+    observer: ZenObservableSubscriptionObserver<T>,
   ) => void | (() => void) | SubscriptionLINK;
 
   declare interface ZenObservableObservableLike<T> {
@@ -608,7 +608,7 @@ declare module "apollo-client" {
     performTransaction(transaction: Transaction<TSerialized>): void;
     recordOptimisticTransaction(
       transaction: Transaction<TSerialized>,
-      id: string
+      id: string,
     ): void;
 
     transformDocument(document: DocumentNode): DocumentNode;
@@ -616,11 +616,11 @@ declare module "apollo-client" {
 
     readQuery<QueryType>(
       options: DataProxyReadQueryOptions,
-      optimistic?: boolean
+      optimistic?: boolean,
     ): QueryType | null;
     readFragment<FragmentType>(
       options: DataProxyReadFragmentOptions,
-      optimistic?: boolean
+      optimistic?: boolean,
     ): FragmentType | null;
     writeQuery(options: CacheWriteQueryOptions): void;
     writeFragment(options: CacheWriteFragmentOptions): void;
@@ -697,17 +697,17 @@ declare module "apollo-client" {
 
   declare type DataProxyDiffResult<T> = {
     result?: T,
-    complete?: boolean
+    complete?: boolean,
   };
 
   declare interface DataProxy {
     readQuery<QueryType>(
       options: DataProxyReadQueryOptions,
-      optimistic?: boolean
+      optimistic?: boolean,
     ): QueryType | null;
     readFragment<FragmentType>(
       options: DataProxyReadFragmentOptions,
-      optimistic?: boolean
+      optimistic?: boolean,
     ): FragmentType | null;
     writeQuery(options: DataProxyWriteQueryOptions): void;
     writeFragment(options: DataProxyWriteFragmentOptions): void;

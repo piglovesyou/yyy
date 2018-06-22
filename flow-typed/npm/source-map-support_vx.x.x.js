@@ -36,7 +36,9 @@ declare module 'source-map-support/source-map-support' {
 
 // Filename aliases
 declare module 'source-map-support/browser-source-map-support.js' {
-  declare module.exports: $Exports<'source-map-support/browser-source-map-support'>;
+  declare module.exports: $Exports<
+    'source-map-support/browser-source-map-support',
+  >;
 }
 declare module 'source-map-support/register.js' {
   declare module.exports: $Exports<'source-map-support/register'>;

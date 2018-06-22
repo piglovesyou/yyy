@@ -124,9 +124,7 @@ async function deploy() {
 
   // Check if the site was successfully deployed
   const response = await fetch(remote.website);
-  console.info(
-    `${remote.website} => ${response.status} ${response.statusText}`,
-  );
+  console.info(`${remote.website} => ${response.status} ${response.statusText}`);
 }
 
 export default deploy;

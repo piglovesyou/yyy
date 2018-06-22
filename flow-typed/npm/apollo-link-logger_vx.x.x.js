@@ -64,10 +64,14 @@ declare module 'apollo-link-logger/lib/logging' {
 
 // Filename aliases
 declare module 'apollo-link-logger/es/__tests__/formatMessage.test.js' {
-  declare module.exports: $Exports<'apollo-link-logger/es/__tests__/formatMessage.test'>;
+  declare module.exports: $Exports<
+    'apollo-link-logger/es/__tests__/formatMessage.test',
+  >;
 }
 declare module 'apollo-link-logger/es/__tests__/logging.test.js' {
-  declare module.exports: $Exports<'apollo-link-logger/es/__tests__/logging.test'>;
+  declare module.exports: $Exports<
+    'apollo-link-logger/es/__tests__/logging.test',
+  >;
 }
 declare module 'apollo-link-logger/es/formatMessage.js' {
   declare module.exports: $Exports<'apollo-link-logger/es/formatMessage'>;
@@ -79,10 +83,14 @@ declare module 'apollo-link-logger/es/logging.js' {
   declare module.exports: $Exports<'apollo-link-logger/es/logging'>;
 }
 declare module 'apollo-link-logger/lib/__tests__/formatMessage.test.js' {
-  declare module.exports: $Exports<'apollo-link-logger/lib/__tests__/formatMessage.test'>;
+  declare module.exports: $Exports<
+    'apollo-link-logger/lib/__tests__/formatMessage.test',
+  >;
 }
 declare module 'apollo-link-logger/lib/__tests__/logging.test.js' {
-  declare module.exports: $Exports<'apollo-link-logger/lib/__tests__/logging.test'>;
+  declare module.exports: $Exports<
+    'apollo-link-logger/lib/__tests__/logging.test',
+  >;
 }
 declare module 'apollo-link-logger/lib/formatMessage.js' {
   declare module.exports: $Exports<'apollo-link-logger/lib/formatMessage'>;

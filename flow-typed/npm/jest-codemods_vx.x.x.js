@@ -135,10 +135,14 @@ declare module 'jest-codemods/dist/transformers/ava.js' {
   declare module.exports: $Exports<'jest-codemods/dist/transformers/ava'>;
 }
 declare module 'jest-codemods/dist/transformers/chai-assert.js' {
-  declare module.exports: $Exports<'jest-codemods/dist/transformers/chai-assert'>;
+  declare module.exports: $Exports<
+    'jest-codemods/dist/transformers/chai-assert',
+  >;
 }
 declare module 'jest-codemods/dist/transformers/chai-should.js' {
-  declare module.exports: $Exports<'jest-codemods/dist/transformers/chai-should'>;
+  declare module.exports: $Exports<
+    'jest-codemods/dist/transformers/chai-should',
+  >;
 }
 declare module 'jest-codemods/dist/transformers/expect-js.js' {
   declare module.exports: $Exports<'jest-codemods/dist/transformers/expect-js'>;
@@ -147,7 +151,9 @@ declare module 'jest-codemods/dist/transformers/expect.js' {
   declare module.exports: $Exports<'jest-codemods/dist/transformers/expect'>;
 }
 declare module 'jest-codemods/dist/transformers/jasmine-this.js' {
-  declare module.exports: $Exports<'jest-codemods/dist/transformers/jasmine-this'>;
+  declare module.exports: $Exports<
+    'jest-codemods/dist/transformers/jasmine-this',
+  >;
 }
 declare module 'jest-codemods/dist/transformers/mocha.js' {
   declare module.exports: $Exports<'jest-codemods/dist/transformers/mocha'>;

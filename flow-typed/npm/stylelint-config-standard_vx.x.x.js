@@ -23,7 +23,6 @@ declare module 'stylelint-config-standard' {
  * needed.
  */
 
-
 // Filename aliases
 declare module 'stylelint-config-standard/index' {
   declare module.exports: $Exports<'stylelint-config-standard'>;

@@ -1291,7 +1291,9 @@ declare module 'webpack/lib/AsyncDependenciesBlock.js' {
   declare module.exports: $Exports<'webpack/lib/AsyncDependenciesBlock'>;
 }
 declare module 'webpack/lib/AsyncDependencyToInitialChunkError.js' {
-  declare module.exports: $Exports<'webpack/lib/AsyncDependencyToInitialChunkError'>;
+  declare module.exports: $Exports<
+    'webpack/lib/AsyncDependencyToInitialChunkError',
+  >;
 }
 declare module 'webpack/lib/AutomaticPrefetchPlugin.js' {
   declare module.exports: $Exports<'webpack/lib/AutomaticPrefetchPlugin'>;
@@ -1369,151 +1371,239 @@ declare module 'webpack/lib/DelegatedPlugin.js' {
   declare module.exports: $Exports<'webpack/lib/DelegatedPlugin'>;
 }
 declare module 'webpack/lib/dependencies/AMDDefineDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/AMDDefineDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/AMDDefineDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/AMDDefineDependencyParserPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/AMDDefineDependencyParserPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/AMDDefineDependencyParserPlugin',
+  >;
 }
 declare module 'webpack/lib/dependencies/AMDPlugin.js' {
   declare module.exports: $Exports<'webpack/lib/dependencies/AMDPlugin'>;
 }
 declare module 'webpack/lib/dependencies/AMDRequireArrayDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/AMDRequireArrayDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/AMDRequireArrayDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/AMDRequireContextDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/AMDRequireContextDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/AMDRequireContextDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/AMDRequireDependenciesBlock.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/AMDRequireDependenciesBlock'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/AMDRequireDependenciesBlock',
+  >;
 }
 declare module 'webpack/lib/dependencies/AMDRequireDependenciesBlockParserPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/AMDRequireDependenciesBlockParserPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/AMDRequireDependenciesBlockParserPlugin',
+  >;
 }
 declare module 'webpack/lib/dependencies/AMDRequireDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/AMDRequireDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/AMDRequireDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/AMDRequireItemDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/AMDRequireItemDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/AMDRequireItemDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/CommonJsPlugin.js' {
   declare module.exports: $Exports<'webpack/lib/dependencies/CommonJsPlugin'>;
 }
 declare module 'webpack/lib/dependencies/CommonJsRequireContextDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/CommonJsRequireContextDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/CommonJsRequireContextDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/CommonJsRequireDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/CommonJsRequireDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/CommonJsRequireDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/CommonJsRequireDependencyParserPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/CommonJsRequireDependencyParserPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/CommonJsRequireDependencyParserPlugin',
+  >;
 }
 declare module 'webpack/lib/dependencies/ConstDependency.js' {
   declare module.exports: $Exports<'webpack/lib/dependencies/ConstDependency'>;
 }
 declare module 'webpack/lib/dependencies/ContextDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/ContextDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/ContextDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/ContextDependencyHelpers.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/ContextDependencyHelpers'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/ContextDependencyHelpers',
+  >;
 }
 declare module 'webpack/lib/dependencies/ContextDependencyTemplateAsId.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/ContextDependencyTemplateAsId'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/ContextDependencyTemplateAsId',
+  >;
 }
 declare module 'webpack/lib/dependencies/ContextDependencyTemplateAsRequireCall.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/ContextDependencyTemplateAsRequireCall'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/ContextDependencyTemplateAsRequireCall',
+  >;
 }
 declare module 'webpack/lib/dependencies/ContextElementDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/ContextElementDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/ContextElementDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/CriticalDependencyWarning.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/CriticalDependencyWarning'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/CriticalDependencyWarning',
+  >;
 }
 declare module 'webpack/lib/dependencies/DelegatedExportsDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/DelegatedExportsDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/DelegatedExportsDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/DelegatedSourceDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/DelegatedSourceDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/DelegatedSourceDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/DependencyReference.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/DependencyReference'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/DependencyReference',
+  >;
 }
 declare module 'webpack/lib/dependencies/DllEntryDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/DllEntryDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/DllEntryDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/getFunctionExpression.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/getFunctionExpression'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/getFunctionExpression',
+  >;
 }
 declare module 'webpack/lib/dependencies/HarmonyAcceptDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/HarmonyAcceptDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/HarmonyAcceptDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/HarmonyAcceptImportDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/HarmonyAcceptImportDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/HarmonyAcceptImportDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/HarmonyCompatibilityDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/HarmonyCompatibilityDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/HarmonyCompatibilityDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/HarmonyDetectionParserPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/HarmonyDetectionParserPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/HarmonyDetectionParserPlugin',
+  >;
 }
 declare module 'webpack/lib/dependencies/HarmonyExportDependencyParserPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/HarmonyExportDependencyParserPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/HarmonyExportDependencyParserPlugin',
+  >;
 }
 declare module 'webpack/lib/dependencies/HarmonyExportExpressionDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/HarmonyExportExpressionDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/HarmonyExportExpressionDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/HarmonyExportHeaderDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/HarmonyExportHeaderDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/HarmonyExportHeaderDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/HarmonyExportImportedSpecifierDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/HarmonyExportImportedSpecifierDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/HarmonyExportImportedSpecifierDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/HarmonyExportSpecifierDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/HarmonyExportSpecifierDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/HarmonyExportSpecifierDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/HarmonyImportDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/HarmonyImportDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/HarmonyImportDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/HarmonyImportDependencyParserPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/HarmonyImportDependencyParserPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/HarmonyImportDependencyParserPlugin',
+  >;
 }
 declare module 'webpack/lib/dependencies/HarmonyImportSideEffectDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/HarmonyImportSideEffectDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/HarmonyImportSideEffectDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/HarmonyImportSpecifierDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/HarmonyImportSpecifierDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/HarmonyImportSpecifierDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/HarmonyInitDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/HarmonyInitDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/HarmonyInitDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/HarmonyModulesPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/HarmonyModulesPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/HarmonyModulesPlugin',
+  >;
 }
 declare module 'webpack/lib/dependencies/HarmonyTopLevelThisParserPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/HarmonyTopLevelThisParserPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/HarmonyTopLevelThisParserPlugin',
+  >;
 }
 declare module 'webpack/lib/dependencies/ImportContextDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/ImportContextDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/ImportContextDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/ImportDependenciesBlock.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/ImportDependenciesBlock'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/ImportDependenciesBlock',
+  >;
 }
 declare module 'webpack/lib/dependencies/ImportDependency.js' {
   declare module.exports: $Exports<'webpack/lib/dependencies/ImportDependency'>;
 }
 declare module 'webpack/lib/dependencies/ImportEagerDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/ImportEagerDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/ImportEagerDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/ImportParserPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/ImportParserPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/ImportParserPlugin',
+  >;
 }
 declare module 'webpack/lib/dependencies/ImportPlugin.js' {
   declare module.exports: $Exports<'webpack/lib/dependencies/ImportPlugin'>;
 }
 declare module 'webpack/lib/dependencies/ImportWeakDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/ImportWeakDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/ImportWeakDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/JsonExportsDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/JsonExportsDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/JsonExportsDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/LoaderDependency.js' {
   declare module.exports: $Exports<'webpack/lib/dependencies/LoaderDependency'>;
@@ -1525,100 +1615,158 @@ declare module 'webpack/lib/dependencies/LocalModule.js' {
   declare module.exports: $Exports<'webpack/lib/dependencies/LocalModule'>;
 }
 declare module 'webpack/lib/dependencies/LocalModuleDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/LocalModuleDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/LocalModuleDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/LocalModulesHelpers.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/LocalModulesHelpers'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/LocalModulesHelpers',
+  >;
 }
 declare module 'webpack/lib/dependencies/ModuleDependency.js' {
   declare module.exports: $Exports<'webpack/lib/dependencies/ModuleDependency'>;
 }
 declare module 'webpack/lib/dependencies/ModuleDependencyTemplateAsId.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/ModuleDependencyTemplateAsId'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/ModuleDependencyTemplateAsId',
+  >;
 }
 declare module 'webpack/lib/dependencies/ModuleDependencyTemplateAsRequireId.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/ModuleDependencyTemplateAsRequireId'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/ModuleDependencyTemplateAsRequireId',
+  >;
 }
 declare module 'webpack/lib/dependencies/ModuleHotAcceptDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/ModuleHotAcceptDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/ModuleHotAcceptDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/ModuleHotDeclineDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/ModuleHotDeclineDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/ModuleHotDeclineDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/MultiEntryDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/MultiEntryDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/MultiEntryDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/NullDependency.js' {
   declare module.exports: $Exports<'webpack/lib/dependencies/NullDependency'>;
 }
 declare module 'webpack/lib/dependencies/PrefetchDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/PrefetchDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/PrefetchDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/RequireContextDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/RequireContextDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/RequireContextDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/RequireContextDependencyParserPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/RequireContextDependencyParserPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/RequireContextDependencyParserPlugin',
+  >;
 }
 declare module 'webpack/lib/dependencies/RequireContextPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/RequireContextPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/RequireContextPlugin',
+  >;
 }
 declare module 'webpack/lib/dependencies/RequireEnsureDependenciesBlock.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/RequireEnsureDependenciesBlock'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/RequireEnsureDependenciesBlock',
+  >;
 }
 declare module 'webpack/lib/dependencies/RequireEnsureDependenciesBlockParserPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/RequireEnsureDependenciesBlockParserPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/RequireEnsureDependenciesBlockParserPlugin',
+  >;
 }
 declare module 'webpack/lib/dependencies/RequireEnsureDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/RequireEnsureDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/RequireEnsureDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/RequireEnsureItemDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/RequireEnsureItemDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/RequireEnsureItemDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/RequireEnsurePlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/RequireEnsurePlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/RequireEnsurePlugin',
+  >;
 }
 declare module 'webpack/lib/dependencies/RequireHeaderDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/RequireHeaderDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/RequireHeaderDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/RequireIncludeDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/RequireIncludeDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/RequireIncludeDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/RequireIncludeDependencyParserPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/RequireIncludeDependencyParserPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/RequireIncludeDependencyParserPlugin',
+  >;
 }
 declare module 'webpack/lib/dependencies/RequireIncludePlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/RequireIncludePlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/RequireIncludePlugin',
+  >;
 }
 declare module 'webpack/lib/dependencies/RequireResolveContextDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/RequireResolveContextDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/RequireResolveContextDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/RequireResolveDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/RequireResolveDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/RequireResolveDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/RequireResolveDependencyParserPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/RequireResolveDependencyParserPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/RequireResolveDependencyParserPlugin',
+  >;
 }
 declare module 'webpack/lib/dependencies/RequireResolveHeaderDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/RequireResolveHeaderDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/RequireResolveHeaderDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/SingleEntryDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/SingleEntryDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/SingleEntryDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/SystemPlugin.js' {
   declare module.exports: $Exports<'webpack/lib/dependencies/SystemPlugin'>;
 }
 declare module 'webpack/lib/dependencies/UnsupportedDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/UnsupportedDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/UnsupportedDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/WebAssemblyExportImportedDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/WebAssemblyExportImportedDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/WebAssemblyExportImportedDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/WebAssemblyImportDependency.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/WebAssemblyImportDependency'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/WebAssemblyImportDependency',
+  >;
 }
 declare module 'webpack/lib/dependencies/WebpackMissingModule.js' {
-  declare module.exports: $Exports<'webpack/lib/dependencies/WebpackMissingModule'>;
+  declare module.exports: $Exports<
+    'webpack/lib/dependencies/WebpackMissingModule',
+  >;
 }
 declare module 'webpack/lib/DependenciesBlock.js' {
   declare module.exports: $Exports<'webpack/lib/DependenciesBlock'>;
@@ -1666,16 +1814,22 @@ declare module 'webpack/lib/EvalDevToolModulePlugin.js' {
   declare module.exports: $Exports<'webpack/lib/EvalDevToolModulePlugin'>;
 }
 declare module 'webpack/lib/EvalDevToolModuleTemplatePlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/EvalDevToolModuleTemplatePlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/EvalDevToolModuleTemplatePlugin',
+  >;
 }
 declare module 'webpack/lib/EvalSourceMapDevToolModuleTemplatePlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/EvalSourceMapDevToolModuleTemplatePlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/EvalSourceMapDevToolModuleTemplatePlugin',
+  >;
 }
 declare module 'webpack/lib/EvalSourceMapDevToolPlugin.js' {
   declare module.exports: $Exports<'webpack/lib/EvalSourceMapDevToolPlugin'>;
 }
 declare module 'webpack/lib/ExportPropertyMainTemplatePlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/ExportPropertyMainTemplatePlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/ExportPropertyMainTemplatePlugin',
+  >;
 }
 declare module 'webpack/lib/ExtendedAPIPlugin.js' {
   declare module.exports: $Exports<'webpack/lib/ExtendedAPIPlugin'>;
@@ -1696,7 +1850,9 @@ declare module 'webpack/lib/FlagDependencyUsagePlugin.js' {
   declare module.exports: $Exports<'webpack/lib/FlagDependencyUsagePlugin'>;
 }
 declare module 'webpack/lib/FlagInitialModulesAsUsedPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/FlagInitialModulesAsUsedPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/FlagInitialModulesAsUsedPlugin',
+  >;
 }
 declare module 'webpack/lib/formatLocation.js' {
   declare module.exports: $Exports<'webpack/lib/formatLocation'>;
@@ -1831,13 +1987,17 @@ declare module 'webpack/lib/node/NodeEnvironmentPlugin.js' {
   declare module.exports: $Exports<'webpack/lib/node/NodeEnvironmentPlugin'>;
 }
 declare module 'webpack/lib/node/NodeHotUpdateChunkTemplatePlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/node/NodeHotUpdateChunkTemplatePlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/node/NodeHotUpdateChunkTemplatePlugin',
+  >;
 }
 declare module 'webpack/lib/node/NodeMainTemplate.runtime.js' {
   declare module.exports: $Exports<'webpack/lib/node/NodeMainTemplate.runtime'>;
 }
 declare module 'webpack/lib/node/NodeMainTemplateAsync.runtime.js' {
-  declare module.exports: $Exports<'webpack/lib/node/NodeMainTemplateAsync.runtime'>;
+  declare module.exports: $Exports<
+    'webpack/lib/node/NodeMainTemplateAsync.runtime',
+  >;
 }
 declare module 'webpack/lib/node/NodeMainTemplatePlugin.js' {
   declare module.exports: $Exports<'webpack/lib/node/NodeMainTemplatePlugin'>;
@@ -1858,7 +2018,9 @@ declare module 'webpack/lib/node/NodeWatchFileSystem.js' {
   declare module.exports: $Exports<'webpack/lib/node/NodeWatchFileSystem'>;
 }
 declare module 'webpack/lib/node/ReadFileCompileWasmTemplatePlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/node/ReadFileCompileWasmTemplatePlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/node/ReadFileCompileWasmTemplatePlugin',
+  >;
 }
 declare module 'webpack/lib/NodeStuffPlugin.js' {
   declare module.exports: $Exports<'webpack/lib/NodeStuffPlugin'>;
@@ -1882,49 +2044,73 @@ declare module 'webpack/lib/NullFactory.js' {
   declare module.exports: $Exports<'webpack/lib/NullFactory'>;
 }
 declare module 'webpack/lib/optimize/AggressiveMergingPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/optimize/AggressiveMergingPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/optimize/AggressiveMergingPlugin',
+  >;
 }
 declare module 'webpack/lib/optimize/AggressiveSplittingPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/optimize/AggressiveSplittingPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/optimize/AggressiveSplittingPlugin',
+  >;
 }
 declare module 'webpack/lib/optimize/ChunkModuleIdRangePlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/optimize/ChunkModuleIdRangePlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/optimize/ChunkModuleIdRangePlugin',
+  >;
 }
 declare module 'webpack/lib/optimize/ConcatenatedModule.js' {
   declare module.exports: $Exports<'webpack/lib/optimize/ConcatenatedModule'>;
 }
 declare module 'webpack/lib/optimize/EnsureChunkConditionsPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/optimize/EnsureChunkConditionsPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/optimize/EnsureChunkConditionsPlugin',
+  >;
 }
 declare module 'webpack/lib/optimize/FlagIncludedChunksPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/optimize/FlagIncludedChunksPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/optimize/FlagIncludedChunksPlugin',
+  >;
 }
 declare module 'webpack/lib/optimize/LimitChunkCountPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/optimize/LimitChunkCountPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/optimize/LimitChunkCountPlugin',
+  >;
 }
 declare module 'webpack/lib/optimize/MergeDuplicateChunksPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/optimize/MergeDuplicateChunksPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/optimize/MergeDuplicateChunksPlugin',
+  >;
 }
 declare module 'webpack/lib/optimize/MinChunkSizePlugin.js' {
   declare module.exports: $Exports<'webpack/lib/optimize/MinChunkSizePlugin'>;
 }
 declare module 'webpack/lib/optimize/ModuleConcatenationPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/optimize/ModuleConcatenationPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/optimize/ModuleConcatenationPlugin',
+  >;
 }
 declare module 'webpack/lib/optimize/OccurrenceOrderPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/optimize/OccurrenceOrderPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/optimize/OccurrenceOrderPlugin',
+  >;
 }
 declare module 'webpack/lib/optimize/RemoveEmptyChunksPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/optimize/RemoveEmptyChunksPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/optimize/RemoveEmptyChunksPlugin',
+  >;
 }
 declare module 'webpack/lib/optimize/RemoveParentModulesPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/optimize/RemoveParentModulesPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/optimize/RemoveParentModulesPlugin',
+  >;
 }
 declare module 'webpack/lib/optimize/RuntimeChunkPlugin.js' {
   declare module.exports: $Exports<'webpack/lib/optimize/RuntimeChunkPlugin'>;
 }
 declare module 'webpack/lib/optimize/SideEffectsFlagPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/optimize/SideEffectsFlagPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/optimize/SideEffectsFlagPlugin',
+  >;
 }
 declare module 'webpack/lib/optimize/SplitChunksPlugin.js' {
   declare module.exports: $Exports<'webpack/lib/optimize/SplitChunksPlugin'>;
@@ -1942,13 +2128,19 @@ declare module 'webpack/lib/ParserHelpers.js' {
   declare module.exports: $Exports<'webpack/lib/ParserHelpers'>;
 }
 declare module 'webpack/lib/performance/AssetsOverSizeLimitWarning.js' {
-  declare module.exports: $Exports<'webpack/lib/performance/AssetsOverSizeLimitWarning'>;
+  declare module.exports: $Exports<
+    'webpack/lib/performance/AssetsOverSizeLimitWarning',
+  >;
 }
 declare module 'webpack/lib/performance/EntrypointsOverSizeLimitWarning.js' {
-  declare module.exports: $Exports<'webpack/lib/performance/EntrypointsOverSizeLimitWarning'>;
+  declare module.exports: $Exports<
+    'webpack/lib/performance/EntrypointsOverSizeLimitWarning',
+  >;
 }
 declare module 'webpack/lib/performance/NoAsyncChunksWarning.js' {
-  declare module.exports: $Exports<'webpack/lib/performance/NoAsyncChunksWarning'>;
+  declare module.exports: $Exports<
+    'webpack/lib/performance/NoAsyncChunksWarning',
+  >;
 }
 declare module 'webpack/lib/performance/SizeLimitsPlugin.js' {
   declare module.exports: $Exports<'webpack/lib/performance/SizeLimitsPlugin'>;
@@ -1996,7 +2188,9 @@ declare module 'webpack/lib/SizeFormatHelpers.js' {
   declare module.exports: $Exports<'webpack/lib/SizeFormatHelpers'>;
 }
 declare module 'webpack/lib/SourceMapDevToolModuleOptionsPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/SourceMapDevToolModuleOptionsPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/SourceMapDevToolModuleOptionsPlugin',
+  >;
 }
 declare module 'webpack/lib/SourceMapDevToolPlugin.js' {
   declare module.exports: $Exports<'webpack/lib/SourceMapDevToolPlugin'>;
@@ -2053,16 +2247,22 @@ declare module 'webpack/lib/validateSchema.js' {
   declare module.exports: $Exports<'webpack/lib/validateSchema'>;
 }
 declare module 'webpack/lib/WarnCaseSensitiveModulesPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/WarnCaseSensitiveModulesPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/WarnCaseSensitiveModulesPlugin',
+  >;
 }
 declare module 'webpack/lib/WarnNoModeSetPlugin.js' {
   declare module.exports: $Exports<'webpack/lib/WarnNoModeSetPlugin'>;
 }
 declare module 'webpack/lib/wasm/UnsupportedWebAssemblyFeatureError.js' {
-  declare module.exports: $Exports<'webpack/lib/wasm/UnsupportedWebAssemblyFeatureError'>;
+  declare module.exports: $Exports<
+    'webpack/lib/wasm/UnsupportedWebAssemblyFeatureError',
+  >;
 }
 declare module 'webpack/lib/wasm/WasmFinalizeExportsPlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/wasm/WasmFinalizeExportsPlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/wasm/WasmFinalizeExportsPlugin',
+  >;
 }
 declare module 'webpack/lib/wasm/WasmMainTemplatePlugin.js' {
   declare module.exports: $Exports<'webpack/lib/wasm/WasmMainTemplatePlugin'>;
@@ -2071,7 +2271,9 @@ declare module 'webpack/lib/wasm/WebAssemblyGenerator.js' {
   declare module.exports: $Exports<'webpack/lib/wasm/WebAssemblyGenerator'>;
 }
 declare module 'webpack/lib/wasm/WebAssemblyJavascriptGenerator.js' {
-  declare module.exports: $Exports<'webpack/lib/wasm/WebAssemblyJavascriptGenerator'>;
+  declare module.exports: $Exports<
+    'webpack/lib/wasm/WebAssemblyJavascriptGenerator',
+  >;
 }
 declare module 'webpack/lib/wasm/WebAssemblyModulesPlugin.js' {
   declare module.exports: $Exports<'webpack/lib/wasm/WebAssemblyModulesPlugin'>;
@@ -2089,16 +2291,22 @@ declare module 'webpack/lib/Watching.js' {
   declare module.exports: $Exports<'webpack/lib/Watching'>;
 }
 declare module 'webpack/lib/web/FetchCompileWasmTemplatePlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/web/FetchCompileWasmTemplatePlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/web/FetchCompileWasmTemplatePlugin',
+  >;
 }
 declare module 'webpack/lib/web/JsonpChunkTemplatePlugin.js' {
   declare module.exports: $Exports<'webpack/lib/web/JsonpChunkTemplatePlugin'>;
 }
 declare module 'webpack/lib/web/JsonpExportMainTemplatePlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/web/JsonpExportMainTemplatePlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/web/JsonpExportMainTemplatePlugin',
+  >;
 }
 declare module 'webpack/lib/web/JsonpHotUpdateChunkTemplatePlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/web/JsonpHotUpdateChunkTemplatePlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/web/JsonpHotUpdateChunkTemplatePlugin',
+  >;
 }
 declare module 'webpack/lib/web/JsonpMainTemplate.runtime.js' {
   declare module.exports: $Exports<'webpack/lib/web/JsonpMainTemplate.runtime'>;
@@ -2131,19 +2339,29 @@ declare module 'webpack/lib/WebpackOptionsValidationError.js' {
   declare module.exports: $Exports<'webpack/lib/WebpackOptionsValidationError'>;
 }
 declare module 'webpack/lib/webworker/WebWorkerChunkTemplatePlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/webworker/WebWorkerChunkTemplatePlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/webworker/WebWorkerChunkTemplatePlugin',
+  >;
 }
 declare module 'webpack/lib/webworker/WebWorkerHotUpdateChunkTemplatePlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/webworker/WebWorkerHotUpdateChunkTemplatePlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/webworker/WebWorkerHotUpdateChunkTemplatePlugin',
+  >;
 }
 declare module 'webpack/lib/webworker/WebWorkerMainTemplate.runtime.js' {
-  declare module.exports: $Exports<'webpack/lib/webworker/WebWorkerMainTemplate.runtime'>;
+  declare module.exports: $Exports<
+    'webpack/lib/webworker/WebWorkerMainTemplate.runtime',
+  >;
 }
 declare module 'webpack/lib/webworker/WebWorkerMainTemplatePlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/webworker/WebWorkerMainTemplatePlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/webworker/WebWorkerMainTemplatePlugin',
+  >;
 }
 declare module 'webpack/lib/webworker/WebWorkerTemplatePlugin.js' {
-  declare module.exports: $Exports<'webpack/lib/webworker/WebWorkerTemplatePlugin'>;
+  declare module.exports: $Exports<
+    'webpack/lib/webworker/WebWorkerTemplatePlugin',
+  >;
 }
 declare module 'webpack/schemas/ajv.absolutePath.js' {
   declare module.exports: $Exports<'webpack/schemas/ajv.absolutePath'>;

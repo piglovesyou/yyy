@@ -23,7 +23,6 @@ declare module 'postcss-media-minmax' {
  * needed.
  */
 
-
 // Filename aliases
 declare module 'postcss-media-minmax/index' {
   declare module.exports: $Exports<'postcss-media-minmax'>;

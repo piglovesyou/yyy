@@ -18,12 +18,10 @@ class Html extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    styles: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        cssText: PropTypes.string.isRequired,
-      }).isRequired,
-    ),
+    styles: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      cssText: PropTypes.string.isRequired,
+    }).isRequired),
     scripts: PropTypes.arrayOf(PropTypes.string.isRequired),
     app: PropTypes.object, // eslint-disable-line
     children: PropTypes.string.isRequired,
@@ -35,7 +33,9 @@ class Html extends React.Component {
   };
 
   render() {
-    const { title, description, styles, scripts, app, children } = this.props;
+    const {
+      title, description, styles, scripts, app, children,
+    } = this.props;
     return (
       <html className="no-js" lang="en">
         <head>

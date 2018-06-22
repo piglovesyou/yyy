@@ -23,7 +23,6 @@ declare module 'postcss-custom-media' {
  * needed.
  */
 
-
 // Filename aliases
 declare module 'postcss-custom-media/index' {
   declare module.exports: $Exports<'postcss-custom-media'>;

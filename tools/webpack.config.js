@@ -271,13 +271,11 @@ const config = {
       ...(isDebug
         ? []
         : [
-            {
-              test: resolvePath(
-                'node_modules/react-deep-force-update/lib/index.js',
-              ),
-              loader: 'null-loader',
-            },
-          ]),
+          {
+            test: resolvePath('node_modules/react-deep-force-update/lib/index.js'),
+            loader: 'null-loader',
+          },
+        ]),
     ],
   },
 
@@ -370,10 +368,10 @@ const clientConfig = {
     ...(isDebug
       ? []
       : [
-          // Webpack Bundle Analyzer
-          // https://github.com/th0r/webpack-bundle-analyzer
-          ...(isAnalyze ? [new BundleAnalyzerPlugin()] : []),
-        ]),
+        // Webpack Bundle Analyzer
+        // https://github.com/th0r/webpack-bundle-analyzer
+        ...(isAnalyze ? [new BundleAnalyzerPlugin()] : []),
+      ]),
   ],
 
   // Move modules that occur in multiple entry chunks to a new entry chunk (the commons chunk).
@@ -431,29 +429,27 @@ const serverConfig = {
   module: {
     ...config.module,
 
-    rules: overrideRules(config.module.rules, rule => {
+    rules: overrideRules(config.module.rules, (rule) => {
       // Override babel-preset-env configuration for Node.js
       if (rule.loader === 'babel-loader') {
         return {
           ...rule,
           options: {
             ...rule.options,
-            presets: rule.options.presets.map(
-              preset =>
-                preset[0] !== '@babel/preset-env'
-                  ? preset
-                  : [
-                      '@babel/preset-env',
-                      {
-                        targets: {
-                          node: pkg.engines.node.match(/(\d+\.?)+/)[0],
-                        },
-                        modules: false,
-                        useBuiltIns: false,
-                        debug: false,
-                      },
-                    ],
-            ),
+            presets: rule.options.presets.map(preset =>
+              (preset[0] !== '@babel/preset-env'
+                ? preset
+                : [
+                  '@babel/preset-env',
+                  {
+                    targets: {
+                      node: pkg.engines.node.match(/(\d+\.?)+/)[0],
+                    },
+                    modules: false,
+                    useBuiltIns: false,
+                    debug: false,
+                  },
+                ])),
           },
         };
       }

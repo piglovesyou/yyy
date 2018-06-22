@@ -66,19 +66,27 @@ declare module 'svg-url-loader/index.js' {
   declare module.exports: $Exports<'svg-url-loader'>;
 }
 declare module 'svg-url-loader/test/input/4047B-encoded-styled.js' {
-  declare module.exports: $Exports<'svg-url-loader/test/input/4047B-encoded-styled'>;
+  declare module.exports: $Exports<
+    'svg-url-loader/test/input/4047B-encoded-styled',
+  >;
 }
 declare module 'svg-url-loader/test/input/4099B-encoded-styled.js' {
-  declare module.exports: $Exports<'svg-url-loader/test/input/4099B-encoded-styled'>;
+  declare module.exports: $Exports<
+    'svg-url-loader/test/input/4099B-encoded-styled',
+  >;
 }
 declare module 'svg-url-loader/test/input/4104B-encoded-unstyled.js' {
-  declare module.exports: $Exports<'svg-url-loader/test/input/4104B-encoded-unstyled'>;
+  declare module.exports: $Exports<
+    'svg-url-loader/test/input/4104B-encoded-unstyled',
+  >;
 }
 declare module 'svg-url-loader/test/input/css.js' {
   declare module.exports: $Exports<'svg-url-loader/test/input/css'>;
 }
 declare module 'svg-url-loader/test/input/icon-with-declaration.js' {
-  declare module.exports: $Exports<'svg-url-loader/test/input/icon-with-declaration'>;
+  declare module.exports: $Exports<
+    'svg-url-loader/test/input/icon-with-declaration',
+  >;
 }
 declare module 'svg-url-loader/test/input/icon.js' {
   declare module.exports: $Exports<'svg-url-loader/test/input/icon'>;

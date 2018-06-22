@@ -6481,16 +6481,22 @@ declare module 'core-js/fn/object/freeze.js' {
   declare module.exports: $Exports<'core-js/fn/object/freeze'>;
 }
 declare module 'core-js/fn/object/get-own-property-descriptor.js' {
-  declare module.exports: $Exports<'core-js/fn/object/get-own-property-descriptor'>;
+  declare module.exports: $Exports<
+    'core-js/fn/object/get-own-property-descriptor',
+  >;
 }
 declare module 'core-js/fn/object/get-own-property-descriptors.js' {
-  declare module.exports: $Exports<'core-js/fn/object/get-own-property-descriptors'>;
+  declare module.exports: $Exports<
+    'core-js/fn/object/get-own-property-descriptors',
+  >;
 }
 declare module 'core-js/fn/object/get-own-property-names.js' {
   declare module.exports: $Exports<'core-js/fn/object/get-own-property-names'>;
 }
 declare module 'core-js/fn/object/get-own-property-symbols.js' {
-  declare module.exports: $Exports<'core-js/fn/object/get-own-property-symbols'>;
+  declare module.exports: $Exports<
+    'core-js/fn/object/get-own-property-symbols',
+  >;
 }
 declare module 'core-js/fn/object/get-prototype-of.js' {
   declare module.exports: $Exports<'core-js/fn/object/get-prototype-of'>;
@@ -6592,7 +6598,9 @@ declare module 'core-js/fn/reflect/get-own-metadata.js' {
   declare module.exports: $Exports<'core-js/fn/reflect/get-own-metadata'>;
 }
 declare module 'core-js/fn/reflect/get-own-property-descriptor.js' {
-  declare module.exports: $Exports<'core-js/fn/reflect/get-own-property-descriptor'>;
+  declare module.exports: $Exports<
+    'core-js/fn/reflect/get-own-property-descriptor',
+  >;
 }
 declare module 'core-js/fn/reflect/get-prototype-of.js' {
   declare module.exports: $Exports<'core-js/fn/reflect/get-prototype-of'>;
@@ -7237,7 +7245,9 @@ declare module 'core-js/library/fn/array/values.js' {
   declare module.exports: $Exports<'core-js/library/fn/array/values'>;
 }
 declare module 'core-js/library/fn/array/virtual/copy-within.js' {
-  declare module.exports: $Exports<'core-js/library/fn/array/virtual/copy-within'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/array/virtual/copy-within',
+  >;
 }
 declare module 'core-js/library/fn/array/virtual/entries.js' {
   declare module.exports: $Exports<'core-js/library/fn/array/virtual/entries'>;
@@ -7252,7 +7262,9 @@ declare module 'core-js/library/fn/array/virtual/filter.js' {
   declare module.exports: $Exports<'core-js/library/fn/array/virtual/filter'>;
 }
 declare module 'core-js/library/fn/array/virtual/find-index.js' {
-  declare module.exports: $Exports<'core-js/library/fn/array/virtual/find-index'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/array/virtual/find-index',
+  >;
 }
 declare module 'core-js/library/fn/array/virtual/find.js' {
   declare module.exports: $Exports<'core-js/library/fn/array/virtual/find'>;
@@ -7285,13 +7297,17 @@ declare module 'core-js/library/fn/array/virtual/keys.js' {
   declare module.exports: $Exports<'core-js/library/fn/array/virtual/keys'>;
 }
 declare module 'core-js/library/fn/array/virtual/last-index-of.js' {
-  declare module.exports: $Exports<'core-js/library/fn/array/virtual/last-index-of'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/array/virtual/last-index-of',
+  >;
 }
 declare module 'core-js/library/fn/array/virtual/map.js' {
   declare module.exports: $Exports<'core-js/library/fn/array/virtual/map'>;
 }
 declare module 'core-js/library/fn/array/virtual/reduce-right.js' {
-  declare module.exports: $Exports<'core-js/library/fn/array/virtual/reduce-right'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/array/virtual/reduce-right',
+  >;
 }
 declare module 'core-js/library/fn/array/virtual/reduce.js' {
   declare module.exports: $Exports<'core-js/library/fn/array/virtual/reduce'>;
@@ -7342,7 +7358,9 @@ declare module 'core-js/library/fn/dom-collections/index.js' {
   declare module.exports: $Exports<'core-js/library/fn/dom-collections/index'>;
 }
 declare module 'core-js/library/fn/dom-collections/iterator.js' {
-  declare module.exports: $Exports<'core-js/library/fn/dom-collections/iterator'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/dom-collections/iterator',
+  >;
 }
 declare module 'core-js/library/fn/error/index.js' {
   declare module.exports: $Exports<'core-js/library/fn/error/index'>;
@@ -7519,10 +7537,14 @@ declare module 'core-js/library/fn/number/iterator.js' {
   declare module.exports: $Exports<'core-js/library/fn/number/iterator'>;
 }
 declare module 'core-js/library/fn/number/max-safe-integer.js' {
-  declare module.exports: $Exports<'core-js/library/fn/number/max-safe-integer'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/number/max-safe-integer',
+  >;
 }
 declare module 'core-js/library/fn/number/min-safe-integer.js' {
-  declare module.exports: $Exports<'core-js/library/fn/number/min-safe-integer'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/number/min-safe-integer',
+  >;
 }
 declare module 'core-js/library/fn/number/parse-float.js' {
   declare module.exports: $Exports<'core-js/library/fn/number/parse-float'>;
@@ -7540,13 +7562,19 @@ declare module 'core-js/library/fn/number/virtual/index.js' {
   declare module.exports: $Exports<'core-js/library/fn/number/virtual/index'>;
 }
 declare module 'core-js/library/fn/number/virtual/iterator.js' {
-  declare module.exports: $Exports<'core-js/library/fn/number/virtual/iterator'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/number/virtual/iterator',
+  >;
 }
 declare module 'core-js/library/fn/number/virtual/to-fixed.js' {
-  declare module.exports: $Exports<'core-js/library/fn/number/virtual/to-fixed'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/number/virtual/to-fixed',
+  >;
 }
 declare module 'core-js/library/fn/number/virtual/to-precision.js' {
-  declare module.exports: $Exports<'core-js/library/fn/number/virtual/to-precision'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/number/virtual/to-precision',
+  >;
 }
 declare module 'core-js/library/fn/object/assign.js' {
   declare module.exports: $Exports<'core-js/library/fn/object/assign'>;
@@ -7561,7 +7589,9 @@ declare module 'core-js/library/fn/object/define-getter.js' {
   declare module.exports: $Exports<'core-js/library/fn/object/define-getter'>;
 }
 declare module 'core-js/library/fn/object/define-properties.js' {
-  declare module.exports: $Exports<'core-js/library/fn/object/define-properties'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/object/define-properties',
+  >;
 }
 declare module 'core-js/library/fn/object/define-property.js' {
   declare module.exports: $Exports<'core-js/library/fn/object/define-property'>;
@@ -7579,19 +7609,29 @@ declare module 'core-js/library/fn/object/freeze.js' {
   declare module.exports: $Exports<'core-js/library/fn/object/freeze'>;
 }
 declare module 'core-js/library/fn/object/get-own-property-descriptor.js' {
-  declare module.exports: $Exports<'core-js/library/fn/object/get-own-property-descriptor'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/object/get-own-property-descriptor',
+  >;
 }
 declare module 'core-js/library/fn/object/get-own-property-descriptors.js' {
-  declare module.exports: $Exports<'core-js/library/fn/object/get-own-property-descriptors'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/object/get-own-property-descriptors',
+  >;
 }
 declare module 'core-js/library/fn/object/get-own-property-names.js' {
-  declare module.exports: $Exports<'core-js/library/fn/object/get-own-property-names'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/object/get-own-property-names',
+  >;
 }
 declare module 'core-js/library/fn/object/get-own-property-symbols.js' {
-  declare module.exports: $Exports<'core-js/library/fn/object/get-own-property-symbols'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/object/get-own-property-symbols',
+  >;
 }
 declare module 'core-js/library/fn/object/get-prototype-of.js' {
-  declare module.exports: $Exports<'core-js/library/fn/object/get-prototype-of'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/object/get-prototype-of',
+  >;
 }
 declare module 'core-js/library/fn/object/index.js' {
   declare module.exports: $Exports<'core-js/library/fn/object/index'>;
@@ -7624,13 +7664,17 @@ declare module 'core-js/library/fn/object/make.js' {
   declare module.exports: $Exports<'core-js/library/fn/object/make'>;
 }
 declare module 'core-js/library/fn/object/prevent-extensions.js' {
-  declare module.exports: $Exports<'core-js/library/fn/object/prevent-extensions'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/object/prevent-extensions',
+  >;
 }
 declare module 'core-js/library/fn/object/seal.js' {
   declare module.exports: $Exports<'core-js/library/fn/object/seal'>;
 }
 declare module 'core-js/library/fn/object/set-prototype-of.js' {
-  declare module.exports: $Exports<'core-js/library/fn/object/set-prototype-of'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/object/set-prototype-of',
+  >;
 }
 declare module 'core-js/library/fn/object/values.js' {
   declare module.exports: $Exports<'core-js/library/fn/object/values'>;
@@ -7663,37 +7707,55 @@ declare module 'core-js/library/fn/reflect/construct.js' {
   declare module.exports: $Exports<'core-js/library/fn/reflect/construct'>;
 }
 declare module 'core-js/library/fn/reflect/define-metadata.js' {
-  declare module.exports: $Exports<'core-js/library/fn/reflect/define-metadata'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/reflect/define-metadata',
+  >;
 }
 declare module 'core-js/library/fn/reflect/define-property.js' {
-  declare module.exports: $Exports<'core-js/library/fn/reflect/define-property'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/reflect/define-property',
+  >;
 }
 declare module 'core-js/library/fn/reflect/delete-metadata.js' {
-  declare module.exports: $Exports<'core-js/library/fn/reflect/delete-metadata'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/reflect/delete-metadata',
+  >;
 }
 declare module 'core-js/library/fn/reflect/delete-property.js' {
-  declare module.exports: $Exports<'core-js/library/fn/reflect/delete-property'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/reflect/delete-property',
+  >;
 }
 declare module 'core-js/library/fn/reflect/enumerate.js' {
   declare module.exports: $Exports<'core-js/library/fn/reflect/enumerate'>;
 }
 declare module 'core-js/library/fn/reflect/get-metadata-keys.js' {
-  declare module.exports: $Exports<'core-js/library/fn/reflect/get-metadata-keys'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/reflect/get-metadata-keys',
+  >;
 }
 declare module 'core-js/library/fn/reflect/get-metadata.js' {
   declare module.exports: $Exports<'core-js/library/fn/reflect/get-metadata'>;
 }
 declare module 'core-js/library/fn/reflect/get-own-metadata-keys.js' {
-  declare module.exports: $Exports<'core-js/library/fn/reflect/get-own-metadata-keys'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/reflect/get-own-metadata-keys',
+  >;
 }
 declare module 'core-js/library/fn/reflect/get-own-metadata.js' {
-  declare module.exports: $Exports<'core-js/library/fn/reflect/get-own-metadata'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/reflect/get-own-metadata',
+  >;
 }
 declare module 'core-js/library/fn/reflect/get-own-property-descriptor.js' {
-  declare module.exports: $Exports<'core-js/library/fn/reflect/get-own-property-descriptor'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/reflect/get-own-property-descriptor',
+  >;
 }
 declare module 'core-js/library/fn/reflect/get-prototype-of.js' {
-  declare module.exports: $Exports<'core-js/library/fn/reflect/get-prototype-of'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/reflect/get-prototype-of',
+  >;
 }
 declare module 'core-js/library/fn/reflect/get.js' {
   declare module.exports: $Exports<'core-js/library/fn/reflect/get'>;
@@ -7702,7 +7764,9 @@ declare module 'core-js/library/fn/reflect/has-metadata.js' {
   declare module.exports: $Exports<'core-js/library/fn/reflect/has-metadata'>;
 }
 declare module 'core-js/library/fn/reflect/has-own-metadata.js' {
-  declare module.exports: $Exports<'core-js/library/fn/reflect/has-own-metadata'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/reflect/has-own-metadata',
+  >;
 }
 declare module 'core-js/library/fn/reflect/has.js' {
   declare module.exports: $Exports<'core-js/library/fn/reflect/has'>;
@@ -7720,10 +7784,14 @@ declare module 'core-js/library/fn/reflect/own-keys.js' {
   declare module.exports: $Exports<'core-js/library/fn/reflect/own-keys'>;
 }
 declare module 'core-js/library/fn/reflect/prevent-extensions.js' {
-  declare module.exports: $Exports<'core-js/library/fn/reflect/prevent-extensions'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/reflect/prevent-extensions',
+  >;
 }
 declare module 'core-js/library/fn/reflect/set-prototype-of.js' {
-  declare module.exports: $Exports<'core-js/library/fn/reflect/set-prototype-of'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/reflect/set-prototype-of',
+  >;
 }
 declare module 'core-js/library/fn/reflect/set.js' {
   declare module.exports: $Exports<'core-js/library/fn/reflect/set'>;
@@ -7891,25 +7959,37 @@ declare module 'core-js/library/fn/string/virtual/bold.js' {
   declare module.exports: $Exports<'core-js/library/fn/string/virtual/bold'>;
 }
 declare module 'core-js/library/fn/string/virtual/code-point-at.js' {
-  declare module.exports: $Exports<'core-js/library/fn/string/virtual/code-point-at'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/string/virtual/code-point-at',
+  >;
 }
 declare module 'core-js/library/fn/string/virtual/ends-with.js' {
-  declare module.exports: $Exports<'core-js/library/fn/string/virtual/ends-with'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/string/virtual/ends-with',
+  >;
 }
 declare module 'core-js/library/fn/string/virtual/escape-html.js' {
-  declare module.exports: $Exports<'core-js/library/fn/string/virtual/escape-html'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/string/virtual/escape-html',
+  >;
 }
 declare module 'core-js/library/fn/string/virtual/fixed.js' {
   declare module.exports: $Exports<'core-js/library/fn/string/virtual/fixed'>;
 }
 declare module 'core-js/library/fn/string/virtual/fontcolor.js' {
-  declare module.exports: $Exports<'core-js/library/fn/string/virtual/fontcolor'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/string/virtual/fontcolor',
+  >;
 }
 declare module 'core-js/library/fn/string/virtual/fontsize.js' {
-  declare module.exports: $Exports<'core-js/library/fn/string/virtual/fontsize'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/string/virtual/fontsize',
+  >;
 }
 declare module 'core-js/library/fn/string/virtual/includes.js' {
-  declare module.exports: $Exports<'core-js/library/fn/string/virtual/includes'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/string/virtual/includes',
+  >;
 }
 declare module 'core-js/library/fn/string/virtual/index.js' {
   declare module.exports: $Exports<'core-js/library/fn/string/virtual/index'>;
@@ -7918,19 +7998,25 @@ declare module 'core-js/library/fn/string/virtual/italics.js' {
   declare module.exports: $Exports<'core-js/library/fn/string/virtual/italics'>;
 }
 declare module 'core-js/library/fn/string/virtual/iterator.js' {
-  declare module.exports: $Exports<'core-js/library/fn/string/virtual/iterator'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/string/virtual/iterator',
+  >;
 }
 declare module 'core-js/library/fn/string/virtual/link.js' {
   declare module.exports: $Exports<'core-js/library/fn/string/virtual/link'>;
 }
 declare module 'core-js/library/fn/string/virtual/match-all.js' {
-  declare module.exports: $Exports<'core-js/library/fn/string/virtual/match-all'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/string/virtual/match-all',
+  >;
 }
 declare module 'core-js/library/fn/string/virtual/pad-end.js' {
   declare module.exports: $Exports<'core-js/library/fn/string/virtual/pad-end'>;
 }
 declare module 'core-js/library/fn/string/virtual/pad-start.js' {
-  declare module.exports: $Exports<'core-js/library/fn/string/virtual/pad-start'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/string/virtual/pad-start',
+  >;
 }
 declare module 'core-js/library/fn/string/virtual/repeat.js' {
   declare module.exports: $Exports<'core-js/library/fn/string/virtual/repeat'>;
@@ -7939,7 +8025,9 @@ declare module 'core-js/library/fn/string/virtual/small.js' {
   declare module.exports: $Exports<'core-js/library/fn/string/virtual/small'>;
 }
 declare module 'core-js/library/fn/string/virtual/starts-with.js' {
-  declare module.exports: $Exports<'core-js/library/fn/string/virtual/starts-with'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/string/virtual/starts-with',
+  >;
 }
 declare module 'core-js/library/fn/string/virtual/strike.js' {
   declare module.exports: $Exports<'core-js/library/fn/string/virtual/strike'>;
@@ -7951,22 +8039,32 @@ declare module 'core-js/library/fn/string/virtual/sup.js' {
   declare module.exports: $Exports<'core-js/library/fn/string/virtual/sup'>;
 }
 declare module 'core-js/library/fn/string/virtual/trim-end.js' {
-  declare module.exports: $Exports<'core-js/library/fn/string/virtual/trim-end'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/string/virtual/trim-end',
+  >;
 }
 declare module 'core-js/library/fn/string/virtual/trim-left.js' {
-  declare module.exports: $Exports<'core-js/library/fn/string/virtual/trim-left'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/string/virtual/trim-left',
+  >;
 }
 declare module 'core-js/library/fn/string/virtual/trim-right.js' {
-  declare module.exports: $Exports<'core-js/library/fn/string/virtual/trim-right'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/string/virtual/trim-right',
+  >;
 }
 declare module 'core-js/library/fn/string/virtual/trim-start.js' {
-  declare module.exports: $Exports<'core-js/library/fn/string/virtual/trim-start'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/string/virtual/trim-start',
+  >;
 }
 declare module 'core-js/library/fn/string/virtual/trim.js' {
   declare module.exports: $Exports<'core-js/library/fn/string/virtual/trim'>;
 }
 declare module 'core-js/library/fn/string/virtual/unescape-html.js' {
-  declare module.exports: $Exports<'core-js/library/fn/string/virtual/unescape-html'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/string/virtual/unescape-html',
+  >;
 }
 declare module 'core-js/library/fn/symbol/async-iterator.js' {
   declare module.exports: $Exports<'core-js/library/fn/symbol/async-iterator'>;
@@ -7981,7 +8079,9 @@ declare module 'core-js/library/fn/symbol/index.js' {
   declare module.exports: $Exports<'core-js/library/fn/symbol/index'>;
 }
 declare module 'core-js/library/fn/symbol/is-concat-spreadable.js' {
-  declare module.exports: $Exports<'core-js/library/fn/symbol/is-concat-spreadable'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/symbol/is-concat-spreadable',
+  >;
 }
 declare module 'core-js/library/fn/symbol/iterator.js' {
   declare module.exports: $Exports<'core-js/library/fn/symbol/iterator'>;
@@ -8056,7 +8156,9 @@ declare module 'core-js/library/fn/typed/uint8-array.js' {
   declare module.exports: $Exports<'core-js/library/fn/typed/uint8-array'>;
 }
 declare module 'core-js/library/fn/typed/uint8-clamped-array.js' {
-  declare module.exports: $Exports<'core-js/library/fn/typed/uint8-clamped-array'>;
+  declare module.exports: $Exports<
+    'core-js/library/fn/typed/uint8-clamped-array',
+  >;
 }
 declare module 'core-js/library/fn/weak-map.js' {
   declare module.exports: $Exports<'core-js/library/fn/weak-map'>;
@@ -8092,7 +8194,9 @@ declare module 'core-js/library/modules/_a-number-value.js' {
   declare module.exports: $Exports<'core-js/library/modules/_a-number-value'>;
 }
 declare module 'core-js/library/modules/_add-to-unscopables.js' {
-  declare module.exports: $Exports<'core-js/library/modules/_add-to-unscopables'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/_add-to-unscopables',
+  >;
 }
 declare module 'core-js/library/modules/_an-instance.js' {
   declare module.exports: $Exports<'core-js/library/modules/_an-instance'>;
@@ -8101,13 +8205,17 @@ declare module 'core-js/library/modules/_an-object.js' {
   declare module.exports: $Exports<'core-js/library/modules/_an-object'>;
 }
 declare module 'core-js/library/modules/_array-copy-within.js' {
-  declare module.exports: $Exports<'core-js/library/modules/_array-copy-within'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/_array-copy-within',
+  >;
 }
 declare module 'core-js/library/modules/_array-fill.js' {
   declare module.exports: $Exports<'core-js/library/modules/_array-fill'>;
 }
 declare module 'core-js/library/modules/_array-from-iterable.js' {
-  declare module.exports: $Exports<'core-js/library/modules/_array-from-iterable'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/_array-from-iterable',
+  >;
 }
 declare module 'core-js/library/modules/_array-includes.js' {
   declare module.exports: $Exports<'core-js/library/modules/_array-includes'>;
@@ -8119,10 +8227,14 @@ declare module 'core-js/library/modules/_array-reduce.js' {
   declare module.exports: $Exports<'core-js/library/modules/_array-reduce'>;
 }
 declare module 'core-js/library/modules/_array-species-constructor.js' {
-  declare module.exports: $Exports<'core-js/library/modules/_array-species-constructor'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/_array-species-constructor',
+  >;
 }
 declare module 'core-js/library/modules/_array-species-create.js' {
-  declare module.exports: $Exports<'core-js/library/modules/_array-species-create'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/_array-species-create',
+  >;
 }
 declare module 'core-js/library/modules/_bind.js' {
   declare module.exports: $Exports<'core-js/library/modules/_bind'>;
@@ -8134,10 +8246,14 @@ declare module 'core-js/library/modules/_cof.js' {
   declare module.exports: $Exports<'core-js/library/modules/_cof'>;
 }
 declare module 'core-js/library/modules/_collection-strong.js' {
-  declare module.exports: $Exports<'core-js/library/modules/_collection-strong'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/_collection-strong',
+  >;
 }
 declare module 'core-js/library/modules/_collection-to-json.js' {
-  declare module.exports: $Exports<'core-js/library/modules/_collection-to-json'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/_collection-to-json',
+  >;
 }
 declare module 'core-js/library/modules/_collection-weak.js' {
   declare module.exports: $Exports<'core-js/library/modules/_collection-weak'>;
@@ -8155,10 +8271,14 @@ declare module 'core-js/library/modules/_ctx.js' {
   declare module.exports: $Exports<'core-js/library/modules/_ctx'>;
 }
 declare module 'core-js/library/modules/_date-to-iso-string.js' {
-  declare module.exports: $Exports<'core-js/library/modules/_date-to-iso-string'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/_date-to-iso-string',
+  >;
 }
 declare module 'core-js/library/modules/_date-to-primitive.js' {
-  declare module.exports: $Exports<'core-js/library/modules/_date-to-primitive'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/_date-to-primitive',
+  >;
 }
 declare module 'core-js/library/modules/_defined.js' {
   declare module.exports: $Exports<'core-js/library/modules/_defined'>;
@@ -8194,7 +8314,9 @@ declare module 'core-js/library/modules/_flags.js' {
   declare module.exports: $Exports<'core-js/library/modules/_flags'>;
 }
 declare module 'core-js/library/modules/_flatten-into-array.js' {
-  declare module.exports: $Exports<'core-js/library/modules/_flatten-into-array'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/_flatten-into-array',
+  >;
 }
 declare module 'core-js/library/modules/_for-of.js' {
   declare module.exports: $Exports<'core-js/library/modules/_for-of'>;
@@ -8215,7 +8337,9 @@ declare module 'core-js/library/modules/_ie8-dom-define.js' {
   declare module.exports: $Exports<'core-js/library/modules/_ie8-dom-define'>;
 }
 declare module 'core-js/library/modules/_inherit-if-required.js' {
-  declare module.exports: $Exports<'core-js/library/modules/_inherit-if-required'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/_inherit-if-required',
+  >;
 }
 declare module 'core-js/library/modules/_invoke.js' {
   declare module.exports: $Exports<'core-js/library/modules/_invoke'>;
@@ -8287,7 +8411,9 @@ declare module 'core-js/library/modules/_microtask.js' {
   declare module.exports: $Exports<'core-js/library/modules/_microtask'>;
 }
 declare module 'core-js/library/modules/_new-promise-capability.js' {
-  declare module.exports: $Exports<'core-js/library/modules/_new-promise-capability'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/_new-promise-capability',
+  >;
 }
 declare module 'core-js/library/modules/_object-assign.js' {
   declare module.exports: $Exports<'core-js/library/modules/_object-assign'>;
@@ -8305,7 +8431,9 @@ declare module 'core-js/library/modules/_object-dps.js' {
   declare module.exports: $Exports<'core-js/library/modules/_object-dps'>;
 }
 declare module 'core-js/library/modules/_object-forced-pam.js' {
-  declare module.exports: $Exports<'core-js/library/modules/_object-forced-pam'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/_object-forced-pam',
+  >;
 }
 declare module 'core-js/library/modules/_object-gopd.js' {
   declare module.exports: $Exports<'core-js/library/modules/_object-gopd'>;
@@ -8323,7 +8451,9 @@ declare module 'core-js/library/modules/_object-gpo.js' {
   declare module.exports: $Exports<'core-js/library/modules/_object-gpo'>;
 }
 declare module 'core-js/library/modules/_object-keys-internal.js' {
-  declare module.exports: $Exports<'core-js/library/modules/_object-keys-internal'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/_object-keys-internal',
+  >;
 }
 declare module 'core-js/library/modules/_object-keys.js' {
   declare module.exports: $Exports<'core-js/library/modules/_object-keys'>;
@@ -8374,10 +8504,14 @@ declare module 'core-js/library/modules/_same-value.js' {
   declare module.exports: $Exports<'core-js/library/modules/_same-value'>;
 }
 declare module 'core-js/library/modules/_set-collection-from.js' {
-  declare module.exports: $Exports<'core-js/library/modules/_set-collection-from'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/_set-collection-from',
+  >;
 }
 declare module 'core-js/library/modules/_set-collection-of.js' {
-  declare module.exports: $Exports<'core-js/library/modules/_set-collection-of'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/_set-collection-of',
+  >;
 }
 declare module 'core-js/library/modules/_set-proto.js' {
   declare module.exports: $Exports<'core-js/library/modules/_set-proto'>;
@@ -8386,7 +8520,9 @@ declare module 'core-js/library/modules/_set-species.js' {
   declare module.exports: $Exports<'core-js/library/modules/_set-species'>;
 }
 declare module 'core-js/library/modules/_set-to-string-tag.js' {
-  declare module.exports: $Exports<'core-js/library/modules/_set-to-string-tag'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/_set-to-string-tag',
+  >;
 }
 declare module 'core-js/library/modules/_shared-key.js' {
   declare module.exports: $Exports<'core-js/library/modules/_shared-key'>;
@@ -8395,7 +8531,9 @@ declare module 'core-js/library/modules/_shared.js' {
   declare module.exports: $Exports<'core-js/library/modules/_shared'>;
 }
 declare module 'core-js/library/modules/_species-constructor.js' {
-  declare module.exports: $Exports<'core-js/library/modules/_species-constructor'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/_species-constructor',
+  >;
 }
 declare module 'core-js/library/modules/_strict-method.js' {
   declare module.exports: $Exports<'core-js/library/modules/_strict-method'>;
@@ -8425,7 +8563,9 @@ declare module 'core-js/library/modules/_task.js' {
   declare module.exports: $Exports<'core-js/library/modules/_task'>;
 }
 declare module 'core-js/library/modules/_to-absolute-index.js' {
-  declare module.exports: $Exports<'core-js/library/modules/_to-absolute-index'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/_to-absolute-index',
+  >;
 }
 declare module 'core-js/library/modules/_to-index.js' {
   declare module.exports: $Exports<'core-js/library/modules/_to-index'>;
@@ -8461,7 +8601,9 @@ declare module 'core-js/library/modules/_user-agent.js' {
   declare module.exports: $Exports<'core-js/library/modules/_user-agent'>;
 }
 declare module 'core-js/library/modules/_validate-collection.js' {
-  declare module.exports: $Exports<'core-js/library/modules/_validate-collection'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/_validate-collection',
+  >;
 }
 declare module 'core-js/library/modules/_wks-define.js' {
   declare module.exports: $Exports<'core-js/library/modules/_wks-define'>;
@@ -8479,10 +8621,14 @@ declare module 'core-js/library/modules/core.dict.js' {
   declare module.exports: $Exports<'core-js/library/modules/core.dict'>;
 }
 declare module 'core-js/library/modules/core.function.part.js' {
-  declare module.exports: $Exports<'core-js/library/modules/core.function.part'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/core.function.part',
+  >;
 }
 declare module 'core-js/library/modules/core.get-iterator-method.js' {
-  declare module.exports: $Exports<'core-js/library/modules/core.get-iterator-method'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/core.get-iterator-method',
+  >;
 }
 declare module 'core-js/library/modules/core.get-iterator.js' {
   declare module.exports: $Exports<'core-js/library/modules/core.get-iterator'>;
@@ -8491,34 +8637,50 @@ declare module 'core-js/library/modules/core.is-iterable.js' {
   declare module.exports: $Exports<'core-js/library/modules/core.is-iterable'>;
 }
 declare module 'core-js/library/modules/core.number.iterator.js' {
-  declare module.exports: $Exports<'core-js/library/modules/core.number.iterator'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/core.number.iterator',
+  >;
 }
 declare module 'core-js/library/modules/core.object.classof.js' {
-  declare module.exports: $Exports<'core-js/library/modules/core.object.classof'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/core.object.classof',
+  >;
 }
 declare module 'core-js/library/modules/core.object.define.js' {
-  declare module.exports: $Exports<'core-js/library/modules/core.object.define'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/core.object.define',
+  >;
 }
 declare module 'core-js/library/modules/core.object.is-object.js' {
-  declare module.exports: $Exports<'core-js/library/modules/core.object.is-object'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/core.object.is-object',
+  >;
 }
 declare module 'core-js/library/modules/core.object.make.js' {
   declare module.exports: $Exports<'core-js/library/modules/core.object.make'>;
 }
 declare module 'core-js/library/modules/core.regexp.escape.js' {
-  declare module.exports: $Exports<'core-js/library/modules/core.regexp.escape'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/core.regexp.escape',
+  >;
 }
 declare module 'core-js/library/modules/core.string.escape-html.js' {
-  declare module.exports: $Exports<'core-js/library/modules/core.string.escape-html'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/core.string.escape-html',
+  >;
 }
 declare module 'core-js/library/modules/core.string.unescape-html.js' {
-  declare module.exports: $Exports<'core-js/library/modules/core.string.unescape-html'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/core.string.unescape-html',
+  >;
 }
 declare module 'core-js/library/modules/es5.js' {
   declare module.exports: $Exports<'core-js/library/modules/es5'>;
 }
 declare module 'core-js/library/modules/es6.array.copy-within.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.array.copy-within'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.array.copy-within',
+  >;
 }
 declare module 'core-js/library/modules/es6.array.every.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.array.every'>;
@@ -8530,31 +8692,43 @@ declare module 'core-js/library/modules/es6.array.filter.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.array.filter'>;
 }
 declare module 'core-js/library/modules/es6.array.find-index.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.array.find-index'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.array.find-index',
+  >;
 }
 declare module 'core-js/library/modules/es6.array.find.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.array.find'>;
 }
 declare module 'core-js/library/modules/es6.array.for-each.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.array.for-each'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.array.for-each',
+  >;
 }
 declare module 'core-js/library/modules/es6.array.from.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.array.from'>;
 }
 declare module 'core-js/library/modules/es6.array.index-of.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.array.index-of'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.array.index-of',
+  >;
 }
 declare module 'core-js/library/modules/es6.array.is-array.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.array.is-array'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.array.is-array',
+  >;
 }
 declare module 'core-js/library/modules/es6.array.iterator.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.array.iterator'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.array.iterator',
+  >;
 }
 declare module 'core-js/library/modules/es6.array.join.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.array.join'>;
 }
 declare module 'core-js/library/modules/es6.array.last-index-of.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.array.last-index-of'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.array.last-index-of',
+  >;
 }
 declare module 'core-js/library/modules/es6.array.map.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.array.map'>;
@@ -8563,7 +8737,9 @@ declare module 'core-js/library/modules/es6.array.of.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.array.of'>;
 }
 declare module 'core-js/library/modules/es6.array.reduce-right.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.array.reduce-right'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.array.reduce-right',
+  >;
 }
 declare module 'core-js/library/modules/es6.array.reduce.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.array.reduce'>;
@@ -8584,22 +8760,30 @@ declare module 'core-js/library/modules/es6.date.now.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.date.now'>;
 }
 declare module 'core-js/library/modules/es6.date.to-iso-string.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.date.to-iso-string'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.date.to-iso-string',
+  >;
 }
 declare module 'core-js/library/modules/es6.date.to-json.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.date.to-json'>;
 }
 declare module 'core-js/library/modules/es6.date.to-primitive.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.date.to-primitive'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.date.to-primitive',
+  >;
 }
 declare module 'core-js/library/modules/es6.date.to-string.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.date.to-string'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.date.to-string',
+  >;
 }
 declare module 'core-js/library/modules/es6.function.bind.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.function.bind'>;
 }
 declare module 'core-js/library/modules/es6.function.has-instance.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.function.has-instance'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.function.has-instance',
+  >;
 }
 declare module 'core-js/library/modules/es6.function.name.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.function.name'>;
@@ -8659,40 +8843,62 @@ declare module 'core-js/library/modules/es6.math.trunc.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.math.trunc'>;
 }
 declare module 'core-js/library/modules/es6.number.constructor.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.number.constructor'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.number.constructor',
+  >;
 }
 declare module 'core-js/library/modules/es6.number.epsilon.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.number.epsilon'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.number.epsilon',
+  >;
 }
 declare module 'core-js/library/modules/es6.number.is-finite.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.number.is-finite'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.number.is-finite',
+  >;
 }
 declare module 'core-js/library/modules/es6.number.is-integer.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.number.is-integer'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.number.is-integer',
+  >;
 }
 declare module 'core-js/library/modules/es6.number.is-nan.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.number.is-nan'>;
 }
 declare module 'core-js/library/modules/es6.number.is-safe-integer.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.number.is-safe-integer'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.number.is-safe-integer',
+  >;
 }
 declare module 'core-js/library/modules/es6.number.max-safe-integer.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.number.max-safe-integer'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.number.max-safe-integer',
+  >;
 }
 declare module 'core-js/library/modules/es6.number.min-safe-integer.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.number.min-safe-integer'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.number.min-safe-integer',
+  >;
 }
 declare module 'core-js/library/modules/es6.number.parse-float.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.number.parse-float'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.number.parse-float',
+  >;
 }
 declare module 'core-js/library/modules/es6.number.parse-int.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.number.parse-int'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.number.parse-int',
+  >;
 }
 declare module 'core-js/library/modules/es6.number.to-fixed.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.number.to-fixed'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.number.to-fixed',
+  >;
 }
 declare module 'core-js/library/modules/es6.number.to-precision.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.number.to-precision'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.number.to-precision',
+  >;
 }
 declare module 'core-js/library/modules/es6.object.assign.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.object.assign'>;
@@ -8701,31 +8907,47 @@ declare module 'core-js/library/modules/es6.object.create.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.object.create'>;
 }
 declare module 'core-js/library/modules/es6.object.define-properties.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.object.define-properties'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.object.define-properties',
+  >;
 }
 declare module 'core-js/library/modules/es6.object.define-property.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.object.define-property'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.object.define-property',
+  >;
 }
 declare module 'core-js/library/modules/es6.object.freeze.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.object.freeze'>;
 }
 declare module 'core-js/library/modules/es6.object.get-own-property-descriptor.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.object.get-own-property-descriptor'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.object.get-own-property-descriptor',
+  >;
 }
 declare module 'core-js/library/modules/es6.object.get-own-property-names.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.object.get-own-property-names'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.object.get-own-property-names',
+  >;
 }
 declare module 'core-js/library/modules/es6.object.get-prototype-of.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.object.get-prototype-of'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.object.get-prototype-of',
+  >;
 }
 declare module 'core-js/library/modules/es6.object.is-extensible.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.object.is-extensible'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.object.is-extensible',
+  >;
 }
 declare module 'core-js/library/modules/es6.object.is-frozen.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.object.is-frozen'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.object.is-frozen',
+  >;
 }
 declare module 'core-js/library/modules/es6.object.is-sealed.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.object.is-sealed'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.object.is-sealed',
+  >;
 }
 declare module 'core-js/library/modules/es6.object.is.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.object.is'>;
@@ -8734,16 +8956,22 @@ declare module 'core-js/library/modules/es6.object.keys.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.object.keys'>;
 }
 declare module 'core-js/library/modules/es6.object.prevent-extensions.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.object.prevent-extensions'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.object.prevent-extensions',
+  >;
 }
 declare module 'core-js/library/modules/es6.object.seal.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.object.seal'>;
 }
 declare module 'core-js/library/modules/es6.object.set-prototype-of.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.object.set-prototype-of'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.object.set-prototype-of',
+  >;
 }
 declare module 'core-js/library/modules/es6.object.to-string.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.object.to-string'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.object.to-string',
+  >;
 }
 declare module 'core-js/library/modules/es6.parse-float.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.parse-float'>;
@@ -8758,22 +8986,34 @@ declare module 'core-js/library/modules/es6.reflect.apply.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.reflect.apply'>;
 }
 declare module 'core-js/library/modules/es6.reflect.construct.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.reflect.construct'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.reflect.construct',
+  >;
 }
 declare module 'core-js/library/modules/es6.reflect.define-property.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.reflect.define-property'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.reflect.define-property',
+  >;
 }
 declare module 'core-js/library/modules/es6.reflect.delete-property.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.reflect.delete-property'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.reflect.delete-property',
+  >;
 }
 declare module 'core-js/library/modules/es6.reflect.enumerate.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.reflect.enumerate'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.reflect.enumerate',
+  >;
 }
 declare module 'core-js/library/modules/es6.reflect.get-own-property-descriptor.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.reflect.get-own-property-descriptor'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.reflect.get-own-property-descriptor',
+  >;
 }
 declare module 'core-js/library/modules/es6.reflect.get-prototype-of.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.reflect.get-prototype-of'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.reflect.get-prototype-of',
+  >;
 }
 declare module 'core-js/library/modules/es6.reflect.get.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.reflect.get'>;
@@ -8782,22 +9022,32 @@ declare module 'core-js/library/modules/es6.reflect.has.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.reflect.has'>;
 }
 declare module 'core-js/library/modules/es6.reflect.is-extensible.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.reflect.is-extensible'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.reflect.is-extensible',
+  >;
 }
 declare module 'core-js/library/modules/es6.reflect.own-keys.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.reflect.own-keys'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.reflect.own-keys',
+  >;
 }
 declare module 'core-js/library/modules/es6.reflect.prevent-extensions.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.reflect.prevent-extensions'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.reflect.prevent-extensions',
+  >;
 }
 declare module 'core-js/library/modules/es6.reflect.set-prototype-of.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.reflect.set-prototype-of'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.reflect.set-prototype-of',
+  >;
 }
 declare module 'core-js/library/modules/es6.reflect.set.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.reflect.set'>;
 }
 declare module 'core-js/library/modules/es6.regexp.constructor.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.regexp.constructor'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.regexp.constructor',
+  >;
 }
 declare module 'core-js/library/modules/es6.regexp.flags.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.regexp.flags'>;
@@ -8806,7 +9056,9 @@ declare module 'core-js/library/modules/es6.regexp.match.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.regexp.match'>;
 }
 declare module 'core-js/library/modules/es6.regexp.replace.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.regexp.replace'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.regexp.replace',
+  >;
 }
 declare module 'core-js/library/modules/es6.regexp.search.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.regexp.search'>;
@@ -8815,7 +9067,9 @@ declare module 'core-js/library/modules/es6.regexp.split.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.regexp.split'>;
 }
 declare module 'core-js/library/modules/es6.regexp.to-string.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.regexp.to-string'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.regexp.to-string',
+  >;
 }
 declare module 'core-js/library/modules/es6.set.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.set'>;
@@ -8833,31 +9087,47 @@ declare module 'core-js/library/modules/es6.string.bold.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.string.bold'>;
 }
 declare module 'core-js/library/modules/es6.string.code-point-at.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.string.code-point-at'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.string.code-point-at',
+  >;
 }
 declare module 'core-js/library/modules/es6.string.ends-with.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.string.ends-with'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.string.ends-with',
+  >;
 }
 declare module 'core-js/library/modules/es6.string.fixed.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.string.fixed'>;
 }
 declare module 'core-js/library/modules/es6.string.fontcolor.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.string.fontcolor'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.string.fontcolor',
+  >;
 }
 declare module 'core-js/library/modules/es6.string.fontsize.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.string.fontsize'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.string.fontsize',
+  >;
 }
 declare module 'core-js/library/modules/es6.string.from-code-point.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.string.from-code-point'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.string.from-code-point',
+  >;
 }
 declare module 'core-js/library/modules/es6.string.includes.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.string.includes'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.string.includes',
+  >;
 }
 declare module 'core-js/library/modules/es6.string.italics.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.string.italics'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.string.italics',
+  >;
 }
 declare module 'core-js/library/modules/es6.string.iterator.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.string.iterator'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.string.iterator',
+  >;
 }
 declare module 'core-js/library/modules/es6.string.link.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.string.link'>;
@@ -8872,7 +9142,9 @@ declare module 'core-js/library/modules/es6.string.small.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.string.small'>;
 }
 declare module 'core-js/library/modules/es6.string.starts-with.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.string.starts-with'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.string.starts-with',
+  >;
 }
 declare module 'core-js/library/modules/es6.string.strike.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.string.strike'>;
@@ -8890,37 +9162,59 @@ declare module 'core-js/library/modules/es6.symbol.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.symbol'>;
 }
 declare module 'core-js/library/modules/es6.typed.array-buffer.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.typed.array-buffer'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.typed.array-buffer',
+  >;
 }
 declare module 'core-js/library/modules/es6.typed.data-view.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.typed.data-view'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.typed.data-view',
+  >;
 }
 declare module 'core-js/library/modules/es6.typed.float32-array.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.typed.float32-array'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.typed.float32-array',
+  >;
 }
 declare module 'core-js/library/modules/es6.typed.float64-array.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.typed.float64-array'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.typed.float64-array',
+  >;
 }
 declare module 'core-js/library/modules/es6.typed.int16-array.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.typed.int16-array'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.typed.int16-array',
+  >;
 }
 declare module 'core-js/library/modules/es6.typed.int32-array.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.typed.int32-array'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.typed.int32-array',
+  >;
 }
 declare module 'core-js/library/modules/es6.typed.int8-array.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.typed.int8-array'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.typed.int8-array',
+  >;
 }
 declare module 'core-js/library/modules/es6.typed.uint16-array.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.typed.uint16-array'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.typed.uint16-array',
+  >;
 }
 declare module 'core-js/library/modules/es6.typed.uint32-array.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.typed.uint32-array'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.typed.uint32-array',
+  >;
 }
 declare module 'core-js/library/modules/es6.typed.uint8-array.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.typed.uint8-array'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.typed.uint8-array',
+  >;
 }
 declare module 'core-js/library/modules/es6.typed.uint8-clamped-array.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es6.typed.uint8-clamped-array'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es6.typed.uint8-clamped-array',
+  >;
 }
 declare module 'core-js/library/modules/es6.weak-map.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.weak-map'>;
@@ -8929,19 +9223,25 @@ declare module 'core-js/library/modules/es6.weak-set.js' {
   declare module.exports: $Exports<'core-js/library/modules/es6.weak-set'>;
 }
 declare module 'core-js/library/modules/es7.array.flat-map.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.array.flat-map'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.array.flat-map',
+  >;
 }
 declare module 'core-js/library/modules/es7.array.flatten.js' {
   declare module.exports: $Exports<'core-js/library/modules/es7.array.flatten'>;
 }
 declare module 'core-js/library/modules/es7.array.includes.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.array.includes'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.array.includes',
+  >;
 }
 declare module 'core-js/library/modules/es7.asap.js' {
   declare module.exports: $Exports<'core-js/library/modules/es7.asap'>;
 }
 declare module 'core-js/library/modules/es7.error.is-error.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.error.is-error'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.error.is-error',
+  >;
 }
 declare module 'core-js/library/modules/es7.global.js' {
   declare module.exports: $Exports<'core-js/library/modules/es7.global'>;
@@ -8959,7 +9259,9 @@ declare module 'core-js/library/modules/es7.math.clamp.js' {
   declare module.exports: $Exports<'core-js/library/modules/es7.math.clamp'>;
 }
 declare module 'core-js/library/modules/es7.math.deg-per-rad.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.math.deg-per-rad'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.math.deg-per-rad',
+  >;
 }
 declare module 'core-js/library/modules/es7.math.degrees.js' {
   declare module.exports: $Exports<'core-js/library/modules/es7.math.degrees'>;
@@ -8977,7 +9279,9 @@ declare module 'core-js/library/modules/es7.math.isubh.js' {
   declare module.exports: $Exports<'core-js/library/modules/es7.math.isubh'>;
 }
 declare module 'core-js/library/modules/es7.math.rad-per-deg.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.math.rad-per-deg'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.math.rad-per-deg',
+  >;
 }
 declare module 'core-js/library/modules/es7.math.radians.js' {
   declare module.exports: $Exports<'core-js/library/modules/es7.math.radians'>;
@@ -8992,22 +9296,34 @@ declare module 'core-js/library/modules/es7.math.umulh.js' {
   declare module.exports: $Exports<'core-js/library/modules/es7.math.umulh'>;
 }
 declare module 'core-js/library/modules/es7.object.define-getter.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.object.define-getter'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.object.define-getter',
+  >;
 }
 declare module 'core-js/library/modules/es7.object.define-setter.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.object.define-setter'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.object.define-setter',
+  >;
 }
 declare module 'core-js/library/modules/es7.object.entries.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.object.entries'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.object.entries',
+  >;
 }
 declare module 'core-js/library/modules/es7.object.get-own-property-descriptors.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.object.get-own-property-descriptors'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.object.get-own-property-descriptors',
+  >;
 }
 declare module 'core-js/library/modules/es7.object.lookup-getter.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.object.lookup-getter'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.object.lookup-getter',
+  >;
 }
 declare module 'core-js/library/modules/es7.object.lookup-setter.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.object.lookup-setter'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.object.lookup-setter',
+  >;
 }
 declare module 'core-js/library/modules/es7.object.values.js' {
   declare module.exports: $Exports<'core-js/library/modules/es7.object.values'>;
@@ -9016,37 +9332,57 @@ declare module 'core-js/library/modules/es7.observable.js' {
   declare module.exports: $Exports<'core-js/library/modules/es7.observable'>;
 }
 declare module 'core-js/library/modules/es7.promise.finally.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.promise.finally'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.promise.finally',
+  >;
 }
 declare module 'core-js/library/modules/es7.promise.try.js' {
   declare module.exports: $Exports<'core-js/library/modules/es7.promise.try'>;
 }
 declare module 'core-js/library/modules/es7.reflect.define-metadata.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.reflect.define-metadata'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.reflect.define-metadata',
+  >;
 }
 declare module 'core-js/library/modules/es7.reflect.delete-metadata.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.reflect.delete-metadata'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.reflect.delete-metadata',
+  >;
 }
 declare module 'core-js/library/modules/es7.reflect.get-metadata-keys.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.reflect.get-metadata-keys'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.reflect.get-metadata-keys',
+  >;
 }
 declare module 'core-js/library/modules/es7.reflect.get-metadata.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.reflect.get-metadata'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.reflect.get-metadata',
+  >;
 }
 declare module 'core-js/library/modules/es7.reflect.get-own-metadata-keys.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.reflect.get-own-metadata-keys'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.reflect.get-own-metadata-keys',
+  >;
 }
 declare module 'core-js/library/modules/es7.reflect.get-own-metadata.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.reflect.get-own-metadata'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.reflect.get-own-metadata',
+  >;
 }
 declare module 'core-js/library/modules/es7.reflect.has-metadata.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.reflect.has-metadata'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.reflect.has-metadata',
+  >;
 }
 declare module 'core-js/library/modules/es7.reflect.has-own-metadata.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.reflect.has-own-metadata'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.reflect.has-own-metadata',
+  >;
 }
 declare module 'core-js/library/modules/es7.reflect.metadata.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.reflect.metadata'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.reflect.metadata',
+  >;
 }
 declare module 'core-js/library/modules/es7.set.from.js' {
   declare module.exports: $Exports<'core-js/library/modules/es7.set.from'>;
@@ -9061,25 +9397,39 @@ declare module 'core-js/library/modules/es7.string.at.js' {
   declare module.exports: $Exports<'core-js/library/modules/es7.string.at'>;
 }
 declare module 'core-js/library/modules/es7.string.match-all.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.string.match-all'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.string.match-all',
+  >;
 }
 declare module 'core-js/library/modules/es7.string.pad-end.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.string.pad-end'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.string.pad-end',
+  >;
 }
 declare module 'core-js/library/modules/es7.string.pad-start.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.string.pad-start'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.string.pad-start',
+  >;
 }
 declare module 'core-js/library/modules/es7.string.trim-left.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.string.trim-left'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.string.trim-left',
+  >;
 }
 declare module 'core-js/library/modules/es7.string.trim-right.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.string.trim-right'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.string.trim-right',
+  >;
 }
 declare module 'core-js/library/modules/es7.symbol.async-iterator.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.symbol.async-iterator'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.symbol.async-iterator',
+  >;
 }
 declare module 'core-js/library/modules/es7.symbol.observable.js' {
-  declare module.exports: $Exports<'core-js/library/modules/es7.symbol.observable'>;
+  declare module.exports: $Exports<
+    'core-js/library/modules/es7.symbol.observable',
+  >;
 }
 declare module 'core-js/library/modules/es7.system.global.js' {
   declare module.exports: $Exports<'core-js/library/modules/es7.system.global'>;
@@ -9175,7 +9525,9 @@ declare module 'core-js/modules/_array-reduce.js' {
   declare module.exports: $Exports<'core-js/modules/_array-reduce'>;
 }
 declare module 'core-js/modules/_array-species-constructor.js' {
-  declare module.exports: $Exports<'core-js/modules/_array-species-constructor'>;
+  declare module.exports: $Exports<
+    'core-js/modules/_array-species-constructor',
+  >;
 }
 declare module 'core-js/modules/_array-species-create.js' {
   declare module.exports: $Exports<'core-js/modules/_array-species-create'>;
@@ -9730,13 +10082,19 @@ declare module 'core-js/modules/es6.number.is-nan.js' {
   declare module.exports: $Exports<'core-js/modules/es6.number.is-nan'>;
 }
 declare module 'core-js/modules/es6.number.is-safe-integer.js' {
-  declare module.exports: $Exports<'core-js/modules/es6.number.is-safe-integer'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es6.number.is-safe-integer',
+  >;
 }
 declare module 'core-js/modules/es6.number.max-safe-integer.js' {
-  declare module.exports: $Exports<'core-js/modules/es6.number.max-safe-integer'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es6.number.max-safe-integer',
+  >;
 }
 declare module 'core-js/modules/es6.number.min-safe-integer.js' {
-  declare module.exports: $Exports<'core-js/modules/es6.number.min-safe-integer'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es6.number.min-safe-integer',
+  >;
 }
 declare module 'core-js/modules/es6.number.parse-float.js' {
   declare module.exports: $Exports<'core-js/modules/es6.number.parse-float'>;
@@ -9757,22 +10115,32 @@ declare module 'core-js/modules/es6.object.create.js' {
   declare module.exports: $Exports<'core-js/modules/es6.object.create'>;
 }
 declare module 'core-js/modules/es6.object.define-properties.js' {
-  declare module.exports: $Exports<'core-js/modules/es6.object.define-properties'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es6.object.define-properties',
+  >;
 }
 declare module 'core-js/modules/es6.object.define-property.js' {
-  declare module.exports: $Exports<'core-js/modules/es6.object.define-property'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es6.object.define-property',
+  >;
 }
 declare module 'core-js/modules/es6.object.freeze.js' {
   declare module.exports: $Exports<'core-js/modules/es6.object.freeze'>;
 }
 declare module 'core-js/modules/es6.object.get-own-property-descriptor.js' {
-  declare module.exports: $Exports<'core-js/modules/es6.object.get-own-property-descriptor'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es6.object.get-own-property-descriptor',
+  >;
 }
 declare module 'core-js/modules/es6.object.get-own-property-names.js' {
-  declare module.exports: $Exports<'core-js/modules/es6.object.get-own-property-names'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es6.object.get-own-property-names',
+  >;
 }
 declare module 'core-js/modules/es6.object.get-prototype-of.js' {
-  declare module.exports: $Exports<'core-js/modules/es6.object.get-prototype-of'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es6.object.get-prototype-of',
+  >;
 }
 declare module 'core-js/modules/es6.object.is-extensible.js' {
   declare module.exports: $Exports<'core-js/modules/es6.object.is-extensible'>;
@@ -9790,13 +10158,17 @@ declare module 'core-js/modules/es6.object.keys.js' {
   declare module.exports: $Exports<'core-js/modules/es6.object.keys'>;
 }
 declare module 'core-js/modules/es6.object.prevent-extensions.js' {
-  declare module.exports: $Exports<'core-js/modules/es6.object.prevent-extensions'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es6.object.prevent-extensions',
+  >;
 }
 declare module 'core-js/modules/es6.object.seal.js' {
   declare module.exports: $Exports<'core-js/modules/es6.object.seal'>;
 }
 declare module 'core-js/modules/es6.object.set-prototype-of.js' {
-  declare module.exports: $Exports<'core-js/modules/es6.object.set-prototype-of'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es6.object.set-prototype-of',
+  >;
 }
 declare module 'core-js/modules/es6.object.to-string.js' {
   declare module.exports: $Exports<'core-js/modules/es6.object.to-string'>;
@@ -9817,19 +10189,27 @@ declare module 'core-js/modules/es6.reflect.construct.js' {
   declare module.exports: $Exports<'core-js/modules/es6.reflect.construct'>;
 }
 declare module 'core-js/modules/es6.reflect.define-property.js' {
-  declare module.exports: $Exports<'core-js/modules/es6.reflect.define-property'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es6.reflect.define-property',
+  >;
 }
 declare module 'core-js/modules/es6.reflect.delete-property.js' {
-  declare module.exports: $Exports<'core-js/modules/es6.reflect.delete-property'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es6.reflect.delete-property',
+  >;
 }
 declare module 'core-js/modules/es6.reflect.enumerate.js' {
   declare module.exports: $Exports<'core-js/modules/es6.reflect.enumerate'>;
 }
 declare module 'core-js/modules/es6.reflect.get-own-property-descriptor.js' {
-  declare module.exports: $Exports<'core-js/modules/es6.reflect.get-own-property-descriptor'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es6.reflect.get-own-property-descriptor',
+  >;
 }
 declare module 'core-js/modules/es6.reflect.get-prototype-of.js' {
-  declare module.exports: $Exports<'core-js/modules/es6.reflect.get-prototype-of'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es6.reflect.get-prototype-of',
+  >;
 }
 declare module 'core-js/modules/es6.reflect.get.js' {
   declare module.exports: $Exports<'core-js/modules/es6.reflect.get'>;
@@ -9844,10 +10224,14 @@ declare module 'core-js/modules/es6.reflect.own-keys.js' {
   declare module.exports: $Exports<'core-js/modules/es6.reflect.own-keys'>;
 }
 declare module 'core-js/modules/es6.reflect.prevent-extensions.js' {
-  declare module.exports: $Exports<'core-js/modules/es6.reflect.prevent-extensions'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es6.reflect.prevent-extensions',
+  >;
 }
 declare module 'core-js/modules/es6.reflect.set-prototype-of.js' {
-  declare module.exports: $Exports<'core-js/modules/es6.reflect.set-prototype-of'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es6.reflect.set-prototype-of',
+  >;
 }
 declare module 'core-js/modules/es6.reflect.set.js' {
   declare module.exports: $Exports<'core-js/modules/es6.reflect.set'>;
@@ -9904,7 +10288,9 @@ declare module 'core-js/modules/es6.string.fontsize.js' {
   declare module.exports: $Exports<'core-js/modules/es6.string.fontsize'>;
 }
 declare module 'core-js/modules/es6.string.from-code-point.js' {
-  declare module.exports: $Exports<'core-js/modules/es6.string.from-code-point'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es6.string.from-code-point',
+  >;
 }
 declare module 'core-js/modules/es6.string.includes.js' {
   declare module.exports: $Exports<'core-js/modules/es6.string.includes'>;
@@ -9976,7 +10362,9 @@ declare module 'core-js/modules/es6.typed.uint8-array.js' {
   declare module.exports: $Exports<'core-js/modules/es6.typed.uint8-array'>;
 }
 declare module 'core-js/modules/es6.typed.uint8-clamped-array.js' {
-  declare module.exports: $Exports<'core-js/modules/es6.typed.uint8-clamped-array'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es6.typed.uint8-clamped-array',
+  >;
 }
 declare module 'core-js/modules/es6.weak-map.js' {
   declare module.exports: $Exports<'core-js/modules/es6.weak-map'>;
@@ -10057,7 +10445,9 @@ declare module 'core-js/modules/es7.object.entries.js' {
   declare module.exports: $Exports<'core-js/modules/es7.object.entries'>;
 }
 declare module 'core-js/modules/es7.object.get-own-property-descriptors.js' {
-  declare module.exports: $Exports<'core-js/modules/es7.object.get-own-property-descriptors'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es7.object.get-own-property-descriptors',
+  >;
 }
 declare module 'core-js/modules/es7.object.lookup-getter.js' {
   declare module.exports: $Exports<'core-js/modules/es7.object.lookup-getter'>;
@@ -10078,28 +10468,40 @@ declare module 'core-js/modules/es7.promise.try.js' {
   declare module.exports: $Exports<'core-js/modules/es7.promise.try'>;
 }
 declare module 'core-js/modules/es7.reflect.define-metadata.js' {
-  declare module.exports: $Exports<'core-js/modules/es7.reflect.define-metadata'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es7.reflect.define-metadata',
+  >;
 }
 declare module 'core-js/modules/es7.reflect.delete-metadata.js' {
-  declare module.exports: $Exports<'core-js/modules/es7.reflect.delete-metadata'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es7.reflect.delete-metadata',
+  >;
 }
 declare module 'core-js/modules/es7.reflect.get-metadata-keys.js' {
-  declare module.exports: $Exports<'core-js/modules/es7.reflect.get-metadata-keys'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es7.reflect.get-metadata-keys',
+  >;
 }
 declare module 'core-js/modules/es7.reflect.get-metadata.js' {
   declare module.exports: $Exports<'core-js/modules/es7.reflect.get-metadata'>;
 }
 declare module 'core-js/modules/es7.reflect.get-own-metadata-keys.js' {
-  declare module.exports: $Exports<'core-js/modules/es7.reflect.get-own-metadata-keys'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es7.reflect.get-own-metadata-keys',
+  >;
 }
 declare module 'core-js/modules/es7.reflect.get-own-metadata.js' {
-  declare module.exports: $Exports<'core-js/modules/es7.reflect.get-own-metadata'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es7.reflect.get-own-metadata',
+  >;
 }
 declare module 'core-js/modules/es7.reflect.has-metadata.js' {
   declare module.exports: $Exports<'core-js/modules/es7.reflect.has-metadata'>;
 }
 declare module 'core-js/modules/es7.reflect.has-own-metadata.js' {
-  declare module.exports: $Exports<'core-js/modules/es7.reflect.has-own-metadata'>;
+  declare module.exports: $Exports<
+    'core-js/modules/es7.reflect.has-own-metadata',
+  >;
 }
 declare module 'core-js/modules/es7.reflect.metadata.js' {
   declare module.exports: $Exports<'core-js/modules/es7.reflect.metadata'>;
@@ -10153,7 +10555,9 @@ declare module 'core-js/modules/es7.weak-set.of.js' {
   declare module.exports: $Exports<'core-js/modules/es7.weak-set.of'>;
 }
 declare module 'core-js/modules/library/_add-to-unscopables.js' {
-  declare module.exports: $Exports<'core-js/modules/library/_add-to-unscopables'>;
+  declare module.exports: $Exports<
+    'core-js/modules/library/_add-to-unscopables',
+  >;
 }
 declare module 'core-js/modules/library/_collection.js' {
   declare module.exports: $Exports<'core-js/modules/library/_collection'>;
@@ -10180,22 +10584,32 @@ declare module 'core-js/modules/library/es6.date.to-json.js' {
   declare module.exports: $Exports<'core-js/modules/library/es6.date.to-json'>;
 }
 declare module 'core-js/modules/library/es6.date.to-primitive.js' {
-  declare module.exports: $Exports<'core-js/modules/library/es6.date.to-primitive'>;
+  declare module.exports: $Exports<
+    'core-js/modules/library/es6.date.to-primitive',
+  >;
 }
 declare module 'core-js/modules/library/es6.date.to-string.js' {
-  declare module.exports: $Exports<'core-js/modules/library/es6.date.to-string'>;
+  declare module.exports: $Exports<
+    'core-js/modules/library/es6.date.to-string',
+  >;
 }
 declare module 'core-js/modules/library/es6.function.name.js' {
   declare module.exports: $Exports<'core-js/modules/library/es6.function.name'>;
 }
 declare module 'core-js/modules/library/es6.number.constructor.js' {
-  declare module.exports: $Exports<'core-js/modules/library/es6.number.constructor'>;
+  declare module.exports: $Exports<
+    'core-js/modules/library/es6.number.constructor',
+  >;
 }
 declare module 'core-js/modules/library/es6.object.to-string.js' {
-  declare module.exports: $Exports<'core-js/modules/library/es6.object.to-string'>;
+  declare module.exports: $Exports<
+    'core-js/modules/library/es6.object.to-string',
+  >;
 }
 declare module 'core-js/modules/library/es6.regexp.constructor.js' {
-  declare module.exports: $Exports<'core-js/modules/library/es6.regexp.constructor'>;
+  declare module.exports: $Exports<
+    'core-js/modules/library/es6.regexp.constructor',
+  >;
 }
 declare module 'core-js/modules/library/es6.regexp.flags.js' {
   declare module.exports: $Exports<'core-js/modules/library/es6.regexp.flags'>;
@@ -10204,7 +10618,9 @@ declare module 'core-js/modules/library/es6.regexp.match.js' {
   declare module.exports: $Exports<'core-js/modules/library/es6.regexp.match'>;
 }
 declare module 'core-js/modules/library/es6.regexp.replace.js' {
-  declare module.exports: $Exports<'core-js/modules/library/es6.regexp.replace'>;
+  declare module.exports: $Exports<
+    'core-js/modules/library/es6.regexp.replace',
+  >;
 }
 declare module 'core-js/modules/library/es6.regexp.search.js' {
   declare module.exports: $Exports<'core-js/modules/library/es6.regexp.search'>;
@@ -10213,7 +10629,9 @@ declare module 'core-js/modules/library/es6.regexp.split.js' {
   declare module.exports: $Exports<'core-js/modules/library/es6.regexp.split'>;
 }
 declare module 'core-js/modules/library/es6.regexp.to-string.js' {
-  declare module.exports: $Exports<'core-js/modules/library/es6.regexp.to-string'>;
+  declare module.exports: $Exports<
+    'core-js/modules/library/es6.regexp.to-string',
+  >;
 }
 declare module 'core-js/modules/library/web.dom.iterable.js' {
   declare module.exports: $Exports<'core-js/modules/library/web.dom.iterable'>;

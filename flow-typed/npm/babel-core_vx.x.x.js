@@ -23,7 +23,6 @@ declare module 'babel-core' {
  * needed.
  */
 
-
 // Filename aliases
 declare module 'babel-core/index' {
   declare module.exports: $Exports<'babel-core'>;

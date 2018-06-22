@@ -23,7 +23,6 @@ declare module 'jest-transform-graphql' {
  * needed.
  */
 
-
 // Filename aliases
 declare module 'jest-transform-graphql/index' {
   declare module.exports: $Exports<'jest-transform-graphql'>;

@@ -65,8 +65,7 @@ export const readDir = (pattern, options) =>
       pattern,
       options,
       (err, result) => (err ? reject(err) : resolve(result)),
-    ),
-  );
+    ));
 
 export const makeDir = name =>
   new Promise((resolve, reject) => {
@@ -79,14 +78,12 @@ export const moveDir = async (source, target) => {
     nosort: true,
     dot: true,
   });
-  await Promise.all(
-    dirs.map(async dir => {
-      const from = path.resolve(source, dir);
-      const to = path.resolve(target, dir);
-      await makeDir(path.dirname(to));
-      await renameFile(from, to);
-    }),
-  );
+  await Promise.all(dirs.map(async (dir) => {
+    const from = path.resolve(source, dir);
+    const to = path.resolve(target, dir);
+    await makeDir(path.dirname(to));
+    await renameFile(from, to);
+  }));
 };
 
 export const copyDir = async (source, target) => {
@@ -95,14 +92,12 @@ export const copyDir = async (source, target) => {
     nosort: true,
     dot: true,
   });
-  await Promise.all(
-    dirs.map(async dir => {
-      const from = path.resolve(source, dir);
-      const to = path.resolve(target, dir);
-      await makeDir(path.dirname(to));
-      await copyFile(from, to);
-    }),
-  );
+  await Promise.all(dirs.map(async (dir) => {
+    const from = path.resolve(source, dir);
+    const to = path.resolve(target, dir);
+    await makeDir(path.dirname(to));
+    await copyFile(from, to);
+  }));
 };
 
 export const cleanDir = (pattern, options) =>
@@ -111,8 +106,7 @@ export const cleanDir = (pattern, options) =>
       pattern,
       { glob: options },
       (err, result) => (err ? reject(err) : resolve(result)),
-    ),
-  );
+    ));
 
 export default {
   readFile,

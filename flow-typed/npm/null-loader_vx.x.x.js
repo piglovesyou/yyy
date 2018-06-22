@@ -23,7 +23,6 @@ declare module 'null-loader' {
  * needed.
  */
 
-
 // Filename aliases
 declare module 'null-loader/index' {
   declare module.exports: $Exports<'null-loader'>;

@@ -23,7 +23,6 @@ declare module 'lodash.range' {
  * needed.
  */
 
-
 // Filename aliases
 declare module 'lodash.range/index' {
   declare module.exports: $Exports<'lodash.range'>;

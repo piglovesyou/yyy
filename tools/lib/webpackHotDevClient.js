@@ -11,20 +11,18 @@ import hotClient from 'webpack-hot-middleware/client';
 import launchEditorEndpoint from 'react-dev-utils/launchEditorEndpoint';
 import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages';
 import {
-  setEditorHandler,
-  reportBuildError,
   dismissBuildError,
+  reportBuildError,
+  setEditorHandler,
   startReportingRuntimeErrors,
   stopReportingRuntimeErrors,
 } from 'react-error-overlay';
 
-setEditorHandler(errorLocation => {
+setEditorHandler((errorLocation) => {
   const fileName = encodeURIComponent(errorLocation.fileName);
   const lineNumber = encodeURIComponent(errorLocation.lineNumber || 1);
-  fetch(
-    // Keep in sync with react-dev-utils/errorOverlayMiddleware
-    `${launchEditorEndpoint}?fileName=${fileName}&lineNumber=${lineNumber}`,
-  );
+  // Keep in sync with react-dev-utils/errorOverlayMiddleware
+  fetch(`${launchEditorEndpoint}?fileName=${fileName}&lineNumber=${lineNumber}`);
 });
 
 hotClient.useCustomOverlay({

@@ -143,7 +143,7 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "eslint --no-ignore --fix",
+      "yarn lint-js",
       "git add --force"
     ],
     "*.{json,md,graphql}": [
@@ -157,7 +157,7 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "lint-js": "eslint --ignore-path .gitignore --ignore-pattern \"!**/.*\" .",
+    "lint-js": "eslint --ignore-path .gitignore --ignore-pattern \"!**/.*\" --ignore-pattern \"/flow-typed/**\" .",
     "lint-css": "stylelint \"src/**/*.{css,less,styl,scss,sass,sss}\"",
     "lint": "yarn run lint-js && yarn run lint-css",
     "fix-js": "yarn run lint-js --fix",

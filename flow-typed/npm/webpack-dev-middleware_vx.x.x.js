@@ -57,7 +57,9 @@ declare module 'webpack-dev-middleware/lib/context.js' {
   declare module.exports: $Exports<'webpack-dev-middleware/lib/context'>;
 }
 declare module 'webpack-dev-middleware/lib/DevMiddlewareError.js' {
-  declare module.exports: $Exports<'webpack-dev-middleware/lib/DevMiddlewareError'>;
+  declare module.exports: $Exports<
+    'webpack-dev-middleware/lib/DevMiddlewareError',
+  >;
 }
 declare module 'webpack-dev-middleware/lib/fs.js' {
   declare module.exports: $Exports<'webpack-dev-middleware/lib/fs'>;

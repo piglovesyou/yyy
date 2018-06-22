@@ -413,7 +413,9 @@ declare module 'autoprefixer/lib/hacks/grid-start.js' {
   declare module.exports: $Exports<'autoprefixer/lib/hacks/grid-start'>;
 }
 declare module 'autoprefixer/lib/hacks/grid-template-areas.js' {
-  declare module.exports: $Exports<'autoprefixer/lib/hacks/grid-template-areas'>;
+  declare module.exports: $Exports<
+    'autoprefixer/lib/hacks/grid-template-areas',
+  >;
 }
 declare module 'autoprefixer/lib/hacks/grid-template.js' {
   declare module.exports: $Exports<'autoprefixer/lib/hacks/grid-template'>;
@@ -443,7 +445,9 @@ declare module 'autoprefixer/lib/hacks/order.js' {
   declare module.exports: $Exports<'autoprefixer/lib/hacks/order'>;
 }
 declare module 'autoprefixer/lib/hacks/overscroll-behavior.js' {
-  declare module.exports: $Exports<'autoprefixer/lib/hacks/overscroll-behavior'>;
+  declare module.exports: $Exports<
+    'autoprefixer/lib/hacks/overscroll-behavior',
+  >;
 }
 declare module 'autoprefixer/lib/hacks/pixelated.js' {
   declare module.exports: $Exports<'autoprefixer/lib/hacks/pixelated'>;
@@ -455,7 +459,9 @@ declare module 'autoprefixer/lib/hacks/text-decoration.js' {
   declare module.exports: $Exports<'autoprefixer/lib/hacks/text-decoration'>;
 }
 declare module 'autoprefixer/lib/hacks/text-emphasis-position.js' {
-  declare module.exports: $Exports<'autoprefixer/lib/hacks/text-emphasis-position'>;
+  declare module.exports: $Exports<
+    'autoprefixer/lib/hacks/text-emphasis-position',
+  >;
 }
 declare module 'autoprefixer/lib/hacks/transform-decl.js' {
   declare module.exports: $Exports<'autoprefixer/lib/hacks/transform-decl'>;

@@ -23,7 +23,6 @@ declare module 'pleeease-filters' {
  * needed.
  */
 
-
 // Filename aliases
 declare module 'pleeease-filters/index' {
   declare module.exports: $Exports<'pleeease-filters'>;

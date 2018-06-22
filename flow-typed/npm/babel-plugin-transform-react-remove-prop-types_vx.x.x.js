@@ -56,26 +56,42 @@ declare module 'babel-plugin-transform-react-remove-prop-types/src/remove' {
 
 // Filename aliases
 declare module 'babel-plugin-transform-react-remove-prop-types/lib/index.js' {
-  declare module.exports: $Exports<'babel-plugin-transform-react-remove-prop-types/lib/index'>;
+  declare module.exports: $Exports<
+    'babel-plugin-transform-react-remove-prop-types/lib/index',
+  >;
 }
 declare module 'babel-plugin-transform-react-remove-prop-types/lib/isAnnotatedForRemoval.js' {
-  declare module.exports: $Exports<'babel-plugin-transform-react-remove-prop-types/lib/isAnnotatedForRemoval'>;
+  declare module.exports: $Exports<
+    'babel-plugin-transform-react-remove-prop-types/lib/isAnnotatedForRemoval',
+  >;
 }
 declare module 'babel-plugin-transform-react-remove-prop-types/lib/isStatelessComponent.js' {
-  declare module.exports: $Exports<'babel-plugin-transform-react-remove-prop-types/lib/isStatelessComponent'>;
+  declare module.exports: $Exports<
+    'babel-plugin-transform-react-remove-prop-types/lib/isStatelessComponent',
+  >;
 }
 declare module 'babel-plugin-transform-react-remove-prop-types/lib/remove.js' {
-  declare module.exports: $Exports<'babel-plugin-transform-react-remove-prop-types/lib/remove'>;
+  declare module.exports: $Exports<
+    'babel-plugin-transform-react-remove-prop-types/lib/remove',
+  >;
 }
 declare module 'babel-plugin-transform-react-remove-prop-types/src/index.js' {
-  declare module.exports: $Exports<'babel-plugin-transform-react-remove-prop-types/src/index'>;
+  declare module.exports: $Exports<
+    'babel-plugin-transform-react-remove-prop-types/src/index',
+  >;
 }
 declare module 'babel-plugin-transform-react-remove-prop-types/src/isAnnotatedForRemoval.js' {
-  declare module.exports: $Exports<'babel-plugin-transform-react-remove-prop-types/src/isAnnotatedForRemoval'>;
+  declare module.exports: $Exports<
+    'babel-plugin-transform-react-remove-prop-types/src/isAnnotatedForRemoval',
+  >;
 }
 declare module 'babel-plugin-transform-react-remove-prop-types/src/isStatelessComponent.js' {
-  declare module.exports: $Exports<'babel-plugin-transform-react-remove-prop-types/src/isStatelessComponent'>;
+  declare module.exports: $Exports<
+    'babel-plugin-transform-react-remove-prop-types/src/isStatelessComponent',
+  >;
 }
 declare module 'babel-plugin-transform-react-remove-prop-types/src/remove.js' {
-  declare module.exports: $Exports<'babel-plugin-transform-react-remove-prop-types/src/remove'>;
+  declare module.exports: $Exports<
+    'babel-plugin-transform-react-remove-prop-types/src/remove',
+  >;
 }

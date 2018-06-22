@@ -1,10 +1,10 @@
 // flow-typed signature: eb8bd974b677b08dfca89de9ac05b60b
 // flow-typed version: 43b30482ac/history_v4.x.x/flow_>=v0.25.x
 
-declare module "history/createBrowserHistory" {
+declare module 'history/createBrowserHistory' {
   declare function Unblock(): void;
 
-  declare export type Action = "PUSH" | "REPLACE" | "POP";
+  declare export type Action = 'PUSH' | 'REPLACE' | 'POP';
 
   declare export type BrowserLocation = {
     pathname: string,
@@ -43,10 +43,10 @@ declare module "history/createBrowserHistory" {
   declare export default (opts?: HistoryOpts) => BrowserHistory;
 }
 
-declare module "history/createMemoryHistory" {
+declare module 'history/createMemoryHistory' {
   declare function Unblock(): void;
 
-  declare export type Action = "PUSH" | "REPLACE" | "POP";
+  declare export type Action = 'PUSH' | 'REPLACE' | 'POP';
 
   declare export type MemoryLocation = {
     pathname: string,
@@ -89,10 +89,10 @@ declare module "history/createMemoryHistory" {
   declare export default (opts?: HistoryOpts) => MemoryHistory;
 }
 
-declare module "history/createHashHistory" {
+declare module 'history/createHashHistory' {
   declare function Unblock(): void;
 
-  declare export type Action = "PUSH" | "REPLACE" | "POP";
+  declare export type Action = 'PUSH' | 'REPLACE' | 'POP';
 
   declare export type HashLocation = {
     pathname: string,
@@ -117,7 +117,7 @@ declare module "history/createHashHistory" {
 
   declare type HistoryOpts = {
     basename?: string,
-    hashType: "slash" | "noslash" | "hashbang",
+    hashType: 'slash' | 'noslash' | 'hashbang',
     getUserConfirmation?: (
       message: string,
       callback: (willContinue: boolean) => void,

@@ -9,12 +9,10 @@ import createCache from './createCache';
 
 const link = from([
   onError(({ graphQLErrors, networkError }) => {
-    if (graphQLErrors)
+    if (graphQLErrors) {
       graphQLErrors.map(({ message, locations, path }) =>
-        console.warn(
-          `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
-        ),
-      );
+        console.warn(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`));
+    }
     if (networkError) console.warn(`[Network error]: ${networkError}`);
   }),
   ...(__DEV__ ? [apolloLogger] : []),

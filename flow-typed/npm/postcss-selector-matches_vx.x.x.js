@@ -35,5 +35,7 @@ declare module 'postcss-selector-matches/dist/index.js' {
   declare module.exports: $Exports<'postcss-selector-matches/dist/index'>;
 }
 declare module 'postcss-selector-matches/dist/replaceRuleSelector.js' {
-  declare module.exports: $Exports<'postcss-selector-matches/dist/replaceRuleSelector'>;
+  declare module.exports: $Exports<
+    'postcss-selector-matches/dist/replaceRuleSelector',
+  >;
 }

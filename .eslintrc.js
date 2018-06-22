@@ -16,12 +16,12 @@ module.exports = {
     'airbnb',
     'plugin:flowtype/recommended',
     'plugin:css-modules/recommended',
-    'prettier',
+    // 'prettier',
     'prettier/flowtype',
     'prettier/react',
   ],
 
-  plugins: ['flowtype', 'css-modules', 'prettier'],
+  plugins: ['flowtype', 'css-modules'],
 
   globals: {
     __DEV__: true,
@@ -95,7 +95,19 @@ module.exports = {
 
     // ESLint plugin for prettier formatting
     // https://github.com/prettier/eslint-plugin-prettier
-    'prettier/prettier': 'error',
+    // 'prettier/prettier': 'error',
+
+    'eact/no-array-index-key': 'off',
+    'react/no-array-index-key': 'off',
+    'css-modules/no-undef-class': 'off',
+    'jsx-a11y/alt-text': 'off',
+    'jsx-a11y/tabindex-no-positive': 'off',
+    'no-shadow': 'off',
+    'no-use-before-define': 'off',
+    'consistent-return': 'off',
+    'max-len': ['error', { code: 120 }],
+    'no-irregular-whitespace': ['error', { skipRegExps: true }],
+    'css-modules/no-unused-class': 0,
   },
 
   settings: {

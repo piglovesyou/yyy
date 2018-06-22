@@ -310,40 +310,64 @@ declare module 'browser-sync/dist/cli/command.start.js' {
   declare module.exports: $Exports<'browser-sync/dist/cli/command.start'>;
 }
 declare module 'browser-sync/dist/cli/transforms/addCwdToWatchOptions.js' {
-  declare module.exports: $Exports<'browser-sync/dist/cli/transforms/addCwdToWatchOptions'>;
+  declare module.exports: $Exports<
+    'browser-sync/dist/cli/transforms/addCwdToWatchOptions',
+  >;
 }
 declare module 'browser-sync/dist/cli/transforms/addDefaultIgnorePatterns.js' {
-  declare module.exports: $Exports<'browser-sync/dist/cli/transforms/addDefaultIgnorePatterns'>;
+  declare module.exports: $Exports<
+    'browser-sync/dist/cli/transforms/addDefaultIgnorePatterns',
+  >;
 }
 declare module 'browser-sync/dist/cli/transforms/addToFilesOption.js' {
-  declare module.exports: $Exports<'browser-sync/dist/cli/transforms/addToFilesOption'>;
+  declare module.exports: $Exports<
+    'browser-sync/dist/cli/transforms/addToFilesOption',
+  >;
 }
 declare module 'browser-sync/dist/cli/transforms/appendServerDirectoryOption.js' {
-  declare module.exports: $Exports<'browser-sync/dist/cli/transforms/appendServerDirectoryOption'>;
+  declare module.exports: $Exports<
+    'browser-sync/dist/cli/transforms/appendServerDirectoryOption',
+  >;
 }
 declare module 'browser-sync/dist/cli/transforms/appendServerIndexOption.js' {
-  declare module.exports: $Exports<'browser-sync/dist/cli/transforms/appendServerIndexOption'>;
+  declare module.exports: $Exports<
+    'browser-sync/dist/cli/transforms/appendServerIndexOption',
+  >;
 }
 declare module 'browser-sync/dist/cli/transforms/copyCLIIgnoreToWatchOptions.js' {
-  declare module.exports: $Exports<'browser-sync/dist/cli/transforms/copyCLIIgnoreToWatchOptions'>;
+  declare module.exports: $Exports<
+    'browser-sync/dist/cli/transforms/copyCLIIgnoreToWatchOptions',
+  >;
 }
 declare module 'browser-sync/dist/cli/transforms/handleExtensionsOption.js' {
-  declare module.exports: $Exports<'browser-sync/dist/cli/transforms/handleExtensionsOption'>;
+  declare module.exports: $Exports<
+    'browser-sync/dist/cli/transforms/handleExtensionsOption',
+  >;
 }
 declare module 'browser-sync/dist/cli/transforms/handleFilesOption.js' {
-  declare module.exports: $Exports<'browser-sync/dist/cli/transforms/handleFilesOption'>;
+  declare module.exports: $Exports<
+    'browser-sync/dist/cli/transforms/handleFilesOption',
+  >;
 }
 declare module 'browser-sync/dist/cli/transforms/handleGhostModeOption.js' {
-  declare module.exports: $Exports<'browser-sync/dist/cli/transforms/handleGhostModeOption'>;
+  declare module.exports: $Exports<
+    'browser-sync/dist/cli/transforms/handleGhostModeOption',
+  >;
 }
 declare module 'browser-sync/dist/cli/transforms/handlePortsOption.js' {
-  declare module.exports: $Exports<'browser-sync/dist/cli/transforms/handlePortsOption'>;
+  declare module.exports: $Exports<
+    'browser-sync/dist/cli/transforms/handlePortsOption',
+  >;
 }
 declare module 'browser-sync/dist/cli/transforms/handleProxyOption.js' {
-  declare module.exports: $Exports<'browser-sync/dist/cli/transforms/handleProxyOption'>;
+  declare module.exports: $Exports<
+    'browser-sync/dist/cli/transforms/handleProxyOption',
+  >;
 }
 declare module 'browser-sync/dist/cli/transforms/handleServerOption.js' {
-  declare module.exports: $Exports<'browser-sync/dist/cli/transforms/handleServerOption'>;
+  declare module.exports: $Exports<
+    'browser-sync/dist/cli/transforms/handleServerOption',
+  >;
 }
 declare module 'browser-sync/dist/client.js' {
   declare module.exports: $Exports<'browser-sync/dist/client'>;

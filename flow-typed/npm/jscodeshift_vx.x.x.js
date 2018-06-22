@@ -172,7 +172,9 @@ declare module 'jscodeshift/dist/collections/Node.js' {
   declare module.exports: $Exports<'jscodeshift/dist/collections/Node'>;
 }
 declare module 'jscodeshift/dist/collections/VariableDeclarator.js' {
-  declare module.exports: $Exports<'jscodeshift/dist/collections/VariableDeclarator'>;
+  declare module.exports: $Exports<
+    'jscodeshift/dist/collections/VariableDeclarator',
+  >;
 }
 declare module 'jscodeshift/dist/core.js' {
   declare module.exports: $Exports<'jscodeshift/dist/core'>;
@@ -202,10 +204,14 @@ declare module 'jscodeshift/docs/scripts/linenumber.js' {
   declare module.exports: $Exports<'jscodeshift/docs/scripts/linenumber'>;
 }
 declare module 'jscodeshift/docs/scripts/prettify/lang-css.js' {
-  declare module.exports: $Exports<'jscodeshift/docs/scripts/prettify/lang-css'>;
+  declare module.exports: $Exports<
+    'jscodeshift/docs/scripts/prettify/lang-css',
+  >;
 }
 declare module 'jscodeshift/docs/scripts/prettify/prettify.js' {
-  declare module.exports: $Exports<'jscodeshift/docs/scripts/prettify/prettify'>;
+  declare module.exports: $Exports<
+    'jscodeshift/docs/scripts/prettify/prettify',
+  >;
 }
 declare module 'jscodeshift/index' {
   declare module.exports: $Exports<'jscodeshift'>;
@@ -235,7 +241,9 @@ declare module 'jscodeshift/src/collections/Node.js' {
   declare module.exports: $Exports<'jscodeshift/src/collections/Node'>;
 }
 declare module 'jscodeshift/src/collections/VariableDeclarator.js' {
-  declare module.exports: $Exports<'jscodeshift/src/collections/VariableDeclarator'>;
+  declare module.exports: $Exports<
+    'jscodeshift/src/collections/VariableDeclarator',
+  >;
 }
 declare module 'jscodeshift/src/core.js' {
   declare module.exports: $Exports<'jscodeshift/src/core'>;

@@ -12,18 +12,18 @@ import Promise from 'bluebird';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import expressJwt, {UnauthorizedError as Jwt401Error} from 'express-jwt';
-import {graphql} from 'graphql';
+import expressJwt, { UnauthorizedError as Jwt401Error } from 'express-jwt';
+import { graphql } from 'graphql';
 import expressGraphQL from 'express-graphql';
 import nodeFetch from 'node-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
-import {getDataFromTree} from 'react-apollo';
+import { getDataFromTree } from 'react-apollo';
 import PrettyError from 'pretty-error';
 import createApolloClient from './core/createApolloClient';
 import App from './components/App';
 import Html from './components/Html';
-import {ErrorPageWithoutStyle} from './routes/error/ErrorPage';
+import { ErrorPageWithoutStyle } from './routes/error/ErrorPage';
 import errorPageStyle from './routes/error/ErrorPage.css';
 import createFetch from './createFetch';
 import router from './router';
@@ -31,7 +31,7 @@ import schema from './data/schema';
 // import assets from './asset-manifest.json'; // eslint-disable-line import/no-unresolved
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
 import configureStore from './store/configureStore';
-import {setRuntimeVariable} from './actions/runtime';
+import { setRuntimeVariable } from './actions/runtime';
 import config from './config';
 
 process.on('unhandledRejection', (reason, p) => {
@@ -60,19 +60,17 @@ app.set('trust proxy', config.trustProxy);
 // -----------------------------------------------------------------------------
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 //
 // Authentication
 // -----------------------------------------------------------------------------
-app.use(
-  expressJwt({
-    secret: config.auth.jwt.secret,
-    credentialsRequired: false,
-    getToken: req => req.cookies.id_token,
-  }),
-);
+app.use(expressJwt({
+  secret: config.auth.jwt.secret,
+  credentialsRequired: false,
+  getToken: req => req.cookies.id_token,
+}));
 // Error handler for express-jwt
 app.use((err, req, res, next) => {
   // eslint-disable-line no-unused-vars
@@ -91,7 +89,7 @@ app.use((err, req, res, next) => {
 const graphqlMiddleware = expressGraphQL(req => ({
   schema,
   graphiql: true, // __DEV__,
-  rootValue: {request: req},
+  rootValue: { request: req },
   pretty: __DEV__,
 }));
 
@@ -113,7 +111,7 @@ app.get('*', async (req, res, next) => {
 
     const apolloClient = createApolloClient({
       schema,
-      rootValue: {request: req},
+      rootValue: { request: req },
     });
 
     // Universal HTTP client
@@ -136,12 +134,10 @@ app.get('*', async (req, res, next) => {
       history: null,
     });
 
-    store.dispatch(
-      setRuntimeVariable({
-        name: 'initialNow',
-        value: Date.now(),
-      }),
-    );
+    store.dispatch(setRuntimeVariable({
+      name: 'initialNow',
+      value: Date.now(),
+    }));
 
     // Global (context) variables that can be easily accessed from any React component
     // https://facebook.github.io/react/docs/context.html
@@ -165,16 +161,16 @@ app.get('*', async (req, res, next) => {
       return;
     }
 
-    const data = {...route};
+    const data = { ...route };
     const rootComponent = <App context={context}>{route.component}</App>;
     await getDataFromTree(rootComponent);
     // this is here because of Apollo redux APOLLO_QUERY_STOP action
     await Promise.delay(0);
     data.children = await ReactDOM.renderToString(rootComponent);
-    data.styles = [{id: 'css', cssText: [...css].join('')}];
+    data.styles = [{ id: 'css', cssText: [...css].join('') }];
 
     const scripts = new Set();
-    const addChunk = chunk => {
+    const addChunk = (chunk) => {
       if (chunks[chunk]) {
         chunks[chunk].forEach(asset => scripts.add(asset));
       } else if (__DEV__) {
@@ -215,15 +211,13 @@ pe.skipPackage('express');
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   console.error(pe.render(err));
-  const html = ReactDOM.renderToStaticMarkup(
-    <Html
+  const html = ReactDOM.renderToStaticMarkup(<Html
       title="Internal Server Error"
       description={err.message}
-      styles={[{id: 'css', cssText: errorPageStyle._getCss()}]} // eslint-disable-line no-underscore-dangle
+      styles={[{ id: 'css', cssText: errorPageStyle._getCss() }]} // eslint-disable-line no-underscore-dangle
     >
-    {ReactDOM.renderToString(<ErrorPageWithoutStyle error={err}/>)}
-    </Html>,
-  );
+      {ReactDOM.renderToString(<ErrorPageWithoutStyle error={err} />)}
+    </Html>);
   res.status(err.status || 500);
   res.send(`<!doctype html>${html}`);
 });

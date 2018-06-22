@@ -102,10 +102,14 @@ declare module 'universal-router/src/UniversalRouter.js' {
   declare module.exports: $Exports<'universal-router/src/UniversalRouter'>;
 }
 declare module 'universal-router/universal-router-generate-urls.js' {
-  declare module.exports: $Exports<'universal-router/universal-router-generate-urls'>;
+  declare module.exports: $Exports<
+    'universal-router/universal-router-generate-urls',
+  >;
 }
 declare module 'universal-router/universal-router-generate-urls.min.js' {
-  declare module.exports: $Exports<'universal-router/universal-router-generate-urls.min'>;
+  declare module.exports: $Exports<
+    'universal-router/universal-router-generate-urls.min',
+  >;
 }
 declare module 'universal-router/universal-router.js' {
   declare module.exports: $Exports<'universal-router/universal-router'>;

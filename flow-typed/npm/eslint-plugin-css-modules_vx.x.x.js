@@ -60,29 +60,45 @@ declare module 'eslint-plugin-css-modules/packages/gonzales-primitives' {
 
 // Filename aliases
 declare module 'eslint-plugin-css-modules/build/core/gonzales.js' {
-  declare module.exports: $Exports<'eslint-plugin-css-modules/build/core/gonzales'>;
+  declare module.exports: $Exports<
+    'eslint-plugin-css-modules/build/core/gonzales',
+  >;
 }
 declare module 'eslint-plugin-css-modules/build/core/index.js' {
-  declare module.exports: $Exports<'eslint-plugin-css-modules/build/core/index'>;
+  declare module.exports: $Exports<
+    'eslint-plugin-css-modules/build/core/index',
+  >;
 }
 declare module 'eslint-plugin-css-modules/build/core/traversalUtils.js' {
-  declare module.exports: $Exports<'eslint-plugin-css-modules/build/core/traversalUtils'>;
+  declare module.exports: $Exports<
+    'eslint-plugin-css-modules/build/core/traversalUtils',
+  >;
 }
 declare module 'eslint-plugin-css-modules/build/index.js' {
   declare module.exports: $Exports<'eslint-plugin-css-modules/build/index'>;
 }
 declare module 'eslint-plugin-css-modules/build/rules/index.js' {
-  declare module.exports: $Exports<'eslint-plugin-css-modules/build/rules/index'>;
+  declare module.exports: $Exports<
+    'eslint-plugin-css-modules/build/rules/index',
+  >;
 }
 declare module 'eslint-plugin-css-modules/build/rules/no-undef-class.js' {
-  declare module.exports: $Exports<'eslint-plugin-css-modules/build/rules/no-undef-class'>;
+  declare module.exports: $Exports<
+    'eslint-plugin-css-modules/build/rules/no-undef-class',
+  >;
 }
 declare module 'eslint-plugin-css-modules/build/rules/no-unused-class.js' {
-  declare module.exports: $Exports<'eslint-plugin-css-modules/build/rules/no-unused-class'>;
+  declare module.exports: $Exports<
+    'eslint-plugin-css-modules/build/rules/no-unused-class',
+  >;
 }
 declare module 'eslint-plugin-css-modules/build/types/index.js' {
-  declare module.exports: $Exports<'eslint-plugin-css-modules/build/types/index'>;
+  declare module.exports: $Exports<
+    'eslint-plugin-css-modules/build/types/index',
+  >;
 }
 declare module 'eslint-plugin-css-modules/packages/gonzales-primitives.js' {
-  declare module.exports: $Exports<'eslint-plugin-css-modules/packages/gonzales-primitives'>;
+  declare module.exports: $Exports<
+    'eslint-plugin-css-modules/packages/gonzales-primitives',
+  >;
 }

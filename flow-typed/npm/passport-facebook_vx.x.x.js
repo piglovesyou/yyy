@@ -48,13 +48,19 @@ declare module 'passport-facebook/lib/strategy' {
 
 // Filename aliases
 declare module 'passport-facebook/lib/errors/facebookauthorizationerror.js' {
-  declare module.exports: $Exports<'passport-facebook/lib/errors/facebookauthorizationerror'>;
+  declare module.exports: $Exports<
+    'passport-facebook/lib/errors/facebookauthorizationerror',
+  >;
 }
 declare module 'passport-facebook/lib/errors/facebookgraphapierror.js' {
-  declare module.exports: $Exports<'passport-facebook/lib/errors/facebookgraphapierror'>;
+  declare module.exports: $Exports<
+    'passport-facebook/lib/errors/facebookgraphapierror',
+  >;
 }
 declare module 'passport-facebook/lib/errors/facebooktokenerror.js' {
-  declare module.exports: $Exports<'passport-facebook/lib/errors/facebooktokenerror'>;
+  declare module.exports: $Exports<
+    'passport-facebook/lib/errors/facebooktokenerror',
+  >;
 }
 declare module 'passport-facebook/lib/index.js' {
   declare module.exports: $Exports<'passport-facebook/lib/index'>;

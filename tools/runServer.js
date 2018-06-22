@@ -24,7 +24,7 @@ const serverPath = path.join(
 
 // Launch or restart the Node.js server
 function runServer() {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     function onStdOut(data) {
       const time = new Date().toTimeString();
       const match = data.toString('utf8').match(RUNNING_REGEXP);
@@ -53,9 +53,7 @@ function runServer() {
     if (pending) {
       server.once('exit', (code, signal) => {
         if (pending) {
-          throw new Error(
-            `Server terminated unexpectedly with code: ${code} signal: ${signal}`,
-          );
+          throw new Error(`Server terminated unexpectedly with code: ${code} signal: ${signal}`);
         }
       });
     }

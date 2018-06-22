@@ -7,13 +7,13 @@
 type ReactTestRendererJSON = {
   type: string,
   props: { [propName: string]: any },
-  children: null | ReactTestRendererJSON[]
+  children: null | ReactTestRendererJSON[],
 };
 
 type ReactTestRendererTree = ReactTestRendererJSON & {
-  nodeType: "component" | "host",
+  nodeType: 'component' | 'host',
   instance: any,
-  rendered: null | ReactTestRendererTree
+  rendered: null | ReactTestRendererTree,
 };
 
 type ReactTestInstance = {
@@ -29,16 +29,16 @@ type ReactTestInstance = {
 
   findAll(
     predicate: (node: ReactTestInstance) => boolean,
-    options?: { deep: boolean }
+    options?: { deep: boolean },
   ): ReactTestInstance[],
   findAllByType(
     type: React$ElementType,
-    options?: { deep: boolean }
+    options?: { deep: boolean },
   ): ReactTestInstance[],
   findAllByProps(
     props: { [propName: string]: any },
-    options?: { deep: boolean }
-  ): ReactTestInstance[]
+    options?: { deep: boolean },
+  ): ReactTestInstance[],
 };
 
 type ReactTestRenderer = {
@@ -47,16 +47,16 @@ type ReactTestRenderer = {
   unmount(nextElement?: React$Element<any>): void,
   update(nextElement: React$Element<any>): void,
   getInstance(): null | ReactTestInstance,
-  root: ReactTestInstance
+  root: ReactTestInstance,
 };
 
 type TestRendererOptions = {
-  createNodeMock(element: React$Element<any>): any
+  createNodeMock(element: React$Element<any>): any,
 };
 
-declare module "react-test-renderer" {
+declare module 'react-test-renderer' {
   declare function create(
     nextElement: React$Element<any>,
-    options?: TestRendererOptions
+    options?: TestRendererOptions,
   ): ReactTestRenderer;
 }

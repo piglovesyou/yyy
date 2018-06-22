@@ -1,12 +1,11 @@
 // @flow
 
 import fetch from 'node-fetch';
-import {JSDOM} from 'jsdom';
-import {merge} from 'lodash';
-import {makeExecutableSchema} from 'graphql-tools';
-import {basename} from 'path';
-import {URL} from 'url';
-import {fromArray} from 'hole';
+import { JSDOM } from 'jsdom';
+import { makeExecutableSchema } from 'graphql-tools';
+import { basename } from 'path';
+import { URL } from 'url';
+import { fromArray } from 'hole';
 import range from 'lodash.range';
 
 import LRU from 'lru-cache';
@@ -15,7 +14,7 @@ const cache = LRU({
   max: 500,
   // length: function (n, key) { return n * 2 + key.length; } ,
   // dispose: function (key, n) { n.close(); } ,
-  maxAge: 1000 * 60 * 60
+  maxAge: 1000 * 60 * 60,
 });
 
 const schema = [
@@ -59,9 +58,8 @@ const schema = [
   schema {
     query: RootQuery
   }
-`
+`,
 ];
-
 
 const AUC_LIST_PER_PAGE = 20;
 
@@ -69,27 +67,28 @@ const AUC_LIST_PER_PAGE = 20;
 // Put schema together into one array of schema strings
 const resolvers = {
   RootQuery: {
-    async getAucItemList(_: any, {query, from = 0, count = 4}: { query: string, from: number, count: number }) {
+    async getAucItemList(_: any, { query, from = 0, count = 4 }: { query: string, from: number, count: number }) {
       // TODO: consider requesting out of totalCount range
 
-      query = query.replace(/　+/g, ' ').trim();
+      const normalizedQuery = query.replace(/　+/g, ' ').trim();
 
       const reqFirstPage = getPageIndex(from);
       const reqLastPage = getPageIndex(from + count);
 
       const xs = await fromArray(range(reqFirstPage, reqLastPage + 1))
-        .pipe(page => {
-          const from = (page * AUC_LIST_PER_PAGE); // 20, 40, ...
-          return requestItemList(query, from);
-        }, 1)
+        .pipe(
+          (page) => {
+            const from = page * AUC_LIST_PER_PAGE; // 20, 40, ...
+            return requestItemList(normalizedQuery, from);
+          },
+          1,
+        )
         .collect();
 
-      const {totalCount} = xs[0];
-      const fullItems = xs.reduce((items, rv) => {
-        return [...items, ...rv.items];
-      }, []);
+      const { totalCount } = xs[0];
+      const fullItems = xs.reduce((items, rv) => [...items, ...rv.items], []);
 
-      const sliceFrom = (from % AUC_LIST_PER_PAGE);
+      const sliceFrom = from % AUC_LIST_PER_PAGE;
       const items = fullItems.slice(sliceFrom, sliceFrom + count);
 
       return {
@@ -129,10 +128,10 @@ const resolvers = {
         const res = await fetch(url);
         const html = await res.text();
         const {
-          window: {document},
+          window: { document },
         } = new JSDOM(html);
 
-        let totalEl = document.querySelector('#AS-m19 .total em');
+        const totalEl = document.querySelector('#AS-m19 .total em');
         if (!totalEl) {
           // Zero search result
           const totalCount = 0;
@@ -148,9 +147,9 @@ const resolvers = {
         const totalCount = Number(totalEl.textContent);
 
         const items = Array.from(document.querySelectorAll('#list01 .inner .cf'))
-          .map(e => {
+          .map((e) => {
             const imgEl = e.querySelector('img');
-            if (!imgEl) return; // TODO: why
+            if (!imgEl) return undefined; // TODO: why
             const imgAncEl = imgEl.parentNode;
             const price = parsePrice(e.querySelector('.pri1').textContent);
 
@@ -161,10 +160,13 @@ const resolvers = {
             const itemURL = imgAncEl.href;
             const id = basename(itemURL);
 
-            return {id, title, imgSrc, imgWidth, imgHeight, itemURL, price};
-          }).filter(e => e);
+            return {
+              id, title, imgSrc, imgWidth, imgHeight, itemURL, price,
+            };
+          })
+          .filter(e => e);
 
-        const resolvedValue = {totalCount, items};
+        const resolvedValue = { totalCount, items };
         cache.set(pageCacheKey, resolvedValue);
         cache.set(totalCountCacheKey, totalCount);
 
@@ -173,28 +175,24 @@ const resolvers = {
     },
 
     async getAucItemDetail(_: any, args: { id: string }) {
-      const res = await fetch(
-        `https://page.auctions.yahoo.co.jp/jp/auction/${args.id}`,
-      );
+      const res = await fetch(`https://page.auctions.yahoo.co.jp/jp/auction/${args.id}`);
       const html = await res.text();
       const {
-        window: {document},
+        window: { document },
       } = new JSDOM(html);
 
       const title = document.querySelector('.ProductTitle__text').textContent;
       const priceText = extractText(document.querySelector('.Price__value'));
       const price = parsePrice(priceText);
 
-      const images = Array.from(
-        document.querySelectorAll('.ProductImage__images img'),
-      ).map(e => ({
+      const images = Array.from(document.querySelectorAll('.ProductImage__images img')).map(e => ({
         src: e.src,
         width: e.width,
         height: e.height,
       }));
 
       const itemBodyValueConverters = {
-        '状態': String,
+        状態: String,
         // "個数",
         // "開始日時",
         // "終了日時",
@@ -205,18 +203,16 @@ const resolvers = {
         // "入札者認証制限",
         // "最高額入札者",
         // "開始価格",
-        'オークションID': String,
+        オークションID: String,
       };
-      const bodyValues = Array.from(
-        document
-          .querySelector('.ProductDetail__body')
-          .querySelectorAll('dt, dd'),
-      ).reduce((rv, e, i, a) => {
+      const bodyValues = Array.from(document
+        .querySelector('.ProductDetail__body')
+        .querySelectorAll('dt, dd')).reduce((rv, e, i, a) => {
         if (i % 2) return rv;
         const key = e.textContent;
         const value = a[i + 1].textContent.replace('：', '');
         const valueConverter = itemBodyValueConverters[key] || (e => e);
-        return {...rv, [key]: valueConverter(value)};
+        return { ...rv, [key]: valueConverter(value) };
       }, {});
 
       return {
@@ -234,7 +230,7 @@ const resolvers = {
 export default makeExecutableSchema({
   typeDefs: schema,
   resolvers,
-  ...(__DEV__ ? {log: e => console.error(e.stack)} : {}),
+  ...(__DEV__ ? { log: e => console.error(e.stack) } : {}),
 });
 
 function makeURL(base, params: Object) {
@@ -256,6 +252,5 @@ function parsePrice(str) {
 }
 
 function getPageIndex(from) {
-  return (Math.floor(from / AUC_LIST_PER_PAGE));
+  return Math.floor(from / AUC_LIST_PER_PAGE);
 }
-

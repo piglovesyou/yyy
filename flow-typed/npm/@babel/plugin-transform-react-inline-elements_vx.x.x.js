@@ -28,5 +28,7 @@ declare module '@babel/plugin-transform-react-inline-elements/lib/index' {
 
 // Filename aliases
 declare module '@babel/plugin-transform-react-inline-elements/lib/index.js' {
-  declare module.exports: $Exports<'@babel/plugin-transform-react-inline-elements/lib/index'>;
+  declare module.exports: $Exports<
+    '@babel/plugin-transform-react-inline-elements/lib/index',
+  >;
 }

@@ -1,19 +1,19 @@
 // flow-typed signature: d4e793bc07ef1dc9906a244b12960f7b
 // flow-typed version: cf33ff8762/react-redux_v5.x.x/flow_>=v0.63.0
 
-import type { Dispatch, Store } from "redux";
+import type { Dispatch, Store } from 'redux';
 
-declare module "react-redux" {
+declare module 'react-redux' {
   import type { ComponentType, ElementConfig } from 'react';
 
   declare export class Provider<S, A> extends React$Component<{
     store: Store<S, A>,
-    children?: any
+    children?: any,
   }> {}
 
   declare export function createProvider(
     storeKey?: string,
-    subKey?: string
+    subKey?: string,
   ): Provider<*, *>;
 
   /*
@@ -32,42 +32,56 @@ declare module "react-redux" {
   Com = React Component
   */
 
-  declare type MapStateToProps<S: Object, SP: Object, RSP: Object> = (state: S, props: SP) => RSP;
+  declare type MapStateToProps<S: Object, SP: Object, RSP: Object> = (
+    state: S,
+    props: SP,
+  ) => RSP;
 
-  declare type MapDispatchToProps<A, OP: Object, RDP: Object> = (dispatch: Dispatch<A>, ownProps: OP) => RDP;
+  declare type MapDispatchToProps<A, OP: Object, RDP: Object> = (
+    dispatch: Dispatch<A>,
+    ownProps: OP,
+  ) => RDP;
 
   declare type MergeProps<SP: Object, DP: Object, MP: Object, RMP: Object> = (
     stateProps: SP,
     dispatchProps: DP,
-    ownProps: MP
+    ownProps: MP,
   ) => RMP;
 
-  declare type ConnectOptions<S: Object, OP: Object, RSP: Object, RMP: Object> = {|
+  declare type ConnectOptions<
+    S: Object,
+    OP: Object,
+    RSP: Object,
+    RMP: Object,
+  > = {|
     pure?: boolean,
     withRef?: boolean,
     areStatesEqual?: (next: S, prev: S) => boolean,
     areOwnPropsEqual?: (next: OP, prev: OP) => boolean,
     areStatePropsEqual?: (next: RSP, prev: RSP) => boolean,
     areMergedPropsEqual?: (next: RMP, prev: RMP) => boolean,
-    storeKey?: string
+    storeKey?: string,
   |};
 
-  declare type OmitDispatch<Component> = $Diff<Component, {dispatch: Dispatch<*>}>;
+  declare type OmitDispatch<Component> = $Diff<
+    Component,
+    { dispatch: Dispatch<*> },
+  >;
 
   declare export function connect<
     Com: ComponentType<*>,
     S: Object,
     DP: Object,
     RSP: Object,
-    CP: $Diff<OmitDispatch<ElementConfig<Com>>, RSP>
-    >(
+    CP: $Diff<OmitDispatch<ElementConfig<Com>>, RSP>,
+  >(
     mapStateToProps: MapStateToProps<S, DP, RSP>,
-    mapDispatchToProps?: null
+    mapDispatchToProps?: null,
   ): (component: Com) => ComponentType<CP & DP>;
 
   declare export function connect<Com: ComponentType<*>>(
     mapStateToProps?: null,
-    mapDispatchToProps?: null
+    mapDispatchToProps?: null,
   ): (component: Com) => ComponentType<OmitDispatch<ElementConfig<Com>>>;
 
   declare export function connect<
@@ -78,10 +92,10 @@ declare module "react-redux" {
     SP: Object,
     RSP: Object,
     RDP: Object,
-    CP: $Diff<$Diff<ElementConfig<Com>, RSP>, RDP>
-    >(
+    CP: $Diff<$Diff<ElementConfig<Com>, RSP>, RDP>,
+  >(
     mapStateToProps: MapStateToProps<S, SP, RSP>,
-    mapDispatchToProps: MapDispatchToProps<A, DP, RDP>
+    mapDispatchToProps: MapDispatchToProps<A, DP, RDP>,
   ): (component: Com) => ComponentType<CP & SP & DP>;
 
   declare export function connect<
@@ -90,18 +104,15 @@ declare module "react-redux" {
     OP: Object,
     DP: Object,
     PR: Object,
-    CP: $Diff<ElementConfig<Com>, DP>
-    >(
+    CP: $Diff<ElementConfig<Com>, DP>,
+  >(
     mapStateToProps?: null,
-    mapDispatchToProps: MapDispatchToProps<A, OP, DP>
-  ): (Com) => ComponentType<CP & OP>;
+    mapDispatchToProps: MapDispatchToProps<A, OP, DP>,
+  ): Com => ComponentType<CP & OP>;
 
-  declare export function connect<
-    Com: ComponentType<*>,
-    MDP: Object
-    >(
+  declare export function connect<Com: ComponentType<*>, MDP: Object>(
     mapStateToProps?: null,
-    mapDispatchToProps: MDP
+    mapDispatchToProps: MDP,
   ): (component: Com) => ComponentType<$Diff<ElementConfig<Com>, MDP>>;
 
   declare export function connect<
@@ -110,10 +121,10 @@ declare module "react-redux" {
     SP: Object,
     RSP: Object,
     MDP: Object,
-    CP: $Diff<ElementConfig<Com>, RSP>
-    >(
+    CP: $Diff<ElementConfig<Com>, RSP>,
+  >(
     mapStateToProps: MapStateToProps<S, SP, RSP>,
-    mapDispatchToPRops: MDP
+    mapDispatchToPRops: MDP,
   ): (component: Com) => ComponentType<$Diff<CP, MDP> & SP>;
 
   declare export function connect<
@@ -126,11 +137,11 @@ declare module "react-redux" {
     RDP: Object,
     MP: Object,
     RMP: Object,
-    CP: $Diff<ElementConfig<Com>, RMP>
-    >(
+    CP: $Diff<ElementConfig<Com>, RMP>,
+  >(
     mapStateToProps: MapStateToProps<S, SP, RSP>,
     mapDispatchToProps: ?MapDispatchToProps<A, DP, RDP>,
-    mergeProps: MergeProps<RSP, RDP, MP, RMP>
+    mergeProps: MergeProps<RSP, RDP, MP, RMP>,
   ): (component: Com) => ComponentType<CP & SP & DP & MP>;
 
   declare export function connect<
@@ -144,14 +155,15 @@ declare module "react-redux" {
     MDP: Object,
     MP: Object,
     RMP: Object,
-    CP: $Diff<ElementConfig<Com>, RMP>
-    >(
+    CP: $Diff<ElementConfig<Com>, RMP>,
+  >(
     mapStateToProps: MapStateToProps<S, SP, RSP>,
     mapDispatchToProps: MDP,
-    mergeProps: MergeProps<RSP, RDP, MP, RMP>
+    mergeProps: MergeProps<RSP, RDP, MP, RMP>,
   ): (component: Com) => ComponentType<CP & SP & DP & MP>;
 
-  declare export function connect<Com: ComponentType<*>,
+  declare export function connect<
+    Com: ComponentType<*>,
     A,
     S: Object,
     DP: Object,
@@ -159,15 +171,18 @@ declare module "react-redux" {
     RSP: Object,
     RDP: Object,
     MP: Object,
-    RMP: Object
-    >(
+    RMP: Object,
+  >(
     mapStateToProps: ?MapStateToProps<S, SP, RSP>,
     mapDispatchToProps: ?MapDispatchToProps<A, DP, RDP>,
     mergeProps: ?MergeProps<RSP, RDP, MP, RMP>,
-    options: ConnectOptions<S, SP & DP & MP, RSP, RMP>
-  ): (component: Com) => ComponentType<$Diff<ElementConfig<Com>, RMP> & SP & DP & MP>;
+    options: ConnectOptions<S, SP & DP & MP, RSP, RMP>,
+  ): (
+    component: Com,
+  ) => ComponentType<$Diff<ElementConfig<Com>, RMP> & SP & DP & MP>;
 
-  declare export function connect<Com: ComponentType<*>,
+  declare export function connect<
+    Com: ComponentType<*>,
     A,
     S: Object,
     DP: Object,
@@ -176,13 +191,15 @@ declare module "react-redux" {
     RDP: Object,
     MDP: Object,
     MP: Object,
-    RMP: Object
-    >(
+    RMP: Object,
+  >(
     mapStateToProps: ?MapStateToProps<S, SP, RSP>,
     mapDispatchToProps: ?MapDispatchToProps<A, DP, RDP>,
     mergeProps: MDP,
-    options: ConnectOptions<S, SP & DP & MP, RSP, RMP>
-  ): (component: Com) => ComponentType<$Diff<ElementConfig<Com>, RMP> & SP & DP & MP>;
+    options: ConnectOptions<S, SP & DP & MP, RSP, RMP>,
+  ): (
+    component: Com,
+  ) => ComponentType<$Diff<ElementConfig<Com>, RMP> & SP & DP & MP>;
 
   declare export default {
     Provider: typeof Provider,

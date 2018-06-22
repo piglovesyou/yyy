@@ -23,7 +23,6 @@ declare module 'eslint-import-resolver-node' {
  * needed.
  */
 
-
 // Filename aliases
 declare module 'eslint-import-resolver-node/index' {
   declare module.exports: $Exports<'eslint-import-resolver-node'>;

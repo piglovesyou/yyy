@@ -78,7 +78,9 @@ declare module 'apollo-cache-inmemory/lib/fragmentMatcher.js' {
   declare module.exports: $Exports<'apollo-cache-inmemory/lib/fragmentMatcher'>;
 }
 declare module 'apollo-cache-inmemory/lib/fragmentMatcherIntrospectionQuery.js' {
-  declare module.exports: $Exports<'apollo-cache-inmemory/lib/fragmentMatcherIntrospectionQuery'>;
+  declare module.exports: $Exports<
+    'apollo-cache-inmemory/lib/fragmentMatcherIntrospectionQuery',
+  >;
 }
 declare module 'apollo-cache-inmemory/lib/index.js' {
   declare module.exports: $Exports<'apollo-cache-inmemory/lib/index'>;

@@ -23,7 +23,6 @@ declare module 'postcss-color-function' {
  * needed.
  */
 
-
 // Filename aliases
 declare module 'postcss-color-function/index' {
   declare module.exports: $Exports<'postcss-color-function'>;

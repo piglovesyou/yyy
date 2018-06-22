@@ -60,29 +60,47 @@ declare module 'webpack-assets-manifest/test/WebpackAssetsManifest-test' {
 
 // Filename aliases
 declare module 'webpack-assets-manifest/src/CompilationAsset.js' {
-  declare module.exports: $Exports<'webpack-assets-manifest/src/CompilationAsset'>;
+  declare module.exports: $Exports<
+    'webpack-assets-manifest/src/CompilationAsset',
+  >;
 }
 declare module 'webpack-assets-manifest/src/WebpackAssetsManifest.js' {
-  declare module.exports: $Exports<'webpack-assets-manifest/src/WebpackAssetsManifest'>;
+  declare module.exports: $Exports<
+    'webpack-assets-manifest/src/WebpackAssetsManifest',
+  >;
 }
 declare module 'webpack-assets-manifest/test/CompilationAsset-test.js' {
-  declare module.exports: $Exports<'webpack-assets-manifest/test/CompilationAsset-test'>;
+  declare module.exports: $Exports<
+    'webpack-assets-manifest/test/CompilationAsset-test',
+  >;
 }
 declare module 'webpack-assets-manifest/test/fixtures/client.js' {
-  declare module.exports: $Exports<'webpack-assets-manifest/test/fixtures/client'>;
+  declare module.exports: $Exports<
+    'webpack-assets-manifest/test/fixtures/client',
+  >;
 }
 declare module 'webpack-assets-manifest/test/fixtures/configs.js' {
-  declare module.exports: $Exports<'webpack-assets-manifest/test/fixtures/configs'>;
+  declare module.exports: $Exports<
+    'webpack-assets-manifest/test/fixtures/configs',
+  >;
 }
 declare module 'webpack-assets-manifest/test/fixtures/hello.js' {
-  declare module.exports: $Exports<'webpack-assets-manifest/test/fixtures/hello'>;
+  declare module.exports: $Exports<
+    'webpack-assets-manifest/test/fixtures/hello',
+  >;
 }
 declare module 'webpack-assets-manifest/test/fixtures/makeCompiler.js' {
-  declare module.exports: $Exports<'webpack-assets-manifest/test/fixtures/makeCompiler'>;
+  declare module.exports: $Exports<
+    'webpack-assets-manifest/test/fixtures/makeCompiler',
+  >;
 }
 declare module 'webpack-assets-manifest/test/fixtures/server.js' {
-  declare module.exports: $Exports<'webpack-assets-manifest/test/fixtures/server'>;
+  declare module.exports: $Exports<
+    'webpack-assets-manifest/test/fixtures/server',
+  >;
 }
 declare module 'webpack-assets-manifest/test/WebpackAssetsManifest-test.js' {
-  declare module.exports: $Exports<'webpack-assets-manifest/test/WebpackAssetsManifest-test'>;
+  declare module.exports: $Exports<
+    'webpack-assets-manifest/test/WebpackAssetsManifest-test',
+  >;
 }

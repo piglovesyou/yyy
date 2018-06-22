@@ -132,10 +132,14 @@ declare module 'graphql-tools/dist/schemaVisitor.js' {
   declare module.exports: $Exports<'graphql-tools/dist/schemaVisitor'>;
 }
 declare module 'graphql-tools/dist/stitching/defaultMergedResolver.js' {
-  declare module.exports: $Exports<'graphql-tools/dist/stitching/defaultMergedResolver'>;
+  declare module.exports: $Exports<
+    'graphql-tools/dist/stitching/defaultMergedResolver',
+  >;
 }
 declare module 'graphql-tools/dist/stitching/delegateToSchema.js' {
-  declare module.exports: $Exports<'graphql-tools/dist/stitching/delegateToSchema'>;
+  declare module.exports: $Exports<
+    'graphql-tools/dist/stitching/delegateToSchema',
+  >;
 }
 declare module 'graphql-tools/dist/stitching/errors.js' {
   declare module.exports: $Exports<'graphql-tools/dist/stitching/errors'>;
@@ -144,25 +148,37 @@ declare module 'graphql-tools/dist/stitching/index.js' {
   declare module.exports: $Exports<'graphql-tools/dist/stitching/index'>;
 }
 declare module 'graphql-tools/dist/stitching/introspectSchema.js' {
-  declare module.exports: $Exports<'graphql-tools/dist/stitching/introspectSchema'>;
+  declare module.exports: $Exports<
+    'graphql-tools/dist/stitching/introspectSchema',
+  >;
 }
 declare module 'graphql-tools/dist/stitching/linkToFetcher.js' {
-  declare module.exports: $Exports<'graphql-tools/dist/stitching/linkToFetcher'>;
+  declare module.exports: $Exports<
+    'graphql-tools/dist/stitching/linkToFetcher',
+  >;
 }
 declare module 'graphql-tools/dist/stitching/makeRemoteExecutableSchema.js' {
-  declare module.exports: $Exports<'graphql-tools/dist/stitching/makeRemoteExecutableSchema'>;
+  declare module.exports: $Exports<
+    'graphql-tools/dist/stitching/makeRemoteExecutableSchema',
+  >;
 }
 declare module 'graphql-tools/dist/stitching/mergeSchemas.js' {
   declare module.exports: $Exports<'graphql-tools/dist/stitching/mergeSchemas'>;
 }
 declare module 'graphql-tools/dist/stitching/observableToAsyncIterable.js' {
-  declare module.exports: $Exports<'graphql-tools/dist/stitching/observableToAsyncIterable'>;
+  declare module.exports: $Exports<
+    'graphql-tools/dist/stitching/observableToAsyncIterable',
+  >;
 }
 declare module 'graphql-tools/dist/stitching/resolveFromParentTypename.js' {
-  declare module.exports: $Exports<'graphql-tools/dist/stitching/resolveFromParentTypename'>;
+  declare module.exports: $Exports<
+    'graphql-tools/dist/stitching/resolveFromParentTypename',
+  >;
 }
 declare module 'graphql-tools/dist/stitching/schemaRecreation.js' {
-  declare module.exports: $Exports<'graphql-tools/dist/stitching/schemaRecreation'>;
+  declare module.exports: $Exports<
+    'graphql-tools/dist/stitching/schemaRecreation',
+  >;
 }
 declare module 'graphql-tools/dist/stitching/typeFromAST.js' {
   declare module.exports: $Exports<'graphql-tools/dist/stitching/typeFromAST'>;

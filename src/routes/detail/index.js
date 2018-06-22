@@ -19,7 +19,7 @@ function action(context, params) {
     title,
     component: (
       <Layout>
-        <Detail title={title} id={params.id}/>
+        <Detail title={title} id={params.id} />
       </Layout>
     ),
   };

@@ -28,8 +28,7 @@ describe('Layout', () => {
     const client = createApolloClient();
 
     const wrapper = renderer
-      .create(
-        <App
+      .create(<App
           context={{
             insertCss: () => {},
             fetch: () => {},
@@ -41,8 +40,7 @@ describe('Layout', () => {
           <Layout>
             <div className="child" />
           </Layout>
-        </App>,
-      )
+        </App>)
       .toJSON();
 
     expect(wrapper).toMatchSnapshot();
