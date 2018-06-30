@@ -13,8 +13,7 @@ const persist = redis.createClient({
   host: process.env.REDIS_URL || undefined,
 });
 
-persist.on('connect', function () {
-  console.log('Redis connected');
-});
+persist.on('connect', () => console.log('Redis connected'));
+persist.on('error', () => console.error('Redis connection fails'));
 
 export default persist;
