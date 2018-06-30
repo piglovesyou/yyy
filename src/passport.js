@@ -22,7 +22,7 @@ passport.deserializeUser(async (id, done) => {
 passport.use('twitter', new TwitterStrategy({
   consumerKey: config.auth.twitter.key,
   consumerSecret: config.auth.twitter.secret,
-  callbackURL: 'http://localhost:3000/login/twitter/callback',
+  callbackURL: config.auth.twitter.callbackOrigin + '/login/twitter/callback',
 }, (token, tokenSecret, profile: TwitterProfile, cb) => {
   const user: UserType = {
     _id: String(profile.id),
