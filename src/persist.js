@@ -9,9 +9,7 @@ import redis from 'redis';
   });
 });
 
-const persist = redis.createClient({
-  host: process.env.REDIS_URL || undefined,
-});
+const persist = redis.createClient(process.env.REDIS_URL || undefined);
 
 persist.on('connect', () => console.log('Redis connected'));
 persist.on('error', () => console.error('Redis connection fails'));
