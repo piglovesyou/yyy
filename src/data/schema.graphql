@@ -1,0 +1,66 @@
+type AucItemImage {
+  src: String
+  width: Int
+  height: Int
+}
+
+type AucItemDetail {
+  id: String
+  title: String
+  state: String
+  price: Int
+  priceText: String
+  images: [AucItemImage]
+}
+
+type AucItem {
+  id: String
+  title: String
+  imgSrc: String
+  imgWidth: Int
+  imgHeight: Int
+  itemURL: String
+  price: Int
+}
+
+type AucItemList {
+  totalCount: Int
+  items: [AucItem]
+}
+
+type ResponseUnarchiveAucItems {
+  userId: String!
+  removedItemIds: [String!]
+}
+
+type ResponseArchiveAucItems {
+  userId: String!
+  addedItemIds: [String!]
+}
+
+type OperaProject {
+  id: String!
+  name: String!
+  ratio: Int
+}
+
+type OperaProjectList {
+  projects: [OperaProject]
+}
+
+type Query {
+  getAucItemDetail(id: String): AucItemDetail
+  getAucItemList(query: String, from: Int, count: Int): AucItemList
+  getCurrentProjects(userId: String): OperaProjectList
+}
+
+type Mutation {
+  archiveAucItems(userId: String!, itemIds: [String!]): ResponseArchiveAucItems
+  unarchiveAucItems(userId: String!, itemIds: [String!]): ResponseUnarchiveAucItems
+  updateProjectRatio(userId: String!, projectId: String!, ratio: Int): OperaProject
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}

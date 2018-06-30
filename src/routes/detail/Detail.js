@@ -10,7 +10,7 @@
 import gql from 'graphql-tag';
 import React from 'react';
 import PropTypes from 'prop-types';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 import { Query } from 'react-apollo';
 import s from './Detail.css';
 import ContextType from '../../ContextType';

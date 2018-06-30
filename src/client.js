@@ -20,6 +20,7 @@ import { updateMeta } from './DOMUtils';
 import history from './history';
 import createApolloClient from './core/createApolloClient';
 import router from './router';
+import type { UserType } from './types';
 
 // Universal HTTP client
 const fetch = createFetch(window.fetch, {
@@ -31,6 +32,8 @@ const apolloClient = createApolloClient();
 // Global (context) variables that can be easily accessed from any React component
 // https://facebook.github.io/react/docs/context.html
 const context = {
+  profile: (global.App.state.user: UserType),
+
   // Enables critical path CSS rendering
   // https://github.com/kriasoft/isomorphic-style-loader
   insertCss: (...styles) => {

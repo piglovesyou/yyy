@@ -10,7 +10,7 @@
 import gql from 'graphql-tag';
 import React from 'react';
 import { Query } from 'react-apollo';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 // import gql from './aucItemList.graphql';
 import s from './Home.css';
 import history from '../../history';
@@ -18,15 +18,6 @@ import ContextType from '../../ContextType';
 import Link from '../../components/Link';
 
 class Home extends React.Component {
-  // static propTypes = {
-  //   data: PropTypes.shape({
-  //     loading: PropTypes.bool.isRequired,
-  //     news: PropTypes.arrayOf( ),
-  //   }).isRequired,
-  // };
-
-  static contextTypes = ContextType;
-
   constructor(props, context) {
     super(props);
 
