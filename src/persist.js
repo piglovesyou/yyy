@@ -11,7 +11,7 @@ import redis from 'redis';
 
 
 const persist = redis.createClient({
-  host: process.env.REDIS_HOST || undefined,
+  host: process.env.REDIS_URL || undefined,
 });
 
 export default persist;
