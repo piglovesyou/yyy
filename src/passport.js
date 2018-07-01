@@ -9,13 +9,13 @@ import type { UserType } from './types/index';
 
 passport.serializeUser((user:UserType, done) => {
   const json = JSON.stringify(user);
-  persist.setp(`user:${user._id}`, json).catch(done).then(() => {
+  persist.setAsync(`user:${user._id}`, json).catch(done).then(() => {
     done(null, user._id);
   });
 });
 
 passport.deserializeUser(async (id, done) => {
-  const json = await persist.getp(`user:${id}`);
+  const json = await persist.getAsync(`user:${id}`);
   done(null, (JSON.parse(json)));
 });
 
