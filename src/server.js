@@ -37,7 +37,7 @@ import { setRuntimeVariable } from './actions/runtime';
 import config from './config';
 import passport from './passport';
 import persist from './persist';
-import type { ContextType, UserType } from './types';
+import type { ContextTypes, UserType } from './types';
 
 process.on('unhandledRejection', (reason, p) => {
   console.error('Unhandled Rejection at:', p, 'reason:', reason);
@@ -165,7 +165,7 @@ app.get('*', async (req, res, next) => {
 
     // Global (context) variables that can be easily accessed from any React component
     // https://facebook.github.io/react/docs/context.html
-    const context: ContextType = {
+    const context: ContextTypes = {
       profile: (req.user: UserType),
       insertCss,
       fetch,

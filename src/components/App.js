@@ -10,17 +10,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ApolloProvider } from 'react-apollo';
-import ContextType from '../ContextType';
+import ContextProps from '../ContextProps';
 import { ContextProvider } from './ContextProvider';
 import { InsertCssProvider } from 'isomorphic-style-loader--react-context/lib/withStyles';
 
 class App extends React.PureComponent {
   static propTypes = {
-    context: PropTypes.shape(ContextType).isRequired,
+    context: PropTypes.shape(ContextProps).isRequired,
     children: PropTypes.element.isRequired,
   };
 
-  static childContextTypes = ContextType;
+  static childContextTypes = ContextProps;
 
   getChildContext() {
     return this.props.context;

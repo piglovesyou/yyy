@@ -7,7 +7,7 @@ export type UserType = {
   provider: string,
 };
 
-export type ContextType = {
+export type ContextTypes = {
   profile: UserType,
   insertCss: Function,
   fetch: Function,

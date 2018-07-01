@@ -9,15 +9,17 @@
 
 import gql from 'graphql-tag';
 import React from 'react';
-import { Query } from 'react-apollo';
+import {Query} from 'react-apollo';
 import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 // import gql from './aucItemList.graphql';
 import s from './Home.css';
 import history from '../../history';
-import ContextType from '../../ContextType';
 import Link from '../../components/Link';
+import ContextProps from '../../ContextProps';
 
 class Home extends React.Component {
+  static contextTypes = ContextProps;
+
   constructor(props, context) {
     super(props);
 
@@ -26,7 +28,7 @@ class Home extends React.Component {
 
     const q = (context.query && context.query.q) || '';
     this.q = q;
-    this.state = { q };
+    this.state = {q};
   }
 
   handleSubmit(e) {
@@ -43,7 +45,7 @@ class Home extends React.Component {
   handleQueryChange(e) {
     const q = e.target.value;
 
-    this.setState({ q });
+    this.setState({q});
   }
 
   render() {
@@ -72,37 +74,37 @@ class Home extends React.Component {
                 }
               }
             `}
-            variables={{ query: this.q, from: 0, count: 10 }}
+            variables={{query: this.q, from: 0, count: 10}}
           >
-            {({ loading, error, data }) => {
+            {({loading, error, data}) => {
               if (error) return <div>boom!!!</div>;
               const aucItemList = loading
                 ? {
-                    totalCount: (
-                      <span
-                        style={{ width: '4em' }}
-                        className={s.loadingPlaceholder}
-                      >
+                  totalCount: (
+                    <span
+                      style={{width: '4em'}}
+                      className={s.loadingPlaceholder}
+                    >
                         &nbsp;
                       </span>
-                    ),
-                    items: Array.from(Array(3)).map((_, i) => (
-                      <span
-                        style={{
-                          width: 400,
-                          maxWidth: '100%',
-                          height: 300,
-                          margin: '0 0.5em 0.5em 0',
-                        }}
-                        key={i}
-                        className={s.loadingPlaceholder}
-                      >
+                  ),
+                  items: Array.from(Array(3)).map((_, i) => (
+                    <span
+                      style={{
+                        width: 400,
+                        maxWidth: '100%',
+                        height: 300,
+                        margin: '0 0.5em 0.5em 0',
+                      }}
+                      key={i}
+                      className={s.loadingPlaceholder}
+                    >
                         &nbsp;
                       </span>
-                    )),
-                  }
+                  )),
+                }
                 : data.getAucItemList;
-              const { totalCount, items } = aucItemList;
+              const {totalCount, items} = aucItemList;
               return (
                 <div>
                   <div>
@@ -110,13 +112,13 @@ class Home extends React.Component {
                     {totalCount}
                   </div>
                   {items.map((item, i) =>
-                      (item.props ? (
-                        item
-                      ) : (
-                        <Link to={`/detail/${item.id}`} key={i}>
-                          <img className={s.aucItemImg} src={item.imgSrc} />
-                        </Link>
-                      )))}
+                    (item.props ? (
+                      item
+                    ) : (
+                      <Link to={`/detail/${item.id}`} key={i}>
+                        <img className={s.aucItemImg} src={item.imgSrc}/>
+                      </Link>
+                    )))}
                 </div>
               );
             }}

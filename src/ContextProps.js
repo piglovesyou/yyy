@@ -1,9 +1,10 @@
 // @flow
+// Deprecated: use ContextTypes in types.js
 
 import PropTypes from 'prop-types';
 import { Provider as ReduxProvider } from 'react-redux';
 
-const ContextType = {
+const ContextProps = {
   profile: PropTypes.object,
   // Enables critical path CSS rendering
   // https://github.com/kriasoft/isomorphic-style-loader
@@ -19,4 +20,4 @@ const ContextType = {
   client: PropTypes.object.isRequired,
 };
 
-export default ContextType;
+export default ContextProps;

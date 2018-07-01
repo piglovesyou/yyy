@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 import { Query } from 'react-apollo';
 import s from './Detail.css';
-import ContextType from '../../ContextType';
+import ContextProps from '../../ContextProps';
 import history from '../../history';
 
 class Detail extends React.Component {
@@ -22,7 +22,7 @@ class Detail extends React.Component {
     id: PropTypes.string.isRequired,
   };
 
-  static contextTypes = ContextType;
+  static contextTypes = ContextProps;
 
   render() {
     const { id } = this.props;
