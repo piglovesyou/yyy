@@ -184,6 +184,6 @@
     "serve": "babel-node tools/run runServer",
     "dev": "node --require @babel/register $NODE_DEBUG_OPTION tools/run start --silent",
     "postinstall": "npm run build -- --release",
-    "start": "node build/server.js"
+    "start": "node $NODE_DEBUG_OPTION build/server.js"
   }
 }

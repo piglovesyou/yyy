@@ -15,19 +15,15 @@ import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 import s from './Home.css';
 import history from '../../history';
 import Link from '../../components/Link';
-import ContextProps from '../../ContextProps';
 
 class Home extends React.Component {
-  static contextTypes = ContextProps;
-
   constructor(props, context) {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleQueryChange = this.handleQueryChange.bind(this);
 
-    const q = (context.query && context.query.q) || '';
-    this.q = q;
+    const {q} = props;
     this.state = {q};
   }
 
@@ -38,8 +34,6 @@ class Home extends React.Component {
       pathname: global.location.pathname,
       search: `q=${encodeURIComponent(this.state.q)}`,
     });
-
-    this.q = this.state.q;
   }
 
   handleQueryChange(e) {
@@ -58,7 +52,7 @@ class Home extends React.Component {
             value={this.state.q}
             onChange={this.handleQueryChange}
           />
-          <button disabled={this.q === this.state.q}>Go</button>
+          <button disabled={this.props.q === this.state.q}>Go</button>
         </form>
         <div className={s.container}>
           <Query
@@ -74,7 +68,7 @@ class Home extends React.Component {
                 }
               }
             `}
-            variables={{query: this.q, from: 0, count: 10}}
+            variables={{query: this.props.q, from: 0, count: 10}}
           >
             {({loading, error, data}) => {
               if (error) return <div>boom!!!</div>;

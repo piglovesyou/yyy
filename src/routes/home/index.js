@@ -11,13 +11,13 @@ import React from 'react';
 import Home from './Home';
 import Layout from '../../components/Layout';
 
-async function action() {
+function action(context, _params) {
   return {
     title: 'React Starter Kit',
     chunks: ['home'],
     component: (
       <Layout>
-        <Home />
+        <Home q={context.query.q || ''}/>
       </Layout>
     ),
   };
