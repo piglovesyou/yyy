@@ -72,32 +72,38 @@ class Home extends React.Component {
           >
             {({loading, error, data}) => {
               if (error) return <div>boom!!!</div>;
-              const aucItemList = loading
-                ? {
-                  totalCount: (
-                    <span
-                      style={{width: '4em'}}
-                      className={s.loadingPlaceholder}
-                    >
+              const aucItemList =
+                loading
+                  ? !this.props.q
+                  ? {
+                    totalCount: 0,
+                    items: 0,
+                  }
+                  : {
+                    totalCount: (
+                      <span
+                        style={{width: '4em'}}
+                        className={s.loadingPlaceholder}
+                      >
                         &nbsp;
                       </span>
-                  ),
-                  items: Array.from(Array(3)).map((_, i) => (
-                    <span
-                      style={{
-                        width: 400,
-                        maxWidth: '100%',
-                        height: 300,
-                        margin: '0 0.5em 0.5em 0',
-                      }}
-                      key={i}
-                      className={s.loadingPlaceholder}
-                    >
+                    ),
+                    items: Array.from(Array(3)).map((_, i) => (
+                      <span
+                        style={{
+                          width: 400,
+                          maxWidth: '100%',
+                          height: 300,
+                          margin: '0 0.5em 0.5em 0',
+                        }}
+                        key={i}
+                        className={s.loadingPlaceholder}
+                      >
                         &nbsp;
                       </span>
-                  )),
-                }
-                : data.getAucItemList;
+                    )),
+                  }
+                  : data.getAucItemList;
               const {totalCount, items} = aucItemList;
               return (
                 <div>
