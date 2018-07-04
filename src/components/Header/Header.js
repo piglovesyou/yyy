@@ -12,15 +12,11 @@ import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 import s from './Header.css';
 import Link from '../Link';
 import Navigation from '../Navigation';
-import { ContextConsumer } from '../ContextProvider';
 
 class Header extends React.Component {
   render() {
     return (
       <div className={s.root}>
-        <ContextConsumer>
-          {context => (context.profile ? <img src={context.profile.image}/> : null)}
-        </ContextConsumer>
         <div className={s.container}>
           <Navigation/>
           <Link className={s.brand} to="/">

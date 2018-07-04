@@ -75,7 +75,7 @@ class Home extends React.Component<{|
             `}
                 variables={{ query: this.props.q, from: 0, count: 10 }}
               >
-                {({ loading, error, data }) => {
+                {({ loading, error, data, fetchMore }) => {
                   if (error) return <div>boom!!!</div>;
                   const aucItemList =
                     loading

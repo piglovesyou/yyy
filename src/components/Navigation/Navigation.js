@@ -11,6 +11,7 @@ import React from 'react';
 import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 import s from './Navigation.css';
 import Link from '../Link';
+import {ContextConsumer} from '../ContextProvider';
 
 class Navigation extends React.Component {
   render() {
@@ -19,6 +20,9 @@ class Navigation extends React.Component {
         <Link className={s.link} to="/about">About</Link>
         <Link className={s.link} to="/ratio">Ratio</Link>
         <a className={s.link} href="/graphql">GraphQL</a>
+        <ContextConsumer>
+          {context => (context.profile ? <img className={s.userIconImg} src={context.profile.image}/> : null)}
+        </ContextConsumer>
       </div>
     );
   }
