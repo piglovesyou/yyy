@@ -12,18 +12,24 @@ import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 import s from './Header.css';
 import Link from '../Link';
 import Navigation from '../Navigation';
+import {ContextConsumer} from '../ContextProvider';
+import SearchBox from '../SearchBox';
 
 class Header extends React.Component {
   render() {
     return (
-      <div className={s.root}>
-        <div className={s.container}>
-          <Navigation/>
-          <Link className={s.brand} to="/">
-            YYY
-          </Link>
-        </div>
-      </div>
+      <ContextConsumer>
+        {context => (
+          <div className={s.root}>
+            <Link className={s.brand} to="/">
+              YYY
+            </Link>
+            <SearchBox q={context.query.q}/>
+            <div className={s.flexSpacer}></div>
+            <Navigation/>
+          </div>
+        )}
+      </ContextConsumer>
     );
   }
 }
