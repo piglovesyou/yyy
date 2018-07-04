@@ -8,23 +8,15 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { ApolloProvider } from 'react-apollo';
 import { InsertCssProvider } from 'isomorphic-style-loader--react-context/lib/withStyles';
-import ContextProps from '../ContextProps';
 import { ContextProvider } from './ContextProvider';
+import type {ContextTypes} from '../types';
 
-class App extends React.PureComponent {
-  static propTypes = {
-    context: PropTypes.shape(ContextProps).isRequired,
-    children: PropTypes.element.isRequired,
-  };
-
-  static childContextTypes = ContextProps;
-
-  getChildContext() {
-    return this.props.context;
-  }
+class App extends React.PureComponent<{|
+  context: ContextTypes,
+  children: mixed,
+|}> {
 
   render() {
     // Here, we are at universe level, sure? ;-)

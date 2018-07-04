@@ -9,23 +9,18 @@
 
 import gql from 'graphql-tag';
 import React from 'react';
-import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
-import { Query } from 'react-apollo';
+import {Query} from 'react-apollo';
 import s from './Detail.css';
-import ContextProps from '../../ContextProps';
 import history from '../../history';
 
-class Detail extends React.Component {
-  static propTypes = {
-    title: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-  };
-
-  static contextTypes = ContextProps;
+class Detail extends React.Component<{|
+  title: string,
+  id: string,
+|}> {
 
   render() {
-    const { id } = this.props;
+    const {id} = this.props;
     return (
       <Query
         query={gql`
@@ -43,40 +38,40 @@ class Detail extends React.Component {
             }
           }
         `}
-        variables={{ id }}
+        variables={{id}}
       >
-        {({ loading, error, data }) => {
+        {({loading, error, data}) => {
           if (error) return <div>Error...</div>;
           const aucItemDetail = loading
             ? {
-                title: (
-                  <span
-                    style={{ width: '100%' }}
-                    className={s.loadingPlaceholder}
-                  >
+              title: (
+                <span
+                  style={{width: '100%'}}
+                  className={s.loadingPlaceholder}
+                >
                     &nbsp;
                   </span>
-                ),
-                priceText: (
-                  <span
-                    style={{ width: '6em' }}
-                    className={s.loadingPlaceholder}
-                  >
+              ),
+              priceText: (
+                <span
+                  style={{width: '6em'}}
+                  className={s.loadingPlaceholder}
+                >
                     &nbsp;
                   </span>
-                ),
-                images: [
-                  <div
-                    style={{ width: 400, maxWidth: '100%', height: 300 }}
-                    key="yeah"
-                    className={s.loadingPlaceholder}
-                  >
-                    &nbsp;
-                  </div>,
-                ],
-              }
+              ),
+              images: [
+                <div
+                  style={{width: 400, maxWidth: '100%', height: 300}}
+                  key="yeah"
+                  className={s.loadingPlaceholder}
+                >
+                  &nbsp;
+                </div>,
+              ],
+            }
             : data.getAucItemDetail;
-          const { title, priceText, images } = aucItemDetail;
+          const {title, priceText, images} = aucItemDetail;
           return (
             <div className={s.root}>
               <div className={s.container}>
@@ -92,11 +87,11 @@ class Detail extends React.Component {
                 <h2>{priceText}</h2>
                 <div>
                   {images.map((img, i) =>
-                      (img.props ? (
-                        img
-                      ) : (
-                        <img style={{ maxWidth: '100%' }} key={i} {...img} />
-                      )))}
+                    (img.props ? (
+                      img
+                    ) : (
+                      <img style={{maxWidth: '100%'}} key={i} {...img} />
+                    )))}
                 </div>
               </div>
             </div>
