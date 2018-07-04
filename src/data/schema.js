@@ -194,23 +194,25 @@ const resolvers = {
         images,
       };
     },
-    async getCurrentProjects(req, data) {
+    async getCurrentProjects(/* req, data */) {
       await new Promise(resolve => setTimeout(resolve, dummyThroughputDelay));
       return currentProjects;
     },
   },
   Mutation: {
-    async archiveAucItems(req, { userId, itemIds }: { userId: string, itemIds: [string] }): Promise<{ userId: string, addedItemIds: [string] }> {
+    async archiveAucItems(req, { userId, itemIds }: { userId: string, itemIds: [string] })
+      : Promise<{ userId: string, addedItemIds: [string] }> {
       const addedItemIds = await operateArchivedAucItem(userId, itemIds, 'sadd');
 
       return { userId, addedItemIds };
     },
-    async unarchiveAucItems(req, { userId, itemIds }: { userId: string, itemIds: [string] }): Promise<{ userId: string, itemIds: [string] }> {
+    async unarchiveAucItems(req, { userId, itemIds }: { userId: string, itemIds: [string] })
+      : Promise<{ userId: string, itemIds: [string] }> {
       const removedItemIds = await operateArchivedAucItem(userId, itemIds, 'srem');
 
       return { userId, removedItemIds };
     },
-    async updateProjectRatio(req, { userId, projectId, ratio }) {
+    async updateProjectRatio(req, { projectId, ratio }) {
       await new Promise(resolve => setTimeout(resolve, dummyThroughputDelay));
 
       const p = currentProjects.projects.find(p => p.id === projectId);

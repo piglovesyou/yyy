@@ -12,7 +12,7 @@ import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 import s from './Header.css';
 import Link from '../Link';
 import Navigation from '../Navigation';
-import {ContextConsumer} from '../ContextProvider';
+import { ContextConsumer } from '../ContextProvider';
 
 class Header extends React.Component {
   render() {

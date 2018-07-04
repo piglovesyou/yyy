@@ -2,7 +2,7 @@
 
 import bluebird from 'bluebird';
 import redis from 'redis';
-import type {RedisClientPromisified} from 'redis';
+import type { RedisClientPromisified } from 'redis';
 
 [redis.RedisClient.prototype, redis.Multi.prototype].forEach((proto) => {
   bluebird.promisifyAll(proto);

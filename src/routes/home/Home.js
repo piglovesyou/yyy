@@ -9,22 +9,24 @@
 
 import gql from 'graphql-tag';
 import React from 'react';
-import {Query} from 'react-apollo';
+import { Query } from 'react-apollo';
 import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 // import gql from './aucItemList.graphql';
 import s from './Home.css';
 import history from '../../history';
 import Link from '../../components/Link';
 
-class Home extends React.Component {
-  constructor(props, context) {
+class Home extends React.Component<{|
+  q: string,
+|}> {
+  constructor(props) {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleQueryChange = this.handleQueryChange.bind(this);
 
-    const {q} = props;
-    this.state = {q};
+    const { q } = props;
+    this.state = { q };
   }
 
   handleSubmit(e) {
@@ -39,7 +41,7 @@ class Home extends React.Component {
   handleQueryChange(e) {
     const q = e.target.value;
 
-    this.setState({q});
+    this.setState({ q });
   }
 
   render() {
@@ -68,9 +70,9 @@ class Home extends React.Component {
                 }
               }
             `}
-            variables={{query: this.props.q, from: 0, count: 10}}
+            variables={{ query: this.props.q, from: 0, count: 10 }}
           >
-            {({loading, error, data}) => {
+            {({ loading, error, data }) => {
               if (error) return <div>boom!!!</div>;
               const aucItemList =
                 loading
@@ -82,7 +84,7 @@ class Home extends React.Component {
                   : {
                     totalCount: (
                       <span
-                        style={{width: '4em'}}
+                        style={{ width: '4em' }}
                         className={s.loadingPlaceholder}
                       >
                         &nbsp;
@@ -104,7 +106,7 @@ class Home extends React.Component {
                     )),
                   }
                   : data.getAucItemList;
-              const {totalCount, items} = aucItemList;
+              const { totalCount, items } = aucItemList;
               return (
                 <div>
                   <div>

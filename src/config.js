@@ -41,7 +41,7 @@ module.exports = {
 
   // Authentication
   auth: {
-    jwt: {secret: process.env.JWT_SECRET || 'React Starter Kit'},
+    jwt: { secret: process.env.JWT_SECRET || 'React Starter Kit' },
 
     twitter: {
       key: process.env.TWITTER_CONSUMER_KEY,

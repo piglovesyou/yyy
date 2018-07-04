@@ -11,7 +11,7 @@ import React from 'react';
 import Home from './Home';
 import Layout from '../../components/Layout';
 
-function action(context, _params) {
+function action(context) {
   return {
     title: 'React Starter Kit',
     chunks: ['home'],

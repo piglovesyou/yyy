@@ -39,21 +39,11 @@ module.exports = {
     // Recommend not to leave any console.log in your code
     // Use console.error, console.warn and console.info instead
     // https://eslint.org/docs/rules/no-console
-    'no-console': [
-      'error',
-      {
-        allow: ['warn', 'error', 'info'],
-      },
-    ],
+    'no-console': 0,
 
     // Allow only special identifiers
     // https://eslint.org/docs/rules/no-underscore-dangle
-    'no-underscore-dangle': [
-      'error',
-      {
-        allow: ['__typename'],
-      },
-    ],
+    'no-underscore-dangle': 0,
 
     // Prefer destructuring from arrays and objects
     // http://eslint.org/docs/rules/prefer-destructuring
@@ -105,9 +95,10 @@ module.exports = {
     'no-shadow': 'off',
     'no-use-before-define': 'off',
     'consistent-return': 'off',
-    'max-len': ['error', { code: 120 }],
+    'max-len': ['error', { code: 140 }],
     'no-irregular-whitespace': ['error', { skipRegExps: true }],
     'css-modules/no-unused-class': 0,
+    'no-nested-ternary': 0,
   },
 
   settings: {

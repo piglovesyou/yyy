@@ -1,17 +1,10 @@
-/**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
+// @flow
 
-import React, {Fragment} from 'react';
+import React from 'react';
+import { Mutation, Query } from 'react-apollo';
+import gql from 'graphql-tag';
 import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 import s from './Ratio.css';
-import gql from 'graphql-tag';
-import {Mutation, Query} from 'react-apollo';
 
 const colors = ['red', 'blue'];
 
@@ -37,11 +30,13 @@ const GQL_UPDATE_RATIO = gql`
   }
 `;
 
-const Bar = (props) => {
-  const {projects} = props;
+const Bar = (props: {|
+  projects: Array<any>,
+|}) => {
+  const { projects } = props;
   return (
-    <div style={{display: 'flex', backgroundColor: 'ghostwhite', marginBottom: 24,}}>
-      {projects.map((p, i) => <div key={p.id}
+    <div style={{ display: 'flex', backgroundColor: 'ghostwhite', marginBottom: 24 }}>
+      {projects.map((p, i) => <button key={p.id}
                                    style={{
                                      flex: p.ratio,
                                      color: 'white',
@@ -50,84 +45,80 @@ const Bar = (props) => {
                                      backgroundColor: colors[i],
                                      transition: 'flex .5s',
                                      overflow: 'hidden',
-                                   }}>{p.name}</div>)}
+                                   }}>{p.name}</button>)}
     </div>
   );
 };
 
 class Ratio extends React.Component {
-  constructor(props, context) {
-    super(props);
-  }
-
   render() {
     return (
       <div className={s.root}>
         <Query
           query={GQL_GET_PROJECTS}
-          variables={{userId: 'a'}}
+          variables={{ userId: 'a' }}
         >
-          {({error, loading, data}) => {
+          {({ error, loading, data }) => {
             if (error) return <div>Errror!!</div>;
             if (loading) return <div>Loading</div>;
 
-            const {projects} = data.getCurrentProjects;
+            const { projects } = data.getCurrentProjects;
 
             return (
-              <Fragment>
+              <React.Fragment>
                 <Bar projects={projects}/>
-                {projects.map((p, i) => (
+                {projects.map(p => (
                   <Mutation key={p.id}
                             mutation={GQL_UPDATE_RATIO}
                   >
                     {updateRatio => (
-                      <div style={{display: 'flex'}}>
-                        <div style={{display: 'flex'}}>
-                          <div style={{padding: '0 8px', cursor: 'pointer'}}
-                               onClick={(e) => {
-                                 this.updateRatio(updateRatio, p, p.ratio + 1);
+                      <div style={{ display: 'flex' }}>
+                        <div style={{ display: 'flex' }}>
+                          <button style={{ padding: '0 8px', cursor: 'pointer' }}
+                               onClick={() => {
+                                 processUpdateRatio(updateRatio, p, p.ratio + 1);
                                }}
                           >+
-                          </div>
+                          </button>
                           <input type="text"
-                                 style={{width: '3em', textAlign: 'center'}}
+                                 style={{ width: '3em', textAlign: 'center' }}
                                  value={p.ratio}
                                  onChange={(e) => {
-                                   this.updateRatio(updateRatio, p, Number(e.target.value));
+                                   processUpdateRatio(updateRatio, p, Number(e.target.value));
                                  }}
                           />
-                          <div style={{padding: '0 8px', cursor: 'pointer'}}
-                               onClick={(e) => {
-                                 this.updateRatio(updateRatio, p, p.ratio - 1);
+                          <button style={{ padding: '0 8px', cursor: 'pointer' }}
+                               onClick={() => {
+                                 processUpdateRatio(updateRatio, p, p.ratio - 1);
                                }}
                           >-
-                          </div>
+                          </button>
                         </div>
                         <div>{`${p.id} - ${p.name}`}</div>
                       </div>
                     )}
                   </Mutation>
                 ))}
-              </Fragment>
+              </React.Fragment>
             );
           }}
         </Query>
       </div>
     );
   }
+}
 
-  updateRatio(mutationFn, project, ratio) {
-    mutationFn({
-      variables: {userId: 'a', projectId: project.id, ratio},
-      optimisticResponse: {
-        updateProjectRatio: {
-          ...project,
-          // Here, this is what we want to render optimistically!
-          ratio,
-        },
+function processUpdateRatio(mutationFn, project, ratio) {
+  mutationFn({
+    variables: { userId: 'a', projectId: project.id, ratio },
+    optimisticResponse: {
+      updateProjectRatio: {
+        ...project,
+        // Here, this is what we want to render optimistically!
+        ratio,
       },
-    });
-  }
+    },
+  });
 }
 
 export default withStyles(s)(Ratio);

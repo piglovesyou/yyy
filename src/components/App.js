@@ -10,9 +10,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ApolloProvider } from 'react-apollo';
+import { InsertCssProvider } from 'isomorphic-style-loader--react-context/lib/withStyles';
 import ContextProps from '../ContextProps';
 import { ContextProvider } from './ContextProvider';
-import { InsertCssProvider } from 'isomorphic-style-loader--react-context/lib/withStyles';
 
 class App extends React.PureComponent {
   static propTypes = {
