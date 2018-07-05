@@ -8,7 +8,7 @@ class Html extends React.Component<{|
   title: string,
   description: string,
   styles: Array<{ id: string, cssText: string }>,
-  children: string,
+  children?: string,
   scripts: Array<string>,
   app?: Object,
 |}> {
