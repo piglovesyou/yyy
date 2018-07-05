@@ -11,7 +11,7 @@ import React from 'react';
 import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 import s from './Navigation.css';
 import Link from '../Link';
-import {ContextConsumer} from '../ContextProvider';
+import { ContextConsumer } from '../ContextProvider';
 
 class Navigation extends React.Component {
   render() {

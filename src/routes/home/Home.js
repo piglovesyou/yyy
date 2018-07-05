@@ -18,7 +18,9 @@ import Link from '../../components/Link';
 // import SearchBox from '../../components/SearchBox';
 
 
-class Home extends React.Component<> {
+class Home extends React.Component<{|
+  q: string,
+|}> {
   render() {
     return (
       <div className={s.root}>
@@ -38,7 +40,9 @@ class Home extends React.Component<> {
             `}
             variables={{query: this.props.q, from: 0, count: 10}}
           >
-            {({loading, error, data, fetchMore}) => {
+            {({
+                loading, error, data, fetchMore,
+              }) => {
               if (error) return <div>boom!!!</div>;
               const aucItemList =
                 loading

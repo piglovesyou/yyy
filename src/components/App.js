@@ -11,13 +11,12 @@ import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import { InsertCssProvider } from 'isomorphic-style-loader--react-context/lib/withStyles';
 import { ContextProvider } from './ContextProvider';
-import type {ContextTypes} from '../types';
+import type { ContextTypes } from '../types';
 
 class App extends React.PureComponent<{|
   context: ContextTypes,
   children: mixed,
 |}> {
-
   render() {
     // Here, we are at universe level, sure? ;-)
     const { client } = this.props.context;

@@ -1,11 +1,4 @@
-/**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
+// @flow
 
 import React from 'react';
 import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
@@ -13,7 +6,52 @@ import s from './Header.css';
 import Link from '../Link';
 import Navigation from '../Navigation';
 import {ContextConsumer} from '../ContextProvider';
-import SearchBox from '../SearchBox';
+
+class SearchBox extends React.Component<{|
+  q: string,
+|}, {|
+  q: string,
+|}> {
+  constructor(props) {
+    super(props);
+
+    const {q} = props;
+    this.state = {q};
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    history.push({
+      pathname: global.location.pathname,
+      search: `q=${encodeURIComponent(this.state.q)}`,
+    });
+  };
+
+  handleQueryChange = (e) => {
+    const q = e.target.value;
+
+    this.setState({q});
+  };
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input tabIndex="1"
+               type="text"
+               value={this.state.q}
+               onChange={this.handleQueryChange}
+        />
+        <button disabled={this.props.q === this.state.q}>Go</button>
+      </form>
+    );
+  }
+  // render() {
+  //   return (
+  //     <div>yeah</div>
+  //   )
+  // }
+}
 
 class Header extends React.Component {
   render() {
@@ -25,7 +63,7 @@ class Header extends React.Component {
               YYY
             </Link>
             <SearchBox q={context.query.q}/>
-            <div className={s.flexSpacer}></div>
+            <div className={s.flexSpacer}> </div>
             <Navigation/>
           </div>
         )}

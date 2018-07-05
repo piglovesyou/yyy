@@ -3,7 +3,7 @@
 import React from 'react';
 import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 import history from '../../history';
-import s from './SearchBox.css'
+// import s from './SearchBox.css';
 
 class SearchBox extends React.Component<{|
   q: string,
@@ -15,12 +15,9 @@ class SearchBox extends React.Component<{|
 
     const {q} = props;
     this.state = {q};
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleQueryChange = this.handleQueryChange.bind(this);
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
 
     history.push({
@@ -29,7 +26,7 @@ class SearchBox extends React.Component<{|
     });
   }
 
-  handleQueryChange(e) {
+  handleQueryChange = (e) => {
     const q = e.target.value;
 
     this.setState({q});
@@ -38,7 +35,8 @@ class SearchBox extends React.Component<{|
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <input tabIndex="1"
+        <input
+               tabIndex="1"
                type="text"
                value={this.state.q}
                onChange={this.handleQueryChange}
@@ -49,4 +47,4 @@ class SearchBox extends React.Component<{|
   }
 }
 
-export default withStyles(s)(SearchBox);
+export default SearchBox;

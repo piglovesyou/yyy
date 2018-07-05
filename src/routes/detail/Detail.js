@@ -10,7 +10,7 @@
 import gql from 'graphql-tag';
 import React from 'react';
 import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
-import {Query} from 'react-apollo';
+import { Query } from 'react-apollo';
 import s from './Detail.css';
 import history from '../../history';
 
@@ -18,9 +18,8 @@ class Detail extends React.Component<{|
   title: string,
   id: string,
 |}> {
-
   render() {
-    const {id} = this.props;
+    const { id } = this.props;
     return (
       <Query
         query={gql`
@@ -38,15 +37,15 @@ class Detail extends React.Component<{|
             }
           }
         `}
-        variables={{id}}
+        variables={{ id }}
       >
-        {({loading, error, data}) => {
+        {({ loading, error, data }) => {
           if (error) return <div>Error...</div>;
           const aucItemDetail = loading
             ? {
               title: (
                 <span
-                  style={{width: '100%'}}
+                  style={{ width: '100%' }}
                   className={s.loadingPlaceholder}
                 >
                     &nbsp;
@@ -54,7 +53,7 @@ class Detail extends React.Component<{|
               ),
               priceText: (
                 <span
-                  style={{width: '6em'}}
+                  style={{ width: '6em' }}
                   className={s.loadingPlaceholder}
                 >
                     &nbsp;
@@ -62,7 +61,7 @@ class Detail extends React.Component<{|
               ),
               images: [
                 <div
-                  style={{width: 400, maxWidth: '100%', height: 300}}
+                  style={{ width: 400, maxWidth: '100%', height: 300 }}
                   key="yeah"
                   className={s.loadingPlaceholder}
                 >
@@ -71,7 +70,7 @@ class Detail extends React.Component<{|
               ],
             }
             : data.getAucItemDetail;
-          const {title, priceText, images} = aucItemDetail;
+          const { title, priceText, images } = aucItemDetail;
           return (
             <div className={s.root}>
               <div className={s.container}>
@@ -90,7 +89,7 @@ class Detail extends React.Component<{|
                     (img.props ? (
                       img
                     ) : (
-                      <img style={{maxWidth: '100%'}} key={i} {...img} />
+                      <img style={{ maxWidth: '100%' }} key={i} {...img} />
                     )))}
                 </div>
               </div>
