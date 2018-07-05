@@ -5,9 +5,7 @@ import Promise from 'bluebird';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import { graphql } from 'graphql';
 import expressGraphQL from 'express-graphql';
-import nodeFetch from 'node-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
 import { getDataFromTree } from 'react-apollo';
@@ -20,13 +18,10 @@ import App from './components/App';
 import Html from './components/Html';
 import { ErrorPageWithoutStyle } from './routes/error/ErrorPage';
 import errorPageStyle from './routes/error/ErrorPage.css';
-import createFetch from './createFetch';
 import router from './router';
 import schema from './data/schema';
 // import assets from './asset-manifest.json'; // eslint-disable-line import/no-unresolved
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
-import configureStore from './store/configureStore';
-import { setRuntimeVariable } from './actions/runtime';
 import config from './config';
 import passport from './passport';
 import persist from './persist';
@@ -131,43 +126,42 @@ app.get('*', async (req, res, next) => {
       rootValue: { request: req },
     });
 
-    // Universal HTTP client
-    const fetch = createFetch(nodeFetch, {
-      baseUrl: config.api.serverUrl,
-      cookie: req.headers.cookie,
-      apolloClient,
-      schema,
-      graphql,
-    });
+    // // Universal HTTP client
+    // const fetch = createFetch(nodeFetch, {
+    //   baseUrl: config.api.serverUrl,
+    //   cookie: req.headers.cookie,
+    //   schema,
+    //   graphql,
+    // });
 
     const initialState = {
       user: req.user || null,
     };
 
-    const store = configureStore(initialState, {
-      cookie: req.headers.cookie,
-      fetch,
-      // I should not use `history` on server.. but how I do redirection? follow universal-router
-      history: null,
-    });
+    // const store = configureStore(initialState, {
+    //   cookie: req.headers.cookie,
+    //   fetch,
+    //   // I should not use `history` on server.. but how I do redirection? follow universal-router
+    //   history: null,
+    // });
 
-    store.dispatch(setRuntimeVariable({
-      name: 'initialNow',
-      value: Date.now(),
-    }));
+    // store.dispatch(setRuntimeVariable({
+    //   name: 'initialNow',
+    //   value: Date.now(),
+    // }));
 
     // Global (context) variables that can be easily accessed from any React component
     // https://facebook.github.io/react/docs/context.html
     const context: ContextTypes = {
       profile: (req.user: UserType),
-      insertCss,
-      fetch,
       pathname: req.path,
       query: req.query,
-      client: apolloClient,
+      // insertCss,
+      // fetch,
+      // client: apolloClient,
       // You can access redux through react-redux connect
-      store,
-      storeSubscription: null,
+      // store,
+      // storeSubscription: null,
     };
 
     const route = await router.resolve(context);
@@ -178,7 +172,11 @@ app.get('*', async (req, res, next) => {
     }
 
     const data = { ...route };
-    const rootComponent = <App context={context}>{route.component}</App>;
+    const rootComponent = (
+      <App apolloClient={apolloClient}
+           insertCss={insertCss}
+           context={context}>{route.component}</App>
+    );
     await getDataFromTree(rootComponent);
     // this is here because of Apollo redux APOLLO_QUERY_STOP action
     await Promise.delay(0);
@@ -198,15 +196,10 @@ app.get('*', async (req, res, next) => {
     if (route.chunks) route.chunks.forEach(addChunk);
     data.scripts = Array.from(scripts);
 
-    // Furthermore invoked actions will be ignored, client will not receive them!
-    if (__DEV__) {
-      // eslint-disable-next-line no-console
-      console.log('Serializing store...');
-    }
     data.app = {
       apiUrl: config.api.clientUrl,
-      state: context.store.getState(),
-      apolloState: context.client.extract(),
+      state: initialState,
+      apolloState: apolloClient.extract(),
     };
 
     const html = ReactDOM.renderToStaticMarkup(<Html {...data} />);
@@ -227,13 +220,11 @@ pe.skipPackage('express');
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   console.error(pe.render(err));
-  const html = ReactDOM.renderToStaticMarkup(<Html
-    title="Internal Server Error"
-    description={err.message}
-    styles={[{ id: 'css', cssText: errorPageStyle._getCss() }]} // eslint-disable-line no-underscore-dangle
-  >
-  {ReactDOM.renderToString(<ErrorPageWithoutStyle error={err}/>)}
-  </Html>);
+  const html = ReactDOM.renderToStaticMarkup(<Html title="Internal Server Error"
+          description={err.message}
+          styles={[{ id: 'css', cssText: errorPageStyle._getCss() }]} // eslint-disable-line no-underscore-dangle
+    >{ReactDOM.renderToString(<ErrorPageWithoutStyle error={err}/>)}
+    </Html>);
   res.status(err.status || 500);
   res.send(`<!doctype html>${html}`);
 });
@@ -250,7 +241,7 @@ if (!module.hot) {
 //
 // Hot Module Replacement
 // -----------------------------------------------------------------------------
-if (module.hot) {
+if (typeof module.hot === 'object') {
   app.hot = module.hot;
   module.hot.accept('./router');
 }

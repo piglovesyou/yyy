@@ -8,7 +8,6 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import history from '../../history';
 
 function isLeftClickEvent(event) {
@@ -24,7 +23,6 @@ class Link extends React.Component<{|
   children: mixed,
   onClick?: Function
 |}> {
-
   static defaultProps = {
     onClick: null,
   };

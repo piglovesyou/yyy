@@ -13,8 +13,8 @@ class SearchBox extends React.Component<{|
   constructor(props) {
     super(props);
 
-    const {q} = props;
-    this.state = {q};
+    const { q } = props;
+    this.state = { q };
   }
 
   handleSubmit = (e) => {
@@ -29,7 +29,7 @@ class SearchBox extends React.Component<{|
   handleQueryChange = (e) => {
     const q = e.target.value;
 
-    this.setState({q});
+    this.setState({ q });
   };
 
   render() {

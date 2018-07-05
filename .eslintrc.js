@@ -99,6 +99,7 @@ module.exports = {
     'no-irregular-whitespace': ['error', { skipRegExps: true }],
     'css-modules/no-unused-class': 0,
     'no-nested-ternary': 0,
+    'react/no-danger': 0,
   },
 
   settings: {

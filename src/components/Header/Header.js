@@ -5,7 +5,7 @@ import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 import s from './Header.css';
 import Link from '../Link';
 import Navigation from '../Navigation';
-import {ContextConsumer} from '../ContextProvider';
+import { ContextConsumer } from '../ContextProvider';
 import SearchBox from '../SearchBox';
 
 class Header extends React.Component<void> {
@@ -18,7 +18,7 @@ class Header extends React.Component<void> {
               YYY
             </Link>
             {context.pathname === '/' && <SearchBox q={context.query.q}/>}
-            <div className={s.flexSpacer}> </div>
+            <div className={s.flexSpacer} />
             <Navigation/>
           </div>
         )}

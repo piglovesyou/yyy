@@ -6,7 +6,7 @@ import { onError } from 'apollo-link-error';
 import { SchemaLink } from 'apollo-link-schema';
 import createCache from './createCache';
 
-export default function createApolloClient(schema: {
+export default function createApolloClient(schema?: {
   schema: any,
   rootValue: { request: any },
 }): ApolloClient<any> {

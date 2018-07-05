@@ -9,7 +9,7 @@
 
 import gql from 'graphql-tag';
 import React from 'react';
-import {Query} from 'react-apollo';
+import { Query } from 'react-apollo';
 import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 // import gql from './aucItemList.graphql';
 import s from './Home.css';
@@ -38,10 +38,10 @@ class Home extends React.Component<{|
                 }
               }
             `}
-            variables={{query: this.props.q, from: 0, count: 10}}
+            variables={{ query: this.props.q, from: 0, count: 10 }}
           >
             {({
-                loading, error, data, fetchMore,
+                loading, error, data, /* fetchMore, */
               }) => {
               if (error) return <div>boom!!!</div>;
               const aucItemList =
@@ -54,7 +54,7 @@ class Home extends React.Component<{|
                   : {
                     totalCount: (
                       <span
-                        style={{width: '4em'}}
+                        style={{ width: '4em' }}
                         className={s.loadingPlaceholder}
                       >
                         &nbsp;
@@ -76,7 +76,7 @@ class Home extends React.Component<{|
                     )),
                   }
                   : data.getAucItemList;
-              const {totalCount, items} = aucItemList;
+              const { totalCount, items } = aucItemList;
               return (
                 <div>
                   <div>

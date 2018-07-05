@@ -120,18 +120,18 @@ declare class express$Response extends http$ServerResponse
 }
 
 declare type express$NextFunction = (err?: ?Error | 'route') => mixed;
-declare type express$Middleware =
-  | ((
-      req: $Subtype<express$Request>,
-      res: express$Response,
-      next: express$NextFunction,
-    ) => mixed)
-  | ((
-      error: Error,
-      req: $Subtype<express$Request>,
-      res: express$Response,
-      next: express$NextFunction,
-    ) => mixed);
+declare type express$Middleware = any;
+  // | ((
+  //     req: $Subtype<express$Request>,
+  //     res: express$Response,
+  //     next: express$NextFunction,
+  //   ) => mixed)
+  // | ((
+  //     error: Error,
+  //     req: $Subtype<express$Request>,
+  //     res: express$Response,
+  //     next: express$NextFunction,
+  //   ) => mixed);
 declare interface express$RouteMethodType<T> {
   (middleware: express$Middleware): T;
   (...middleware: Array<express$Middleware>): T;
@@ -161,6 +161,8 @@ declare class express$Route {
   mkactivity: express$RouteMethodType<this>;
   checkout: express$RouteMethodType<this>;
   merge: express$RouteMethodType<this>;
+
+  hot: any,
 
   // @TODO Missing 'm-search' but get flow illegal name error.
 
