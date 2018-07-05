@@ -49,7 +49,7 @@ class Home extends React.Component<{|
                   ? !this.props.q
                   ? {
                     totalCount: 0,
-                    items: 0,
+                    items: [],
                   }
                   : {
                     totalCount: (

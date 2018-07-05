@@ -20,7 +20,7 @@ import { ErrorPageWithoutStyle } from './routes/error/ErrorPage';
 import errorPageStyle from './routes/error/ErrorPage.css';
 import router from './router';
 import schema from './data/schema';
-// import assets from './asset-manifest.json'; // eslint-disable-line import/no-unresolved
+// $FlowFixMe
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
 import config from './config';
 import passport from './passport';
@@ -29,7 +29,6 @@ import type { ContextTypes, UserType } from './types';
 
 process.on('unhandledRejection', (reason, p) => {
   console.error('Unhandled Rejection at:', p, 'reason:', reason);
-  // send entire app down. Process manager will restart it
   process.exit(1);
 });
 
@@ -66,28 +65,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 //
 // Authentication
 // -----------------------------------------------------------------------------
-// app.use(expressJwt({
-//   secret: config.auth.jwt.secret,
-//   credentialsRequired: false,
-//   getToken: req => req.cookies.id_token,
-// }));
-// // Error handler for express-jwt
-// app.use((err, req, res, next) => {
-//   // eslint-disable-line no-unused-vars
-//   if (err instanceof Jwt401Error) {
-//     console.error('[express-jwt-error]', req.cookies.id_token);
-//     // `clearCookie`, otherwise user can't use web-app until cookie expires
-//     res.clearCookie('id_token');
-//   }
-//   next(err);
-// });
-
 app.get('/login/twitter', passport.authenticate('twitter'));
-
 app.get('/login/twitter/callback', passport.authenticate('twitter', {
   failureRedirect: '/login',
 }), (req, res) => {
@@ -97,14 +78,12 @@ app.get('/login/twitter/callback', passport.authenticate('twitter', {
 //
 // Register API middleware
 // -----------------------------------------------------------------------------
-// https://github.com/graphql/express-graphql#options
 const graphqlMiddleware = expressGraphQL(req => ({
   schema,
   graphiql: true, // __DEV__,
   rootValue: { request: req },
   pretty: __DEV__,
 }));
-
 app.use('/graphql', graphqlMiddleware);
 
 //
@@ -114,8 +93,6 @@ app.get('*', async (req, res, next) => {
   try {
     const css = new Set();
 
-    // Enables critical path CSS rendering
-    // https://github.com/kriasoft/isomorphic-style-loader
     const insertCss = (...styles) => {
       // eslint-disable-next-line no-underscore-dangle
       styles.forEach(style => css.add(style._getCss()));
@@ -126,42 +103,14 @@ app.get('*', async (req, res, next) => {
       rootValue: { request: req },
     });
 
-    // // Universal HTTP client
-    // const fetch = createFetch(nodeFetch, {
-    //   baseUrl: config.api.serverUrl,
-    //   cookie: req.headers.cookie,
-    //   schema,
-    //   graphql,
-    // });
-
     const initialState = {
       user: req.user || null,
     };
 
-    // const store = configureStore(initialState, {
-    //   cookie: req.headers.cookie,
-    //   fetch,
-    //   // I should not use `history` on server.. but how I do redirection? follow universal-router
-    //   history: null,
-    // });
-
-    // store.dispatch(setRuntimeVariable({
-    //   name: 'initialNow',
-    //   value: Date.now(),
-    // }));
-
-    // Global (context) variables that can be easily accessed from any React component
-    // https://facebook.github.io/react/docs/context.html
     const context: ContextTypes = {
       profile: (req.user: UserType),
       pathname: req.path,
       query: req.query,
-      // insertCss,
-      // fetch,
-      // client: apolloClient,
-      // You can access redux through react-redux connect
-      // store,
-      // storeSubscription: null,
     };
 
     const route = await router.resolve(context);
@@ -179,7 +128,7 @@ app.get('*', async (req, res, next) => {
     );
     await getDataFromTree(rootComponent);
     // this is here because of Apollo redux APOLLO_QUERY_STOP action
-    await Promise.delay(0);
+    // await Promise.delay(0);
     data.children = await ReactDOM.renderToString(rootComponent);
     data.styles = [{ id: 'css', cssText: [...css].join('') }];
 
@@ -243,6 +192,7 @@ if (!module.hot) {
 // -----------------------------------------------------------------------------
 if (typeof module.hot === 'object') {
   app.hot = module.hot;
+  // $FlowFixMe
   module.hot.accept('./router');
 }
 
