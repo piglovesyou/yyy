@@ -99,6 +99,7 @@
     "flow-typed": "^2.4.0",
     "front-matter": "^2.3.0",
     "glob": "^7.1.2",
+    "graphql-cli": "^2.16.4",
     "husky": "^0.14.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^22.4.3",
