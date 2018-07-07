@@ -9,7 +9,7 @@
 
 import gql from 'graphql-tag';
 import React from 'react';
-import { Query } from 'react-apollo';
+import {Query} from 'react-apollo';
 import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 // import gql from './aucItemList.graphql';
 import s from './Home.css';
@@ -30,6 +30,7 @@ class Home extends React.Component<{|
               query($query: String!, $cursor: Int, $count: Int) {
                 getAucItemList(query: $query, cursor: $cursor, count: $count) {
                   totalCount
+                  nextCursor
                   items {
                     id
                     imgSrc
@@ -38,10 +39,10 @@ class Home extends React.Component<{|
                 }
               }
             `}
-            variables={{ query: this.props.q, cursor: 0, count: 10 }}
+            variables={{query: this.props.q, cursor: 0, count: 4}}
           >
             {({
-                loading, error, data, /* fetchMore, */
+                loading, error, data, fetchMore,
               }) => {
               if (error) return <div>boom!!!</div>;
               const aucItemList =
@@ -54,7 +55,7 @@ class Home extends React.Component<{|
                   : {
                     totalCount: (
                       <span
-                        style={{ width: '4em' }}
+                        style={{width: '4em'}}
                         className={s.loadingPlaceholder}
                       >
                         &nbsp;
@@ -76,12 +77,25 @@ class Home extends React.Component<{|
                     )),
                   }
                   : data.getAucItemList;
-              const { totalCount, items } = aucItemList;
+              const {totalCount, items, nextCursor,} = aucItemList;
               return (
                 <div>
-                  <div>
-                    <span>total: </span>
-                    {totalCount}
+                  <div className={s.toolbar}>
+                    <div>total: {totalCount}</div>
+                    <div className={s.flexSpacer}></div>
+                    {
+                      (typeof nextCursor === 'number' && nextCursor > 0) &&
+                      <button onClick={() => {
+                        fetchMore({
+                          variables: {
+                            cursor: nextCursor
+                          },
+                          updateQuery(previousResult, { fetchMoreResult }) {
+                            return {...previousResult, ...fetchMoreResult};
+                          },
+                        });
+                      }}>Next</button>
+                    }
                   </div>
                   {items.map((item, i) =>
                     (item.props ? (
