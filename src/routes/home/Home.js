@@ -16,6 +16,7 @@ import s from './Home.css';
 import Link from '../../components/Link';
 import history from '../../history';
 import {parse as qsParse, stringify as qsStringify} from 'querystring';
+import Header from '../../components/Header';
 
 // import SearchBox from '../../components/SearchBox';
 
@@ -104,6 +105,7 @@ class Home extends React.Component<{|
               const enableNext = typeof nextCursor === 'number' && nextCursor >= 0;
               return (
                 <div>
+                  <Header/>
                   <div className={s.toolbar}>
                     {
                       <button onClick={enablePrev ? (() => {
