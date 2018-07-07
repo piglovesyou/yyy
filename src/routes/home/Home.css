@@ -17,16 +17,38 @@
   padding-right: 20px;
 }
 
-.container {
-  /*padding: 0 0 40px;*/
+.toolbar {
+  min-height: var(--header-min-height);
+  margin: 0 auto;
+  padding: 8px 0;
+  max-width: var(--max-content-width);
+  line-height: 1em;
+  display: flex;
+  align-items: center; /* vertical */
 }
 
-.toolbar {
-  display: flex;
+.brand {
+  color: color(var(--brand-color) lightness(+10%));
+  text-decoration: none;
+  margin-right: 8px;
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+.brandTxt {
+  margin-left: 10px;
 }
 
 .flexSpacer {
   flex: 1;
+}
+
+.searchBox {
+  margin-right: 8px;
+}
+
+.userIconImg {
+  width :32px;
 }
 
 .aucItemImg {

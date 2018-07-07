@@ -13,14 +13,62 @@ import {Query} from 'react-apollo';
 import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 // import gql from './aucItemList.graphql';
 import s from './Home.css';
+import ddMenuStyle from 'react-dd-menu/dist/react-dd-menu.css';
 import Link from '../../components/Link';
 import history from '../../history';
 import {parse as qsParse, stringify as qsStringify} from 'querystring';
-import Header from '../../components/Header';
+import SearchBox from '../../components/SearchBox';
+
+import {ContextConsumer} from '../../components/ContextProvider';
+
+import DropdownMenu from 'react-dd-menu';
 
 // import SearchBox from '../../components/SearchBox';
 
 const searchOffset = '?'.length;
+
+
+class UserIconMenu extends React.Component<{|
+  className?: string,
+  imageURL: string,
+|}> {
+  constructor() {
+    super();
+    this.state = {
+      isMenuOpen: false
+    };
+    this.click = this.click.bind(this);
+    this.toggle = this.toggle.bind(this);
+    this.close = this.close.bind(this);
+  }
+
+  toggle() {
+    this.setState({ isMenuOpen: !this.state.isMenuOpen });
+  }
+
+  close() {
+    this.setState({ isMenuOpen: false });
+  }
+
+  click() {
+    console.log('You clicked an item');
+  }
+
+  render() {
+    const menuOptions = {
+      isOpen: this.state.isMenuOpen,
+      close: this.close,
+      toggle: <button type="button" onClick={this.toggle}>Click me!</button>,
+      align: 'left'
+    };
+    return (
+      <DropdownMenu {...menuOptions}>
+        <li><a href="#">Example 1</a></li>
+        <li><button type="button" onClick={this.click}>Example 2</button></li>
+      </DropdownMenu>
+    );
+  }
+}
 
 class Home extends React.Component<{|
   q: string,
@@ -31,9 +79,7 @@ class Home extends React.Component<{|
   render() {
     return (
       <div className={s.root}>
-        <div className={s.container}>
-          <Query
-            query={gql`
+        <Query query={gql`
               query(
                 $query: String!,
                 $cursor: Int,
@@ -57,100 +103,112 @@ class Home extends React.Component<{|
                 }
               }
             `}
-            variables={{
-              query: this.props.q,
-              cursor: this.props.cursor,
-              cursorBackward: this.props.cursorBackward,
-              count: 4,
-            }}
-          >
-            {({
-                loading, error, data, fetchMore,
-              }) => {
-              if (error) return <div>boom!!!</div>;
-              const aucItemList =
-                loading
-                  ? !this.props.q
-                  ? {
-                    totalCount: 0,
-                    items: [],
-                  }
-                  : {
-                    totalCount: (
-                      <span
-                        style={{width: '4em'}}
-                        className={s.loadingPlaceholder}
-                      >
+               variables={{
+                 query: this.props.q,
+                 cursor: this.props.cursor,
+                 cursorBackward: this.props.cursorBackward,
+                 count: 4,
+               }}
+        >
+          {({
+              loading, error, data, fetchMore,
+            }) => {
+            if (error) return <div>boom!!!</div>;
+            const aucItemList =
+              loading
+                ? !this.props.q
+                ? {
+                  totalCount: 0,
+                  items: [],
+                }
+                : {
+                  totalCount: (
+                    <span
+                      style={{width: '4em'}}
+                      className={s.loadingPlaceholder}
+                    >
                         &nbsp;
                       </span>
-                    ),
-                    items: Array.from(Array(3)).map((_, i) => (
-                      <span
-                        style={{
-                          width: 400,
-                          maxWidth: '100%',
-                          height: 300,
-                          margin: '0 0.5em 0.5em 0',
-                        }}
-                        key={i}
-                        className={s.loadingPlaceholder}
-                      >
+                  ),
+                  items: Array.from(Array(3)).map((_, i) => (
+                    <span
+                      style={{
+                        width: 400,
+                        maxWidth: '100%',
+                        height: 300,
+                        margin: '0 0.5em 0.5em 0',
+                      }}
+                      key={i}
+                      className={s.loadingPlaceholder}
+                    >
                         &nbsp;
                       </span>
-                    )),
-                  }
-                  : data.getAucItemList;
-              const {totalCount, items, nextCursor, prevCursor} = aucItemList;
-              const enablePrev = typeof prevCursor === 'number' && prevCursor >= 0;
-              const enableNext = typeof nextCursor === 'number' && nextCursor >= 0;
-              return (
-                <div>
-                  <Header/>
-                  <div className={s.toolbar}>
-                    {
-                      <button onClick={enablePrev ? (() => {
-                        const qs = {
-                          ...qsParse(global.location.search.slice(searchOffset)),
-                          // Collect items backward!
-                          cb: prevCursor,
-                        };
-                        delete qs.c;
-                        history.push({pathname: global.location.pathname, search: qsStringify(qs),});
-                      }) : null}
-                              disabled={!enablePrev || loading}
-                      >Prev</button>
-                    }
-                    <div>total: {totalCount}</div>
-                    <div className={s.flexSpacer}></div>
-                    {
-                      <button onClick={enableNext ? (() => {
-                        const qs = ({
-                          ...qsParse(global.location.search.slice(searchOffset)),
-                          c: nextCursor,
-                        });
-                        delete qs.cb;
-                        history.push({pathname: global.location.pathname, search: qsStringify(qs),});
-                      }) : null}
-                              disabled={!enableNext || loading}
-                      >Next</button>
-                    }
-                  </div>
-                  {items.map((item, i) =>
-                    (item.props ? (
-                      item
-                    ) : (
-                      <Link to={`/detail/${item.id}`} key={i}>
-                        <img className={s.aucItemImg} src={item.imgSrc}/>
-                      </Link>
-                    )))}
-                </div>
-              );
-            }}
-          </Query>
-        </div>
+                  )),
+                }
+                : data.getAucItemList;
+            const {totalCount, items, nextCursor, prevCursor} = aucItemList;
+            const enablePrev = typeof prevCursor === 'number' && prevCursor >= 0;
+            const enableNext = typeof nextCursor === 'number' && nextCursor >= 0;
+            return (
+              <div>
+                  <ContextConsumer>
+                    {context => {
+                      return (
+                        <div className={s.toolbar}>
+                          {
+                            <button onClick={enablePrev ? (() => {
+                              const qs = {
+                                ...qsParse(global.location.search.slice(searchOffset)),
+                                // Collect items backward!
+                                cb: prevCursor,
+                              };
+                              delete qs.c;
+                              history.push({pathname: global.location.pathname, search: qsStringify(qs),});
+                            }) : null}
+                                    disabled={!enablePrev || loading}
+                            >Prev</button>
+                          }
+                          <div className={s.flexSpacer}></div>
+                          <Link className={s.brand} to="/" tabIndex={0}>
+                            YYY
+                          </Link>
+                          {context.pathname === '/' && <SearchBox className={s.searchBox}
+                                                                  q={context.query.q} />}
+                          {context.profile
+                            ? <UserIconMenu className={s.userIconImg} imageURL={context.profile.image}/>
+                            : <a href={'/login/twitter'}>Login</a>}
+                          <div className={s.flexSpacer}></div>
+                          {
+                            <button onClick={enableNext ? (() => {
+                              const qs = ({
+                                ...qsParse(global.location.search.slice(searchOffset)),
+                                c: nextCursor,
+                              });
+                              delete qs.cb;
+                              history.push({pathname: global.location.pathname, search: qsStringify(qs),});
+                            }) : null}
+                                    disabled={!enableNext || loading}
+                            >Next</button>
+                          }
+                        </div>
+                      );
+                    }}
+                  </ContextConsumer>
+                {items.map((item, i) =>
+                  (item.props ? (
+                    item
+                  ) : (
+                    <Link to={`/detail/${item.id}`} key={i}>
+                      <img className={s.aucItemImg} src={item.imgSrc}/>
+                    </Link>
+                  )))}
+              </div>
+            );
+          }}
+        </Query>
       </div>
     );
   }
 }
 
-export default withStyles(s)(Home);
+export default withStyles(s, ddMenuStyle)(Home);

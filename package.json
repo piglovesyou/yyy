@@ -49,6 +49,7 @@
     "query-string": "^6.0.0",
     "react": "^16.4.0",
     "react-apollo": "^2.1.8",
+    "react-dd-menu": "^2.0.2",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "redis": "^2.8.0",

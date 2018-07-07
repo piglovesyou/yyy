@@ -8,6 +8,7 @@ import {stringify as qsStringify} from 'querystring';
 
 class SearchBox extends React.Component<{|
   q: string,
+  className: string,
 |}, {|
   q: string,
 |}> {
@@ -38,7 +39,7 @@ class SearchBox extends React.Component<{|
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className={this.props.className} onSubmit={this.handleSubmit}>
         <input className={s.inputText}
                placeholder="Keywords or Yahoo! Auction URL"
                type="text"

@@ -73,6 +73,10 @@ app.get('/login/twitter/callback', passport.authenticate('twitter', {
 }), (req, res) => {
   res.redirect('/');
 });
+app.get('/logout', (req, res) => {
+  if (req.session) req.session.destroy();
+  res.redirect('/');
+});
 
 //
 // Register API middleware
