@@ -43,11 +43,11 @@ class UserIconMenu extends React.Component<{|
   }
 
   toggle() {
-    this.setState({ isMenuOpen: !this.state.isMenuOpen });
+    this.setState({isMenuOpen: !this.state.isMenuOpen});
   }
 
   close() {
-    this.setState({ isMenuOpen: false });
+    this.setState({isMenuOpen: false});
   }
 
   click() {
@@ -58,13 +58,20 @@ class UserIconMenu extends React.Component<{|
     const menuOptions = {
       isOpen: this.state.isMenuOpen,
       close: this.close,
-      toggle: <button type="button" onClick={this.toggle}>Click me!</button>,
-      align: 'left'
+      toggle: <img className={this.props.className}
+                   src={this.props.imageURL}
+                   onClick={this.toggle}
+                   onKeyDown={this.toggle}
+                   tabIndex={0}
+      />,
+      animate: false,
+      align: 'left',
     };
     return (
       <DropdownMenu {...menuOptions}>
-        <li><a href="#">Example 1</a></li>
-        <li><button type="button" onClick={this.click}>Example 2</button></li>
+        <li><Link to={'/archived'}>Archived items</Link></li>
+        <li><Link to={'/about'}>What is YYYY</Link></li>
+        <li><a href="/logout">Logout</a></li>
       </DropdownMenu>
     );
   }
@@ -151,49 +158,49 @@ class Home extends React.Component<{|
             const enableNext = typeof nextCursor === 'number' && nextCursor >= 0;
             return (
               <div>
-                  <ContextConsumer>
-                    {context => {
-                      return (
-                        <div className={s.toolbar}>
-                          {
-                            <button onClick={enablePrev ? (() => {
-                              const qs = {
-                                ...qsParse(global.location.search.slice(searchOffset)),
-                                // Collect items backward!
-                                cb: prevCursor,
-                              };
-                              delete qs.c;
-                              history.push({pathname: global.location.pathname, search: qsStringify(qs),});
-                            }) : null}
-                                    disabled={!enablePrev || loading}
-                            >Prev</button>
-                          }
-                          <div className={s.flexSpacer}></div>
-                          <Link className={s.brand} to="/" tabIndex={0}>
-                            YYY
-                          </Link>
-                          {context.pathname === '/' && <SearchBox className={s.searchBox}
-                                                                  q={context.query.q} />}
-                          {context.profile
-                            ? <UserIconMenu className={s.userIconImg} imageURL={context.profile.image}/>
-                            : <a href={'/login/twitter'}>Login</a>}
-                          <div className={s.flexSpacer}></div>
-                          {
-                            <button onClick={enableNext ? (() => {
-                              const qs = ({
-                                ...qsParse(global.location.search.slice(searchOffset)),
-                                c: nextCursor,
-                              });
-                              delete qs.cb;
-                              history.push({pathname: global.location.pathname, search: qsStringify(qs),});
-                            }) : null}
-                                    disabled={!enableNext || loading}
-                            >Next</button>
-                          }
-                        </div>
-                      );
-                    }}
-                  </ContextConsumer>
+                <ContextConsumer>
+                  {context => {
+                    return (
+                      <div className={s.toolbar}>
+                        {
+                          <button onClick={enablePrev ? (() => {
+                            const qs = {
+                              ...qsParse(global.location.search.slice(searchOffset)),
+                              // Collect items backward!
+                              cb: prevCursor,
+                            };
+                            delete qs.c;
+                            history.push({pathname: global.location.pathname, search: qsStringify(qs),});
+                          }) : null}
+                                  disabled={!enablePrev || loading}
+                          >Prev</button>
+                        }
+                        <div className={s.flexSpacer}></div>
+                        <Link className={s.brand} to="/" tabIndex={0}>
+                          YYYY
+                        </Link>
+                        {context.pathname === '/' && <SearchBox className={s.searchBox}
+                                                                q={context.query.q}/>}
+                        {context.profile
+                          ? <UserIconMenu className={s.userIconImg} imageURL={context.profile.image}/>
+                          : <a href={'/login/twitter'}>Login</a>}
+                        <div className={s.flexSpacer}></div>
+                        {
+                          <button onClick={enableNext ? (() => {
+                            const qs = ({
+                              ...qsParse(global.location.search.slice(searchOffset)),
+                              c: nextCursor,
+                            });
+                            delete qs.cb;
+                            history.push({pathname: global.location.pathname, search: qsStringify(qs),});
+                          }) : null}
+                                  disabled={!enableNext || loading}
+                          >Next</button>
+                        }
+                      </div>
+                    );
+                  }}
+                </ContextConsumer>
                 {items.map((item, i) =>
                   (item.props ? (
                     item
