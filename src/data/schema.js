@@ -38,22 +38,20 @@ const currentProjects = {
   ],
 };
 
-// Merge all of the resolver objects together
-// Put schema together into one array of schema strings
 const resolvers = {
   Query: {
     async getAucItemList({request}: { request: RequestType }, {query, cursor, from = 0, count = 4}: { query: string, cursor: number, from: number, count: number }) {
       // TODO: consider requesting out of totalCount range
 
-      // const {user} = request;
-      // console.log(user && user._id);
+      const user = request.user;
+      const userId = user && user._id;
 
       const normalizedQuery = query.replace(/　+/g, ' ').trim();
 
       const firstIndexInPage = getFirstIndexInPage(cursor);
       const {totalCount, items} = await requestAucItemList(normalizedQuery, firstIndexInPage);
 
-      const {collected, nextCursor} = await collectAucItems([], normalizedQuery, count, cursor, totalCount, items);
+      const {collected, nextCursor} = await collectAucItems([], normalizedQuery, count, cursor, totalCount, items, userId);
 
       return {
         totalCount,
@@ -118,18 +116,29 @@ const resolvers = {
     },
   },
   Mutation: {
-    async archiveAucItems(req, {userId, itemIds}: { userId: string, itemIds: [string] })
-      : Promise<{ userId: string, addedItemIds: [string] }> {
-      const addedItemIds = await operateArchivedAucItem(userId, itemIds, 'sadd');
+    // async isArchivedAucItems(req, {userId, itemIds}): Promise<{userId: string, results: number[]}> {
+    //   const results = await  operateArchivedAucItem(userId, itemIds, 'sismember');
+    //   return {userId, results};
+    // },
 
-      return {userId, addedItemIds};
+    async archiveAucItems({request}: { request: RequestType }, {itemIds}: { userId: string, itemIds: [string] })
+      :Promise<{userId: string, results: number[]}> {
+      const user = request.user;
+      const userId = user && user._id;
+      if (!userId) throw new Error('Not a logged in user.');
+      const results = await operateArchivedAucItem(userId, itemIds, 'sadd');
+      return {userId, results};
     },
-    async unarchiveAucItems(req, {userId, itemIds}: { userId: string, itemIds: [string] })
-      : Promise<{ userId: string, removedItemIds: [string] }> {
-      const removedItemIds = await operateArchivedAucItem(userId, itemIds, 'srem');
 
-      return {userId, removedItemIds};
+    async unarchiveAucItems({request}: { request: RequestType }, {itemIds}: { userId: string, itemIds: [string] })
+      :Promise<{userId: string, results: number[]}> {
+      const user = request.user;
+      const userId = user && user._id;
+      if (!userId) throw new Error('Not a logged in user.');
+      const results = await  operateArchivedAucItem(userId, itemIds, 'srem');
+      return {userId, results};
     },
+
     async updateProjectRatio(req, {projectId, ratio}) {
       await new Promise(resolve => setTimeout(resolve, dummyThroughputDelay));
 
@@ -140,8 +149,9 @@ const resolvers = {
       p.ratio = ratio;
       return p;
     },
+
     // async includeInArchivedAucItem(req, {userId, itemIds}: { userId: string, itemIds: [string] }): Promise<{ userId:
-    // string, itemIds: [string] }> { const removedItemIds = await operateArchivedAucItem(userId, itemIds,
+    // string, itemIds: [string] }> { const removedItemIds = await  operateArchivedAucItem(userId, itemIds,
     // 'sismember');  return {userId, removedItemIds,}; },
   },
 };
@@ -152,7 +162,8 @@ async function collectAucItems(
   count: number,
   cursor: number,
   totalCount: number,
-  fetchedItems: Array<any>
+  fetchedItems: Array<any> ,
+  userId: ?string ,
 ): Promise<{
   collected: Array<any>,
   nextCursor: number,
@@ -161,19 +172,26 @@ async function collectAucItems(
   if (cursor + 1 >= totalCount) return {collected: acc, nextCursor: -1};
 
   const cursorInItems = cursor % AUC_LIST_PER_PAGE;
-  if (!fetchedItems[cursorInItems]) throw new Error('Never');
+  const cursoredItem = fetchedItems[cursorInItems];
 
-  acc.push(fetchedItems[cursorInItems]);
+  if (!cursoredItem) throw new Error('Never');
+
+  const isArchivedItem = userId && await isArchivedAucItem(userId, cursoredItem.id);
+
+  if (!isArchivedItem) {
+    acc.push(cursoredItem);
+  }
+
   const nextCursor = cursor + 1;
   const shouldFlip = nextCursor % AUC_LIST_PER_PAGE === 0;
 
   if (shouldFlip) {
     const firstInPage = getFirstIndexInPage(nextCursor);
     const {totalCount, items} = await requestAucItemList(query, firstInPage);
-    return collectAucItems(acc, query, count, nextCursor, totalCount, items);
+    return collectAucItems(acc, query, count, nextCursor, totalCount, items, userId);
   }
 
-  return collectAucItems(acc, query, count, nextCursor, totalCount, fetchedItems);
+  return collectAucItems(acc, query, count, nextCursor, totalCount, fetchedItems, userId);
 }
 
 async function requestAucItemList(query, from): Promise<AucItemList> {
@@ -252,22 +270,28 @@ async function requestAucItemList(query, from): Promise<AucItemList> {
   return resolvedValue;
 }
 
-async function operateArchivedAucItem(userId, itemIds, operation: 'sadd' | 'srem') {
-  const key = `user:${userId}:archivedAucItems`;
+async function isArchivedAucItem(userId: string, itemId: string): Promise<boolean> {
+  const [result] = await operateArchivedAucItem(userId, [itemId], 'sismember');
+  return result;
+}
+
+async function operateArchivedAucItem(userId, itemIds, operation: 'sadd' | 'srem' | 'sismember'): Promise<boolean[]> {
+  const key = getArchivedAucItemsKey(userId);
   const multi = persist.multi();
   if (typeof multi[operation] !== 'function') throw new Error();
   const operate: Function = multi[operation].bind(multi);
 
+  // [0, 1, ...]
   const results = await itemIds.reduce((operate, itemId) => {
     return operate(key, itemId);
   }, operate).execAsync();
 
-  return results.reduce((operated, result, index) => {
-    if (result === 1) {
-      return [...operated, itemIds[index]];
-    }
-    return operated;
-  }, []);
+  // [false, true, ...]
+  return results.map(Boolean);
+}
+
+function getArchivedAucItemsKey(userId) {
+  return `user:${userId}:archivedAucItems`;
 }
 
 export default makeExecutableSchema({

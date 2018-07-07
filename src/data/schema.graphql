@@ -31,12 +31,12 @@ type AucItemList {
 
 type ResponseUnarchiveAucItems {
   userId: String!
-  removedItemIds: [String!]
+  results: [Boolean]
 }
 
 type ResponseArchiveAucItems {
   userId: String!
-  addedItemIds: [String!]
+  results: [Boolean!]
 }
 
 type OperaProject {
@@ -56,8 +56,8 @@ type Query {
 }
 
 type Mutation {
-  archiveAucItems(userId: String!, itemIds: [String!]): ResponseArchiveAucItems
-  unarchiveAucItems(userId: String!, itemIds: [String!]): ResponseUnarchiveAucItems
+  archiveAucItems(itemIds: [String!]): ResponseArchiveAucItems
+  unarchiveAucItems(itemIds: [String!]): ResponseUnarchiveAucItems
   updateProjectRatio(userId: String!, projectId: String!, ratio: Int): OperaProject
 }
 

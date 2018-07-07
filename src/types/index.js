@@ -18,5 +18,5 @@ export type ContextTypes = {
 };
 
 export type RequestType = express$Request & {
-  user?: UserType,
+  user: UserType,
 };
