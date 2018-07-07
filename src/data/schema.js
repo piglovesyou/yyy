@@ -48,8 +48,8 @@ const resolvers = {
     async getAucItemList(
       {request}: { request: RequestType },
       {query, cursor, cursorBackward, count = 4}: { query: string, cursor?: number, cursorBackward?: number, count?: number, }) {
-      if (typeof cursor === 'undefined' && typeof cursorBackward === 'undefined') throw new Error('Kidding me?');
-      if (typeof cursor !== 'undefined' && typeof cursorBackward !== 'undefined') cursor = 0;
+      if (typeof cursor !== 'undefined' && typeof cursorBackward !== 'undefined') throw new Error('Kidding me?');
+      if (typeof cursor === 'undefined' && typeof cursorBackward === 'undefined') cursor = 0;
 
       const inc = typeof cursor === 'number';
       const c = inc ? cursor : cursorBackward;

@@ -100,12 +100,13 @@ class Home extends React.Component<{|
                   }
                   : data.getAucItemList;
               const {totalCount, items, nextCursor, prevCursor} = aucItemList;
+              const enablePrev = typeof prevCursor === 'number' && prevCursor >= 0;
+              const enableNext = typeof nextCursor === 'number' && nextCursor >= 0;
               return (
                 <div>
                   <div className={s.toolbar}>
                     {
-                      (typeof prevCursor === 'number' && prevCursor >= 0) &&
-                      <button onClick={() => {
+                      enablePrev && <button onClick={() => {
                         const qs = {
                           ...qsParse(global.location.search.slice(searchOffset)),
                           // Collect items backward!
@@ -118,8 +119,7 @@ class Home extends React.Component<{|
                     <div>total: {totalCount}</div>
                     <div className={s.flexSpacer}></div>
                     {
-                      (typeof nextCursor === 'number' && nextCursor >= 0) &&
-                      <button onClick={() => {
+                      enableNext && <button onClick={() => {
                         const qs = ({
                           ...qsParse(global.location.search.slice(searchOffset)),
                           c: nextCursor,

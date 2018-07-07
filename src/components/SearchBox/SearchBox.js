@@ -22,7 +22,7 @@ class SearchBox extends React.Component<{|
     e.preventDefault();
 
     const search = this.state.q
-      ? qsStringify({q: encodeURIComponent(this.state.q),})
+      ? qsStringify({q: this.state.q})
       : '';
     history.push({
       pathname: global.location.pathname,
@@ -42,7 +42,7 @@ class SearchBox extends React.Component<{|
         <input className={s.inputText}
                placeholder="Keywords or Yahoo! Auction URL"
                type="text"
-               value={this.state.q}
+               value={this.state.q || ''}
                onChange={this.handleQueryChange}
         />
         <button className={s.button}
