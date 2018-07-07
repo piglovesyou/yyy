@@ -17,7 +17,9 @@ function action(context) {
     chunks: ['home'],
     component: (
       <Layout>
-        <Home q={context.query.q || ''}/>
+        <Home q={context.query.q || ''}
+              cursor={context.query.cursor || 0}
+        />
       </Layout>
     ),
   };

@@ -4,6 +4,7 @@ import React from 'react';
 import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 import history from '../../history';
 import s from './SearchBox.css';
+import {stringify as qsStringify} from 'querystring';
 
 class SearchBox extends React.Component<{|
   q: string,
@@ -13,23 +14,26 @@ class SearchBox extends React.Component<{|
   constructor(props) {
     super(props);
 
-    const { q } = props;
-    this.state = { q };
+    const {q} = props;
+    this.state = {q};
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
 
+    const search = this.state.q
+      ? qsStringify({q: encodeURIComponent(this.state.q),})
+      : '';
     history.push({
       pathname: global.location.pathname,
-      search: `q=${encodeURIComponent(this.state.q)}`,
+      search,
     });
   };
 
   handleQueryChange = (e) => {
     const q = e.target.value;
 
-    this.setState({ q });
+    this.setState({q});
   };
 
   render() {

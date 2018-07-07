@@ -14,13 +14,18 @@ import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 // import gql from './aucItemList.graphql';
 import s from './Home.css';
 import Link from '../../components/Link';
+import history from '../../history'
+import {parse as qsParse, stringify as qsStringify} from 'querystring'
 
 // import SearchBox from '../../components/SearchBox';
 
-
 class Home extends React.Component<{|
   q: string,
+  cursor?: number,
 |}> {
+  static defaultProps = {
+    cursor: 0,
+  };
   render() {
     return (
       <div className={s.root}>
@@ -39,7 +44,7 @@ class Home extends React.Component<{|
                 }
               }
             `}
-            variables={{query: this.props.q, cursor: 0, count: 4}}
+            variables={{query: this.props.q, cursor: this.props.cursor, count: 4}}
           >
             {({
                 loading, error, data, fetchMore,
@@ -91,6 +96,12 @@ class Home extends React.Component<{|
                             cursor: nextCursor
                           },
                           updateQuery(previousResult, { fetchMoreResult }) {
+                            const searchOffset = '?'.length
+                            const search = qsStringify({
+                              ...qsParse(global.location.search.slice(searchOffset)),
+                              cursor: nextCursor,
+                            });
+                            history.replace({ pathname: global.location.pathname, search, });
                             return {...previousResult, ...fetchMoreResult};
                           },
                         });
