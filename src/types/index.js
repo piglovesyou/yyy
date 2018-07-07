@@ -9,10 +9,14 @@ export type UserType = {
 
 export type ContextTypes = {
   profile: UserType,
-  // fetch: Function,
   pathname: string,
   query: { [string]: string },
+  // fetch: Function,
   // insertCss: Function,
   // client: any, // Apollo Client
   // ...ReduxProvider.childContextTypes,
+};
+
+export type RequestType = express$Request & {
+  user?: UserType,
 };
