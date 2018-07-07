@@ -214,6 +214,7 @@ declare module "redis" {
       timeout: number,
       callback?: (error: ?Error, timeoutWasSet: number) => void
     ) => void;
+    multi: Function;
   }
 
   declare class RedisClientPromisified extends RedisClient {

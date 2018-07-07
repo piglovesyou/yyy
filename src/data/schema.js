@@ -53,7 +53,7 @@ const resolvers = {
       const firstIndexInPage = getFirstIndexInPage(cursor);
       const {totalCount, items} = await requestAucItemList(normalizedQuery, firstIndexInPage);
 
-      const {collected, nextCursor} = await collectAucItems([], cursor, totalCount, items, count, normalizedQuery);
+      const {collected, nextCursor} = await collectAucItems([], normalizedQuery, count, cursor, totalCount, items);
 
       return {
         totalCount,
@@ -148,16 +148,16 @@ const resolvers = {
 
 async function collectAucItems(
   acc: Array<any>,
+  query: string,
+  count: number,
   cursor: number,
   totalCount: number,
-  fetchedItems: Array<any>,
-  max: number,
-  query: string = ''
+  fetchedItems: Array<any>
 ): Promise<{
   collected: Array<any>,
   nextCursor: number,
 }> {
-  if (acc.length >= max) return {collected: acc, nextCursor: cursor};
+  if (acc.length >= count) return {collected: acc, nextCursor: cursor};
   if (cursor + 1 >= totalCount) return {collected: acc, nextCursor: -1};
 
   const cursorInItems = cursor % AUC_LIST_PER_PAGE;
@@ -170,10 +170,10 @@ async function collectAucItems(
   if (shouldFlip) {
     const firstInPage = getFirstIndexInPage(nextCursor);
     const {totalCount, items} = await requestAucItemList(query, firstInPage);
-    return collectAucItems(acc, nextCursor, totalCount, items, max);
+    return collectAucItems(acc, query, count, nextCursor, totalCount, items);
   }
 
-  return collectAucItems(acc, nextCursor, totalCount, fetchedItems, max);
+  return collectAucItems(acc, query, count, nextCursor, totalCount, fetchedItems);
 }
 
 async function requestAucItemList(query, from): Promise<AucItemList> {
