@@ -18,7 +18,8 @@ function action(context) {
     component: (
       <Layout>
         <Home q={context.query.q || ''}
-              cursor={context.query.cursor || 0}
+              cursor={context.query.c ? Number(context.query.c) : undefined}
+              cursorBackward={context.query.cb ? Number(context.query.cb) : undefined}
         />
       </Layout>
     ),

@@ -26,6 +26,7 @@ type AucItem {
 type AucItemList {
   totalCount: Int!
   nextCursor: Int!
+  prevCursor: Int!
   items: [AucItem!]
 }
 
@@ -51,7 +52,7 @@ type OperaProjectList {
 
 type Query {
   getAucItemDetail(id: String): AucItemDetail
-  getAucItemList(query: String!, cursor: Int, count: Int): AucItemList
+  getAucItemList(query: String!, cursor: Int, cursorBackward: Int, count: Int): AucItemList
   getCurrentProjects(userId: String): OperaProjectList
 }
 

@@ -38,24 +38,37 @@ const currentProjects = {
   ],
 };
 
+function normalizeQuery(query) {
+  const normalizedQuery = query.replace(/　+/g, ' ').trim();
+  return normalizedQuery;
+}
+
 const resolvers = {
   Query: {
-    async getAucItemList({request}: { request: RequestType }, {query, cursor = 0, count = 4}: { query: string, cursor: number, count: number }) {
-      // TODO: consider requesting out of totalCount range
+    async getAucItemList(
+      {request}: { request: RequestType },
+      {query, cursor, cursorBackward, count = 4}: { query: string, cursor?: number, cursorBackward?: number, count?: number, }) {
+      if (typeof cursor === 'undefined' && typeof cursorBackward === 'undefined') throw new Error('Kidding me?');
+      if (typeof cursor !== 'undefined' && typeof cursorBackward !== 'undefined') cursor = 0;
+
+      const inc = typeof cursor === 'number';
+      const c = inc ? cursor : cursorBackward;
+
+      if (typeof c === 'undefined') throw new Error('Never'); // For flow
 
       const user = request.user;
       const userId = user && user._id;
+      const normalizedQuery = normalizeQuery(query);
 
-      const normalizedQuery = query.replace(/　+/g, ' ').trim();
-
-      const firstIndexInPage = getFirstIndexInPage(cursor);
+      const firstIndexInPage = getFirstIndexInPage(c);
       const {totalCount, items} = await requestAucItemList(normalizedQuery, firstIndexInPage);
 
-      const {collected, nextCursor} = await collectAucItems([], normalizedQuery, count, cursor, totalCount, items, userId);
+      const {collected, nextCursor, prevCursor} = await collectAucItems([], normalizedQuery, count, inc, c, c, totalCount, items, userId);
 
       return {
         totalCount,
         nextCursor,
+        prevCursor,
         items: collected,
       };
     },
@@ -116,13 +129,8 @@ const resolvers = {
     },
   },
   Mutation: {
-    // async isArchivedAucItems(req, {userId, itemIds}): Promise<{userId: string, results: number[]}> {
-    //   const results = await  operateArchivedAucItem(userId, itemIds, 'sismember');
-    //   return {userId, results};
-    // },
-
     async archiveAucItems({request}: { request: RequestType }, {itemIds}: { userId: string, itemIds: [string] })
-      : Promise<{ userId: string, results: number[] }> {
+      : Promise<{ userId: string, results: boolean[] }> {
       const user = request.user;
       const userId = user && user._id;
       if (!userId) throw new Error('Not a logged in user.');
@@ -131,11 +139,11 @@ const resolvers = {
     },
 
     async unarchiveAucItems({request}: { request: RequestType }, {itemIds}: { userId: string, itemIds: [string] })
-      : Promise<{ userId: string, results: number[] }> {
+      : Promise<{ userId: string, results: boolean[] }> {
       const user = request.user;
       const userId = user && user._id;
       if (!userId) throw new Error('Not a logged in user.');
-      const results = await  operateArchivedAucItem(userId, itemIds, 'srem');
+      const results = await operateArchivedAucItem(userId, itemIds, 'srem');
       return {userId, results};
     },
 
@@ -149,27 +157,34 @@ const resolvers = {
       p.ratio = ratio;
       return p;
     },
-
-    // async includeInArchivedAucItem(req, {userId, itemIds}: { userId: string, itemIds: [string] }): Promise<{ userId:
-    // string, itemIds: [string] }> { const removedItemIds = await  operateArchivedAucItem(userId, itemIds,
-    // 'sismember');  return {userId, removedItemIds,}; },
   },
 };
 
 async function collectAucItems(
-  acc: Array<any>,
+  collected: Array<any>,
   query: string,
   count: number,
+  inc: boolean,
+  cursorOnStart: number,
   cursor: number,
   totalCount: number,
   fetchedItems: Array<any>,
-  userId: ?string,
-): Promise<{
+  userId: string): Promise<{
   collected: Array<any>,
   nextCursor: number,
+  prevCursor: number,
 }> {
-  if (acc.length >= count) return {collected: acc, nextCursor: cursor};
-  if (cursor + 1 >= totalCount) return {collected: acc, nextCursor: -1};
+  const isEnoughCollected = collected.length >= count;
+  const isRightReached = cursor >= totalCount;
+  const isLeftReached = cursor < 0;
+
+  if (isEnoughCollected || isRightReached || isLeftReached) {
+    const nextCursor = isRightReached ? -1 :
+      inc ? cursor : cursorOnStart + 1;
+    const prevCursor = isLeftReached ? -1 :
+      inc ? cursorOnStart - 1 : cursor;
+    return {collected, nextCursor, prevCursor,};
+  }
 
   const cursorInItems = cursor % AUC_LIST_PER_PAGE;
   const cursoredItem = fetchedItems[cursorInItems];
@@ -178,20 +193,18 @@ async function collectAucItems(
 
   const isArchivedItem = userId && await isArchivedAucItem(userId, cursoredItem.id);
 
-  if (!isArchivedItem) {
-    acc.push(cursoredItem);
-  }
+  if (!isArchivedItem) collected.push(cursoredItem);
 
-  const nextCursor = cursor + 1;
+  const nextCursor = cursor + (inc ? 1 : -1);
   const shouldFlip = nextCursor % AUC_LIST_PER_PAGE === 0;
 
   if (shouldFlip) {
     const firstInPage = getFirstIndexInPage(nextCursor);
     const {totalCount, items} = await requestAucItemList(query, firstInPage);
-    return collectAucItems(acc, query, count, nextCursor, totalCount, items, userId);
+    return collectAucItems(collected, query, count, inc, cursorOnStart, nextCursor, totalCount, items, userId);
   }
 
-  return collectAucItems(acc, query, count, nextCursor, totalCount, fetchedItems, userId);
+  return collectAucItems(collected, query, count, inc, cursorOnStart, nextCursor, totalCount, fetchedItems, userId);
 }
 
 async function requestAucItemList(query, from): Promise<AucItemList> {
@@ -318,11 +331,11 @@ function parsePrice(str) {
   return Number(str.replace(/[^\d]/g, ''));
 }
 
-function getFirstIndexInPage(from) {
+function getFirstIndexInPage(from: number): number {
   return getPageIndex(from) * AUC_LIST_PER_PAGE;
 }
 
-function getPageIndex(from) {
+function getPageIndex(from: number): number {
   return Math.floor(from / AUC_LIST_PER_PAGE);
 }
 

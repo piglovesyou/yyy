@@ -14,28 +14,40 @@ import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 // import gql from './aucItemList.graphql';
 import s from './Home.css';
 import Link from '../../components/Link';
-import history from '../../history'
-import {parse as qsParse, stringify as qsStringify} from 'querystring'
+import history from '../../history';
+import {parse as qsParse, stringify as qsStringify} from 'querystring';
 
 // import SearchBox from '../../components/SearchBox';
+
+const searchOffset = '?'.length;
 
 class Home extends React.Component<{|
   q: string,
   cursor?: number,
+  cursorBackward?: number,
 |}> {
-  static defaultProps = {
-    cursor: 0,
-  };
+
   render() {
     return (
       <div className={s.root}>
         <div className={s.container}>
           <Query
             query={gql`
-              query($query: String!, $cursor: Int, $count: Int) {
-                getAucItemList(query: $query, cursor: $cursor, count: $count) {
+              query(
+                $query: String!,
+                $cursor: Int,
+                $cursorBackward: Int,
+                $count: Int,
+              ) {
+                getAucItemList(
+                  query: $query,
+                  cursor: $cursor,
+                  cursorBackward: $cursorBackward,
+                  count: $count,
+                ) {
                   totalCount
                   nextCursor
+                  prevCursor
                   items {
                     id
                     imgSrc
@@ -44,7 +56,12 @@ class Home extends React.Component<{|
                 }
               }
             `}
-            variables={{query: this.props.q, cursor: this.props.cursor, count: 4}}
+            variables={{
+              query: this.props.q,
+              cursor: this.props.cursor,
+              cursorBackward: this.props.cursorBackward,
+              count: 4,
+            }}
           >
             {({
                 loading, error, data, fetchMore,
@@ -82,29 +99,33 @@ class Home extends React.Component<{|
                     )),
                   }
                   : data.getAucItemList;
-              const {totalCount, items, nextCursor,} = aucItemList;
+              const {totalCount, items, nextCursor, prevCursor} = aucItemList;
               return (
                 <div>
                   <div className={s.toolbar}>
+                    {
+                      (typeof prevCursor === 'number' && prevCursor >= 0) &&
+                      <button onClick={() => {
+                        const qs = {
+                          ...qsParse(global.location.search.slice(searchOffset)),
+                          // Collect items backward!
+                          cb: prevCursor,
+                        };
+                        delete qs.c;
+                        history.push({pathname: global.location.pathname, search: qsStringify(qs),});
+                      }}>Prev</button>
+                    }
                     <div>total: {totalCount}</div>
                     <div className={s.flexSpacer}></div>
                     {
-                      (typeof nextCursor === 'number' && nextCursor > 0) &&
+                      (typeof nextCursor === 'number' && nextCursor >= 0) &&
                       <button onClick={() => {
-                        fetchMore({
-                          variables: {
-                            cursor: nextCursor
-                          },
-                          updateQuery(previousResult, { fetchMoreResult }) {
-                            const searchOffset = '?'.length
-                            const search = qsStringify({
-                              ...qsParse(global.location.search.slice(searchOffset)),
-                              cursor: nextCursor,
-                            });
-                            history.replace({ pathname: global.location.pathname, search, });
-                            return {...previousResult, ...fetchMoreResult};
-                          },
+                        const qs = ({
+                          ...qsParse(global.location.search.slice(searchOffset)),
+                          c: nextCursor,
                         });
+                        delete qs.cb;
+                        history.push({pathname: global.location.pathname, search: qsStringify(qs),});
                       }}>Next</button>
                     }
                   </div>
