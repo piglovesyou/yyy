@@ -106,7 +106,7 @@ class Home extends React.Component<{|
                 <div>
                   <div className={s.toolbar}>
                     {
-                      enablePrev && <button onClick={() => {
+                      <button onClick={enablePrev ? (() => {
                         const qs = {
                           ...qsParse(global.location.search.slice(searchOffset)),
                           // Collect items backward!
@@ -114,19 +114,23 @@ class Home extends React.Component<{|
                         };
                         delete qs.c;
                         history.push({pathname: global.location.pathname, search: qsStringify(qs),});
-                      }}>Prev</button>
+                      }) : null}
+                              disabled={!enablePrev || loading}
+                      >Prev</button>
                     }
                     <div>total: {totalCount}</div>
                     <div className={s.flexSpacer}></div>
                     {
-                      enableNext && <button onClick={() => {
+                      <button onClick={enableNext ? (() => {
                         const qs = ({
                           ...qsParse(global.location.search.slice(searchOffset)),
                           c: nextCursor,
                         });
                         delete qs.cb;
                         history.push({pathname: global.location.pathname, search: qsStringify(qs),});
-                      }}>Next</button>
+                      }) : null}
+                              disabled={!enableNext || loading}
+                      >Next</button>
                     }
                   </div>
                   {items.map((item, i) =>
