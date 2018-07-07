@@ -40,7 +40,7 @@ const currentProjects = {
 
 const resolvers = {
   Query: {
-    async getAucItemList({request}: { request: RequestType }, {query, cursor, from = 0, count = 4}: { query: string, cursor: number, from: number, count: number }) {
+    async getAucItemList({request}: { request: RequestType }, {query, cursor = 0, count = 4}: { query: string, cursor: number, count: number }) {
       // TODO: consider requesting out of totalCount range
 
       const user = request.user;
@@ -122,7 +122,7 @@ const resolvers = {
     // },
 
     async archiveAucItems({request}: { request: RequestType }, {itemIds}: { userId: string, itemIds: [string] })
-      :Promise<{userId: string, results: number[]}> {
+      : Promise<{ userId: string, results: number[] }> {
       const user = request.user;
       const userId = user && user._id;
       if (!userId) throw new Error('Not a logged in user.');
@@ -131,7 +131,7 @@ const resolvers = {
     },
 
     async unarchiveAucItems({request}: { request: RequestType }, {itemIds}: { userId: string, itemIds: [string] })
-      :Promise<{userId: string, results: number[]}> {
+      : Promise<{ userId: string, results: number[] }> {
       const user = request.user;
       const userId = user && user._id;
       if (!userId) throw new Error('Not a logged in user.');
@@ -162,8 +162,8 @@ async function collectAucItems(
   count: number,
   cursor: number,
   totalCount: number,
-  fetchedItems: Array<any> ,
-  userId: ?string ,
+  fetchedItems: Array<any>,
+  userId: ?string,
 ): Promise<{
   collected: Array<any>,
   nextCursor: number,

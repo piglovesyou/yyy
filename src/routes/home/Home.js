@@ -27,8 +27,8 @@ class Home extends React.Component<{|
         <div className={s.container}>
           <Query
             query={gql`
-              query($query: String!, $from: Int, $count: Int) {
-                getAucItemList(query: $query, from: $from, count: $count) {
+              query($query: String!, $cursor: Int, $count: Int) {
+                getAucItemList(query: $query, cursor: $cursor, count: $count) {
                   totalCount
                   items {
                     id
@@ -38,7 +38,7 @@ class Home extends React.Component<{|
                 }
               }
             `}
-            variables={{ query: this.props.q, from: 0, count: 10 }}
+            variables={{ query: this.props.q, cursor: 0, count: 10 }}
           >
             {({
                 loading, error, data, /* fetchMore, */

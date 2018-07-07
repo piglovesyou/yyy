@@ -7,8 +7,15 @@
 
 .button {
   border-style: outset;
-  margin-left: 4px;
+  /*margin-left: 4px;*/
   background-color: #ddd;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.button:disabled {
+  opacity: 0.6;
+  color: #ccc;
+  border-style: inset;
 }
 
 .inputText,
@@ -16,5 +23,5 @@
   border-width: 3px;
   padding-top: 0px;
   padding-bottom: 0px;
-  line-height: 1.4;
+  line-height: var(--header-min-height);
 }
