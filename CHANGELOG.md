@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ### [Unreleased][unreleased]
 
 - Split the `App` component into `App` setting context variables and `Layout` setting general look and feel of the app (BREAKING CHANGE)
-- Upgrade `history` npm module to v4.x, update `Link` component (BREAKING CHANGE)
+- Upgrade `history` npm module to v4.x, update `Index` component (BREAKING CHANGE)
 - Remove `core/createHistory.js` in favor of initializing a new history instance inside `server.js` and `client.js` (BREAKING CHANGE)
 - Remove Jade dependency in favor of React-based templates: `src/views/index.jade => src/components/Html`
   (BREAKING CHANGE) [#711](https://github.com/kriasoft/react-starter-kit/pull/711)

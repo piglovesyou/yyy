@@ -32,7 +32,7 @@ const config = {
         test: /\.scss$/,
         use: [
           {
-            loader: 'isomorphic-style-loader',
+            loader: 'isomorphic-style-loader--react-context',
           },
           {
             loader: 'css-loader',

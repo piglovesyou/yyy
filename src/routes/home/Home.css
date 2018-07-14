@@ -50,7 +50,24 @@
 .userIconImg {
   width :32px;
 }
+.loginLinkText {
+  font-size: 0.7em;
+}
 
+.aucItem {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+.aucItemArchiving:after {
+  content: '';
+  position: absolute;
+  background-color: rgba(0,0,0,0.4);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
 .aucItemImg {
   max-width: 100%;
 }

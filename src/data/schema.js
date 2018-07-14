@@ -292,12 +292,13 @@ async function operateArchivedAucItem(userId, itemIds, operation: 'sadd' | 'srem
   const key = getArchivedAucItemsKey(userId);
   const multi = persist.multi();
   if (typeof multi[operation] !== 'function') throw new Error();
-  const operate: Function = multi[operation].bind(multi);
+  // const operate: Function = multi[operation].bind(multi);
 
   // [0, 1, ...]
-  const results = await itemIds.reduce((operate, itemId) => {
-    return operate(key, itemId);
-  }, operate).execAsync();
+  const results = await itemIds.reduce((multi, itemId) => {
+    // $FlowFixMe
+    return multi[operation](key, itemId);
+  }, multi).execAsync();
 
   // [false, true, ...]
   return results.map(Boolean);

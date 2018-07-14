@@ -9,9 +9,8 @@
 
 import gql from 'graphql-tag';
 import React from 'react';
-import {Query} from 'react-apollo';
+import {ApolloConsumer, Query} from 'react-apollo';
 import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
-// import gql from './aucItemList.graphql';
 import s from './Home.css';
 import ddMenuStyle from 'react-dd-menu/dist/react-dd-menu.css';
 import Link from '../../components/Link';
@@ -20,6 +19,7 @@ import {parse as qsParse, stringify as qsStringify} from 'querystring';
 import SearchBox from '../../components/SearchBox';
 
 import {ContextConsumer} from '../../components/ContextProvider';
+import Ratio from '../ratio/Ratio'
 
 import DropdownMenu from 'react-dd-menu';
 
@@ -82,10 +82,18 @@ class Home extends React.Component<{|
   cursor?: number,
   cursorBackward?: number,
 |}> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      archivingItems: {},
+    };
+  }
 
   render() {
     return (
       <div className={s.root}>
+        <Ratio/>
         <Query query={gql`
               query(
                 $query: String!,
@@ -105,6 +113,8 @@ class Home extends React.Component<{|
                   items {
                     id
                     imgSrc
+                    imgWidth
+                    imgHeight
                     itemURL
                   }
                 }
@@ -118,7 +128,7 @@ class Home extends React.Component<{|
                }}
         >
           {({
-              loading, error, data, fetchMore,
+              loading, error, data,
             }) => {
             if (error) return <div>boom!!!</div>;
             const aucItemList =
@@ -156,63 +166,101 @@ class Home extends React.Component<{|
             const {totalCount, items, nextCursor, prevCursor} = aucItemList;
             const enablePrev = typeof prevCursor === 'number' && prevCursor >= 0;
             const enableNext = typeof nextCursor === 'number' && nextCursor >= 0;
+            const archivingItemLength = Object.keys(this.state.archivingItems).length;
             return (
               <div>
-                <ContextConsumer>
-                  {context => {
-                    return (
-                      <div className={s.toolbar}>
-                        {
-                          <button onClick={enablePrev ? (() => {
-                            const qs = {
-                              ...qsParse(global.location.search.slice(searchOffset)),
-                              // Collect items backward!
-                              cb: prevCursor,
-                            };
-                            delete qs.c;
-                            history.push({pathname: global.location.pathname, search: qsStringify(qs),});
-                          }) : null}
-                                  disabled={!enablePrev || loading}
-                          >Prev</button>
-                        }
-                        <div className={s.flexSpacer}></div>
-                        <Link className={s.brand} to="/" tabIndex={0}>
-                          YYYY
-                        </Link>
-                        {context.pathname === '/' && <SearchBox className={s.searchBox}
-                                                                q={context.query.q}/>}
-                        {context.profile
-                          ? <UserIconMenu className={s.userIconImg} imageURL={context.profile.image}/>
-                          : <a href={'/login/twitter'}>Login</a>}
-                        <div className={s.flexSpacer}></div>
-                        {
-                          <button onClick={enableNext ? (() => {
-                            const qs = ({
-                              ...qsParse(global.location.search.slice(searchOffset)),
-                              c: nextCursor,
-                            });
-                            delete qs.cb;
-                            history.push({pathname: global.location.pathname, search: qsStringify(qs),});
-                          }) : null}
-                                  disabled={!enableNext || loading}
-                          >Next</button>
-                        }
-                      </div>
-                    );
-                  }}
-                </ContextConsumer>
+                <ApolloConsumer>
+                  {apolloClient => (
+                    <ContextConsumer>
+                      {context => {
+                        return (
+                          <div className={s.toolbar}>
+                            {
+                              <button onClick={enablePrev ? (() => {
+                                const qs = {
+                                  ...qsParse(global.location.search.slice(searchOffset)),
+                                  // Collect items backward!
+                                  cb: prevCursor,
+                                };
+                                delete qs.c;
+                                history.push({pathname: global.location.pathname, search: qsStringify(qs),});
+                              }) : null}
+                                      disabled={!enablePrev || loading}
+                              >Prev</button>
+                            }
+                            <div className={s.flexSpacer}></div>
+                            <Link className={s.brand} to="/" tabIndex={0}>
+                              YYYY
+                            </Link>
+                            {context.pathname === '/' && <SearchBox className={s.searchBox}
+                                                                    q={context.query.q}/>}
+                            {context.profile
+                              ? <UserIconMenu className={s.userIconImg} imageURL={context.profile.image}/>
+                              : <a className={s.loginLinkText} href={'/login/twitter'}>Login</a>}
+                            <div className={s.flexSpacer}></div>
+                            {
+                              <button onClick={enableNext ? (() => {
+                                if (archivingItemLength > 0) {
+                                  apolloClient.mutate({
+                                    mutation: gql`
+                                      mutation archiveItems($itemIds: [String!]) {
+                                        archiveAucItems(itemIds: $itemIds) {
+                                          results
+                                        }
+                                      }
+                                    `,
+                                    variables: {
+                                      itemIds: Object.keys(this.state.archivingItems),
+                                    },
+                                  });
+                                  this.setState({
+                                    archivingItems: {},
+                                  });
+                                }
+                                const qs = ({
+                                  ...qsParse(global.location.search.slice(searchOffset)),
+                                  c: nextCursor,
+                                });
+                                delete qs.cb;
+                                history.push({pathname: global.location.pathname, search: qsStringify(qs),});
+                              }) : null}
+                                      disabled={!enableNext || loading}
+                              >{archivingItemLength > 0
+                                ? `Archive ${archivingItemLength} item${archivingItemLength === 1 ? '' : 's'} and ` : ''
+                              }Next</button>
+                            }
+                          </div>
+                        );
+                      }}
+                    </ContextConsumer>
+                  )}
+
+                </ApolloConsumer>
                 {items.map((item, i) =>
                   (item.props ? (
                     item
                   ) : (
-                    <Link to={`/detail/${item.id}`} key={i}>
+                    <div key={i}
+                         className={`${s.aucItem} ${this.state.archivingItems[item.id] ? s.aucItemArchiving : ''}`}
+                         onClick={() => {
+                           const archivingItems = {...this.state.archivingItems};
+                           if (archivingItems[item.id]) {
+                             delete archivingItems[item.id];
+                           } else {
+                             archivingItems[item.id] = true;
+                           }
+                           this.setState({archivingItems});
+                         }}
+                    >
                       <img className={s.aucItemImg} src={item.imgSrc}/>
-                    </Link>
+                      <Link to={`/detail/${item.id}`}>{item.title}</Link>
+                    </div>
                   )))}
               </div>
             );
           }}
         </Query>
+
       </div>
     );
   }
