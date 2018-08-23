@@ -79,6 +79,7 @@ class UserIconMenu extends React.Component<{|
 
 class Home extends React.Component<{|
   q: string,
+  auccat?: string,
   cursor?: number,
   cursorBackward?: number,
 |}> {
@@ -97,12 +98,14 @@ class Home extends React.Component<{|
         <Query query={gql`
               query(
                 $query: String!,
+                $auccat: String,
                 $cursor: Int,
                 $cursorBackward: Int,
                 $count: Int,
               ) {
                 getAucItemList(
                   query: $query,
+                  auccat: $auccat,
                   cursor: $cursor,
                   cursorBackward: $cursorBackward,
                   count: $count,
@@ -112,6 +115,7 @@ class Home extends React.Component<{|
                   prevCursor
                   items {
                     id
+                    title
                     imgSrc
                     imgWidth
                     imgHeight
@@ -122,6 +126,7 @@ class Home extends React.Component<{|
             `}
                variables={{
                  query: this.props.q,
+                 auccat: this.props.auccat,
                  cursor: this.props.cursor,
                  cursorBackward: this.props.cursorBackward,
                  count: 4,
@@ -185,7 +190,7 @@ class Home extends React.Component<{|
                                 delete qs.c;
                                 history.push({pathname: global.location.pathname, search: qsStringify(qs),});
                               }) : null}
-                                      disabled={!enablePrev || loading}
+                                      disabled={!enablePrev}
                               >Prev</button>
                             }
                             <div className={s.flexSpacer}></div>
@@ -194,9 +199,9 @@ class Home extends React.Component<{|
                             </Link>
                             {context.pathname === '/' && <SearchBox className={s.searchBox}
                                                                     q={context.query.q}/>}
-                            {context.profile
-                              ? <UserIconMenu className={s.userIconImg} imageURL={context.profile.image}/>
-                              : <a className={s.loginLinkText} href={'/login/twitter'}>Login</a>}
+                            {/*{context.profile*/}
+                              {/*? <UserIconMenu className={s.userIconImg} imageURL={context.profile.image}/>*/}
+                              {/*: <a className={s.loginLinkText} href={'/login/twitter'}>Login</a>}*/}
                             <div className={s.flexSpacer}></div>
                             {
                               <button onClick={enableNext ? (() => {
@@ -224,7 +229,7 @@ class Home extends React.Component<{|
                                 delete qs.cb;
                                 history.push({pathname: global.location.pathname, search: qsStringify(qs),});
                               }) : null}
-                                      disabled={!enableNext || loading}
+                                      disabled={!enableNext}
                               >{archivingItemLength > 0
                                 ? `Archive ${archivingItemLength} item${archivingItemLength === 1 ? '' : 's'} and ` : ''
                               }Next</button>
@@ -252,8 +257,8 @@ class Home extends React.Component<{|
                            this.setState({archivingItems});
                          }}
                     >
-                      <img className={s.aucItemImg} src={item.imgSrc}/>
-                      <Link to={`/detail/${item.id}`}>{item.title}</Link>
+                      <div><img className={s.aucItemImg} src={item.imgSrc}/></div>
+                      <Link to={`/detail/${item.id}`} className={s.aucItemLink}>{item.title}</Link>
                     </div>
                   )))}
               </div>

@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+import {parse as urlParse} from 'url';
 import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 import history from '../../history';
 import s from './SearchBox.css';
@@ -21,14 +22,31 @@ class SearchBox extends React.Component<{|
 
   handleSubmit = (e) => {
     e.preventDefault();
+    const {q} = this.state;
 
-    const search = this.state.q
-      ? qsStringify({q: this.state.q})
-      : '';
+    let search = '';
+    const url = urlParse(q, true);
+    const isAucURL = url.host === 'auctions.yahoo.co.jp'
+      && url.query
+      && typeof url.query.p === 'string';
+
+    if (isAucURL) {
+      search = qsStringify({
+        q: url.query.p,
+        ...(url.query && typeof url.query.auccat === 'string' ? {auccat: url.query.auccat} : null),
+      });
+    } else if (q) {
+      search = qsStringify({q});
+    }
+
     history.push({
       pathname: global.location.pathname,
       search,
     });
+
+    if (isAucURL) {
+      this.setState({q: url.query.p});
+    }
   };
 
   handleQueryChange = (e) => {

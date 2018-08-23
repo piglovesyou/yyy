@@ -11,6 +11,7 @@ import LRU from 'lru-cache';
 import typeDefs from './schema.graphql';
 import persist from '../persist';
 import type {RequestType} from '../types';
+import {stringify as qsStringify} from 'querystring';
 
 type AucItemList = {
   totalCount: number,
@@ -47,7 +48,7 @@ const resolvers = {
   Query: {
     async getAucItemList(
       {request}: { request: RequestType },
-      {query, cursor, cursorBackward, count = 4}: { query: string, cursor?: number, cursorBackward?: number, count?: number, }) {
+      {query, auccat, cursor, cursorBackward, count = 4}: { query: string, auccat?: string, cursor?: number, cursorBackward?: number, count?: number, }) {
       if (typeof cursor !== 'undefined' && typeof cursorBackward !== 'undefined') throw new Error('Kidding me?');
       if (typeof cursor === 'undefined' && typeof cursorBackward === 'undefined') cursor = 0;
 
@@ -61,9 +62,10 @@ const resolvers = {
       const normalizedQuery = normalizeQuery(query);
 
       const firstIndexInPage = getFirstIndexInPage(c);
-      const {totalCount, items} = await requestAucItemList(normalizedQuery, firstIndexInPage);
+      const rawReqParams = { p: normalizedQuery, ...(auccat ? {auccat} : null), };
+      const {totalCount, items} = await requestAucItemList(rawReqParams, firstIndexInPage);
 
-      const {collected, nextCursor, prevCursor} = await collectAucItems([], normalizedQuery, count, inc, c, c, totalCount, items, userId);
+      const {collected, nextCursor, prevCursor} = await collectAucItems([], rawReqParams, count, inc, c, c, totalCount, items, userId);
 
       return {
         totalCount,
@@ -162,7 +164,7 @@ const resolvers = {
 
 async function collectAucItems(
   collected: Array<any>,
-  query: string,
+  rawReqParams: Object,
   count: number,
   inc: boolean,
   cursorOnStart: number,
@@ -200,16 +202,17 @@ async function collectAucItems(
 
   if (shouldFlip) {
     const firstInPage = getFirstIndexInPage(nextCursor);
-    const {totalCount, items} = await requestAucItemList(query, firstInPage);
-    return collectAucItems(collected, query, count, inc, cursorOnStart, nextCursor, totalCount, items, userId);
+    const {totalCount, items} = await requestAucItemList(rawReqParams, firstInPage);
+    return collectAucItems(collected, rawReqParams, count, inc, cursorOnStart, nextCursor, totalCount, items, userId);
   }
 
-  return collectAucItems(collected, query, count, inc, cursorOnStart, nextCursor, totalCount, fetchedItems, userId);
+  return collectAucItems(collected, rawReqParams, count, inc, cursorOnStart, nextCursor, totalCount, fetchedItems, userId);
 }
 
-async function requestAucItemList(query, from): Promise<AucItemList> {
-  const totalCountCacheKey = `total:${query}`;
-  const pageCacheKey = `page:${query}${from}`;
+async function requestAucItemList(rawReqParams, from): Promise<AucItemList> {
+  const stringifiedParams = qsStringify(rawReqParams);
+  const totalCountCacheKey = `total:${stringifiedParams}`;
+  const pageCacheKey = `page:${stringifiedParams}${from}`;
 
   const cachedTotalCount = cache.get(totalCountCacheKey);
   if (typeof cachedTotalCount === 'number' && cachedTotalCount < from) {
@@ -225,7 +228,7 @@ async function requestAucItemList(query, from): Promise<AucItemList> {
   }
 
   const url = makeURL('https://auctions.yahoo.co.jp/search/search', {
-    p: query,
+    ...rawReqParams,
     b: from + 1, // Item number starting from 1
     n: AUC_LIST_PER_PAGE, // per page
     mode: 1, // grid view

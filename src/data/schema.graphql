@@ -52,7 +52,7 @@ type OperaProjectList {
 
 type Query {
   getAucItemDetail(id: String): AucItemDetail
-  getAucItemList(query: String!, cursor: Int, cursorBackward: Int, count: Int): AucItemList
+  getAucItemList(query: String!, auccat: String, cursor: Int, cursorBackward: Int, count: Int): AucItemList
   getCurrentProjects(userId: String): OperaProjectList
 }
 

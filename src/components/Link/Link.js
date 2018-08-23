@@ -20,6 +20,7 @@ function isModifiedEvent(event) {
 
 class Link extends React.Component<{|
   to: string,
+  className?: string,
   children: mixed,
   onClick?: Function
 |}> {
@@ -47,7 +48,10 @@ class Link extends React.Component<{|
   render() {
     const { to, children, ...props } = this.props;
     return (
-      <a href={to} {...props} onClick={this.handleClick}>
+      <a href={to}
+         onClick={this.handleClick}
+         {...props}
+      >
         {children}
       </a>
     );

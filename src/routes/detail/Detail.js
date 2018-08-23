@@ -70,7 +70,7 @@ class Detail extends React.Component<{|
               ],
             }
             : data.getAucItemDetail;
-          const { title, priceText, images } = aucItemDetail;
+          const { id, title, priceText, images } = aucItemDetail;
           return (
             <div className={s.root}>
               <div className={s.container}>
@@ -84,6 +84,7 @@ class Detail extends React.Component<{|
                 </button>
                 <h2>{title}</h2>
                 <h2>{priceText}</h2>
+                <div><a href={`https://page.auctions.yahoo.co.jp/jp/auction/${id}`}>ヤフオク→</a></div>
                 <div>
                   {images.map((img, i) =>
                     (img.props ? (
