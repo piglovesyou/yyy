@@ -19,7 +19,7 @@ import {parse as qsParse, stringify as qsStringify} from 'querystring';
 import SearchBox from '../../components/SearchBox';
 
 import {ContextConsumer} from '../../components/ContextProvider';
-import Ratio from '../ratio/Ratio'
+// import Ratio from '../ratio/Ratio'
 
 import DropdownMenu from 'react-dd-menu';
 
@@ -93,7 +93,7 @@ class Home extends React.Component<{|
   render() {
     return (
       <div className={s.root}>
-        <Ratio/>
+        {/*<Ratio/>*/}
         <Query query={gql`
               query(
                 $query: String!,

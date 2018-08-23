@@ -31,10 +31,10 @@ const routes = {
       path: '/about',
       load: () => import(/* webpackChunkName: 'about' */ './about'),
     },
-    {
-      path: '/ratio',
-      load: () => import(/* webpackChunkName: 'ratio' */ './ratio'),
-    },
+    // {
+    //   path: '/ratio',
+    //   load: () => import(/* webpackChunkName: 'ratio' */ './ratio'),
+    // },
 
     // Wildcard routes, e.g. { path: '(.*)', ... } (must go last)
     {
