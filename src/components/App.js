@@ -6,6 +6,11 @@ import { InsertCssProvider } from 'isomorphic-style-loader--react-context/lib/wi
 import { ContextProvider } from './ContextProvider';
 import type { ContextTypes } from '../types';
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faArchive } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faArchive)
+
 class App extends React.PureComponent<{|
   context: ContextTypes,
   apolloClient: mixed,

@@ -11,7 +11,7 @@
 @import '../../components/loadingPlaceholder.css';
 
 .root {
-  flex: 1;
+  /*flex: 1;*/
   display: flex;
   flex-direction: column;
   max-width: var(--max-content-width);
@@ -63,9 +63,29 @@
   display: flex;
   flex-direction: row;
   margin-bottom: 24px;
-  min-height: 384px;
 }
-.aucItemLeftActions { width: 80px; }
+.aucItemLeftActions {
+  user-select: none;
+
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: .2;
+
+  transition: background-color .1s linear, opacity .1s linear;
+  cursor: pointer;
+}
+.aucItemLeftActions:hover {
+  background-color: lightgray;
+  opacity: 1;
+}
+.aucItemLeftActions:active {
+  background-color: gray;
+}
+.aucItemLeftActions :global(svg-inline--fa) {
+}
 .aucItemRightActions { width: 80px; }
 .aucItemImgWrap  {
   position: relative;

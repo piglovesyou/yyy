@@ -10,7 +10,7 @@
 import gql from 'graphql-tag';
 import React from 'react';
 import ReactList from 'react-list';
-import {ApolloConsumer, Query} from 'react-apollo';
+import {graphql, ApolloConsumer, Mutation, Query} from 'react-apollo';
 import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 import s from './Home.css';
 import ddMenuStyle from 'react-dd-menu/dist/react-dd-menu.css';
@@ -18,6 +18,9 @@ import Link from '../../components/Link';
 import history from '../../history';
 import {parse as qsParse, stringify as qsStringify} from 'querystring';
 import SearchBox from '../../components/SearchBox';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import remove from 'lodash.remove';
+import findLastIndex from 'lodash.findlastindex';
 
 import {ContextConsumer} from '../../components/ContextProvider';
 import DropdownMenu from 'react-dd-menu';
@@ -31,6 +34,36 @@ const ARCHIVE_ITEMS = gql`
   mutation archiveItems($itemIds: [String!]) {
     archiveAucItems(itemIds: $itemIds) {
       results
+    }
+  }
+`;
+
+const GQL_GET_AUC_ITEM_LIST = gql`
+  query(
+  $query: String!,
+  $auccat: String,
+  $cursor: Int,
+  $cursorBackward: Int,
+  $count: Int,
+  ) {
+    getAucItemList(
+      query: $query,
+      auccat: $auccat,
+      cursor: $cursor,
+      cursorBackward: $cursorBackward,
+      count: $count,
+    ) {
+      totalCount
+      nextCursor
+      prevCursor
+      items {
+        id
+        title
+        imgSrc
+        imgWidth
+        imgHeight
+        itemURL
+      }
     }
   }
 `;
@@ -99,21 +132,38 @@ class Home extends React.Component<{|
     this.items = [];
   }
 
-  renderItem = (i, key, item = {}) => {
+  renderItem = (i, key, item, queryCondition) => {
     return (
       <div key={i}
            className={`${s.aucItem} ${this.state.archivingItems[item.id] ? s.aucItemArchiving : ''}`}
-           // onClick={() => {
-           //   const archivingItems = {...this.state.archivingItems};
-           //   if (archivingItems[item.id]) {
-           //     delete archivingItems[item.id];
-           //   } else {
-           //     archivingItems[item.id] = true;
-           //   }
-           //   this.setState({archivingItems});
-           // }}
+           id={`${i} : ${item.id}`}
       >
-        <div className={s.aucItemLeftActions}></div>
+        <Mutation mutation={ARCHIVE_ITEMS}
+                  update={(cache, {data: {archiveAucItems: {results}}}) => {
+                    const { getAucItemList } = cache.readQuery(queryCondition);
+
+                    // Update local apollo cache 
+                    remove(getAucItemList.items, { id: item.id, });
+                    // Also update array for ReactList
+                    remove(this.items, { id: item.id, });
+
+                    cache.writeQuery({ ...queryCondition, data: { getAucItemList }, });
+                  }}
+        >{(archiveItems) => {
+          return (
+            <div className={s.aucItemLeftActions}
+                 onClick={() => {
+                   archiveItems({
+                     variables: {
+                       itemIds: [item.id],
+                     },
+                   });
+                 }}>
+              <FontAwesomeIcon icon="archive"/>
+            </div>
+          );
+        }}</Mutation>
+
         <div className={s.aucItemImgWrap}><img className={s.aucItemImg} src={item.imgSrc}/></div>
         <div className={s.aucItemDescWrap}>
           <Link to={`/detail/${item.id}`} className={s.aucItemLink}>{item.title}</Link>
@@ -124,46 +174,25 @@ class Home extends React.Component<{|
   };
 
   render() {
-    const GQL_GET_AUC_ITEM_LIST = gql`
-      query(
-      $query: String!,
-      $auccat: String,
-      $cursor: Int,
-      $cursorBackward: Int,
-      $count: Int,
-      ) {
-        getAucItemList(
-          query: $query,
-          auccat: $auccat,
-          cursor: $cursor,
-          cursorBackward: $cursorBackward,
-          count: $count,
-        ) {
-          totalCount
-          nextCursor
-          prevCursor
-          items {
-            id
-            title
-            imgSrc
-            imgWidth
-            imgHeight
-            itemURL
-          }
-        }
-      }
-    `;
-    const queryVariables = {
-      query: this.props.q,
-      auccat: this.props.auccat,
-      cursor: this.props.cursor,
-      cursorBackward: this.props.cursorBackward,
-      count: 10,
+    const queryCondition = {
+      query: GQL_GET_AUC_ITEM_LIST,
+      variables: {
+        query: this.props.q,
+        auccat: this.props.auccat,
+        cursor: this.props.cursor,
+        cursorBackward: this.props.cursorBackward,
+        count: 10,
+      },
     };
+
     return (
       <div className={s.root}>
-        <Query query={GQL_GET_AUC_ITEM_LIST}
-               variables={queryVariables}
+        <Query {...queryCondition}
+            onCompleted={(data) => {
+              console.log(`
+done.....
+              `)
+            }}
         >
           {({
               loading, error, data, fetchMore
@@ -173,15 +202,15 @@ class Home extends React.Component<{|
 
             const aucItemList = data.getAucItemList;
             const {totalCount, items, nextCursor, prevCursor} = aucItemList;
+
+            // TODO: Fix duplicate appending
             this.items = [...this.items, ...items];
-            const isPrevAvailable = typeof prevCursor === 'number' && prevCursor >= 0;
+
+            // const isPrevAvailable = typeof prevCursor === 'number' && prevCursor >= 0;
             const isNextAvailable = typeof nextCursor === 'number' && nextCursor >= 0;
-            // const archivingItemLength = Object.keys(this.state.archivingItems).length;
 
             const minSize = Math.min(10, totalCount);
             const reactListLength = this.items.length + (isNextAvailable ? 1 : 0);
-
-            // if (global.document) debugger;
 
             return (
               <>
@@ -191,19 +220,6 @@ class Home extends React.Component<{|
                       {context => {
                         return (
                           <div className={s.toolbar}>
-                            {
-                              <button onClick={isPrevAvailable ? (() => {
-                                const qs = {
-                                  ...qsParse(global.location.search.slice(searchOffset)),
-                                  // Collect items backward!
-                                  cb: prevCursor,
-                                };
-                                delete qs.c;
-                                history.push({pathname: global.location.pathname, search: qsStringify(qs),});
-                              }) : null}
-                                      disabled={!isPrevAvailable}
-                              >Prev</button>
-                            }
                             <div className={s.flexSpacer}></div>
                             <Link className={s.brand} to="/" tabIndex={0}>
                               YYYY
@@ -215,55 +231,6 @@ class Home extends React.Component<{|
                               : <a className={s.loginLinkText} href={'/login/twitter'}>Login</a>}
 
                             <div className={s.flexSpacer}>{''}</div>
-
-                            {/*<Mutation mutation={ARCHIVE_ITEMS}*/}
-                            {/*update={(cache, { data: {archiveAucItems: {results}}  }) => {*/}
-                            {/*cache.writeQuery({*/}
-                            {/*query: GQL_GET_AUC_ITEM_LIST,*/}
-                            {/*variables: queryVariables,*/}
-                            {/*data: {},*/}
-                            {/*});*/}
-                            {/*// const archivedItems = results.map((archived, i) => archived ? items[i] : null).filter(e => e);*/}
-                            {/*// cache.readQuery({*/}
-                            {/*//   query: GQL_GET_AUC_ITEM_LIST,*/}
-                            {/*//   variables:*/}
-                            {/*// })*/}
-                            {/*// const { todos } = cache.readQuery({ query: GET_TODOS });*/}
-                            {/*// cache.writeQuery({*/}
-                            {/*//   query: GET_TODOS,*/}
-                            {/*//   data: { todos: todos.concat([addTodo]) }*/}
-                            {/*// });*/}
-                            {/*}}*/}
-                            {/*>{(archiveItems) => {*/}
-                            {/*return (*/}
-                            {/*<button onClick={() => {*/}
-                            {/*archiveItems({*/}
-                            {/*variables: {*/}
-                            {/*itemIds: Object.keys(this.state.archivingItems),*/}
-                            {/*}*/}
-                            {/*});*/}
-                            {/*this.setState({*/}
-                            {/*archivingItems: {},*/}
-                            {/*});*/}
-                            {/*}}>{*/}
-                            {/*archivingItemLength === 0*/}
-                            {/*? `Archive ${items.length} items`*/}
-                            {/*: `Archive ${archivingItemLength} item${archivingItemLength === 1 ? '' : 's'}`*/}
-                            {/*}</button>*/}
-                            {/*);*/}
-                            {/*}}</Mutation>*/}
-                            {' '}
-                            <button onClick={isNextAvailable ? (() => {
-                              const qs = ({
-                                ...qsParse(global.location.search.slice(searchOffset)),
-                                c: nextCursor,
-                              });
-                              delete qs.cb;
-                              history.push({pathname: global.location.pathname, search: qsStringify(qs),});
-                            }) : null}
-                                    disabled={!isNextAvailable}
-                            >Next
-                            </button>
                           </div>
                         );
                       }}
@@ -278,6 +245,7 @@ class Home extends React.Component<{|
                     minSize={minSize}
                     itemRenderer={(index, key) => {
                       let d = items[index];
+                      // console.log(index, d);
                       if (!d) {
                         if (typeof nextCursor === 'number') {
                           fetchMore({
@@ -295,7 +263,7 @@ class Home extends React.Component<{|
                         }
                         d = {};
                       }
-                      return this.renderItem(index, key, d);
+                      return this.renderItem(index, key, d, queryCondition);
                     }}
                     length={reactListLength}
                   />
@@ -304,43 +272,9 @@ class Home extends React.Component<{|
             );
           }}
         </Query>
-
       </div>
     );
   }
 }
 
 export default withStyles(s, ddMenuStyle)(Home);
-
-// let aucItemList =
-//   loading
-//     ? !this.props.q
-//     ? {
-//       totalCount: 0,
-//       items: [],
-//     }
-//     : {
-//       totalCount: (
-//         <span
-//           style={{width: '4em'}}
-//           className={s.loadingPlaceholder}
-//         >
-//                         &nbsp;
-//                       </span>
-//       ),
-//       items: Array.from(Array(3)).map((_, i) => (
-//         <span
-//           style={{
-//             width: 400,
-//             maxWidth: '100%',
-//             height: 300,
-//             margin: '0 0.5em 0.5em 0',
-//           }}
-//           key={i}
-//           className={s.loadingPlaceholder}
-//         >
-//                         &nbsp;
-//                       </span>
-//       )),
-//     }
-//     : data.getAucItemList;
