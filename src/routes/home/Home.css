@@ -11,10 +11,14 @@
 @import '../../components/loadingPlaceholder.css';
 
 .root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   max-width: var(--max-content-width);
   margin: 0 auto;
   padding-left: 20px;
   padding-right: 20px;
+
 }
 
 .toolbar {
@@ -55,12 +59,21 @@
 }
 
 .aucItem {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  width: 50%;
+  /*cursor: pointer;*/
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 24px;
+  min-height: 384px;
 }
-.aucItemArchiving:after {
+.aucItemLeftActions { width: 80px; }
+.aucItemRightActions { width: 80px; }
+.aucItemImgWrap  {
+  position: relative;
+}
+.aucItemDescWrap {
+  flex: 1;
+}
+.aucItemArchiving .aucItemImgWrap:after {
   content: '';
   position: absolute;
   background-color: rgba(0,0,0,0.4);
@@ -72,7 +85,10 @@
 .aucItemImg {
   max-width: 100%;
 }
-
 .aucItemLink {
   font-size: .85em;
+}
+
+.aucListContainer {
+  flex: 1;
 }
