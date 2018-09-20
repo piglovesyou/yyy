@@ -31,10 +31,10 @@ body {
   margin: 0;
 }
 
-/*:global(#app) {*/
-  /*height: 100vh;*/
-  /*display: flex;*/
-/*}*/
+:global(#app) {
+  height: 100vh;
+  display: flex;
+}
 
 a {
   color: #0074c2;
