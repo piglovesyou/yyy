@@ -10,6 +10,7 @@
 import gql from 'graphql-tag';
 import React from 'react';
 import ReactList from 'react-list';
+import LazyLoading from 'react-list-lazy-load';
 import {graphql, ApolloConsumer, Mutation, Query} from 'react-apollo';
 import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 import s from './Home.css';
@@ -29,6 +30,7 @@ import DropdownMenu from 'react-dd-menu';
 // import SearchBox from '../../components/SearchBox';
 
 const searchOffset = '?'.length;
+const PER_PAGE = 10;
 
 const ARCHIVE_ITEMS = gql`
   mutation archiveItems($itemIds: [String!]) {
@@ -129,7 +131,6 @@ class Home extends React.Component<{|
     this.state = {
       archivingItems: {},
     };
-    this.items = [];
   }
 
   renderItem = (i, key, item, queryCondition) => {
@@ -142,7 +143,7 @@ class Home extends React.Component<{|
                   update={(cache, {data: {archiveAucItems: {results}}}) => {
                     const { getAucItemList } = cache.readQuery(queryCondition);
 
-                    // Update local apollo cache 
+                    // Update local apollo cache
                     remove(getAucItemList.items, { id: item.id, });
                     // Also update array for ReactList
                     remove(this.items, { id: item.id, });
@@ -181,7 +182,7 @@ class Home extends React.Component<{|
         auccat: this.props.auccat,
         cursor: this.props.cursor,
         cursorBackward: this.props.cursorBackward,
-        count: 10,
+        count: PER_PAGE,
       },
     };
 
@@ -203,70 +204,61 @@ done.....
             const aucItemList = data.getAucItemList;
             const {totalCount, items, nextCursor, prevCursor} = aucItemList;
 
-            // TODO: Fix duplicate appending
-            this.items = [...this.items, ...items];
-
             // const isPrevAvailable = typeof prevCursor === 'number' && prevCursor >= 0;
             const isNextAvailable = typeof nextCursor === 'number' && nextCursor >= 0;
 
-            const minSize = Math.min(10, totalCount);
-            const reactListLength = this.items.length + (isNextAvailable ? 1 : 0);
+            // const minSize = Math.min(10, totalCount);
+            const reactListLength = items.length + (isNextAvailable ? 1 : 0);
 
             return (
               <>
-                <ApolloConsumer>
-                  {apolloClient => (
-                    <ContextConsumer>
-                      {context => {
-                        return (
-                          <div className={s.toolbar}>
-                            <div className={s.flexSpacer}></div>
-                            <Link className={s.brand} to="/" tabIndex={0}>
-                              YYYY
-                            </Link>
-                            {context.pathname === '/' && <SearchBox className={s.searchBox}
-                                                                    q={context.query.q}/>}
-                            {context.profile
-                              ? <UserIconMenu className={s.userIconImg} imageURL={context.profile.image}/>
-                              : <a className={s.loginLinkText} href={'/login/twitter'}>Login</a>}
+                <ContextConsumer>
+                  {context => {
+                    return (
+                      <div className={s.toolbar}>
+                        <div className={s.flexSpacer}></div>
+                        <Link className={s.brand} to="/" tabIndex={0}>
+                          YYYY
+                        </Link>
+                        {context.pathname === '/' && <SearchBox className={s.searchBox}
+                                                                q={context.query.q}/>}
+                        {context.profile
+                          ? <UserIconMenu className={s.userIconImg} imageURL={context.profile.image}/>
+                          : <a className={s.loginLinkText} href={'/login/twitter'}>Login</a>}
 
-                            <div className={s.flexSpacer}>{''}</div>
-                          </div>
-                        );
-                      }}
-                    </ContextConsumer>
-                  )}
-                </ApolloConsumer>
+                        <div className={s.flexSpacer}>{''}</div>
+                      </div>
+                    );
+                  }}
+                </ContextConsumer>
 
                 <div className={s.aucListContainer}>
 
-                  <ReactList
-                    type='variable'
-                    minSize={minSize}
-                    itemRenderer={(index, key) => {
-                      let d = items[index];
-                      // console.log(index, d);
-                      if (!d) {
-                        if (typeof nextCursor === 'number') {
-                          fetchMore({
-                            variables: {cursor: nextCursor,},
-                            updateQuery: (prev, {fetchMoreResult}) => {
-                              const {items} = prev.getAucItemList;
-                              return {
-                                getAucItemList: {
-                                  ...fetchMoreResult.getAucItemList,
-                                  items: [...items, ...fetchMoreResult.getAucItemList.items],
-                                },
-                              };
-                            }
-                          });
-                        }
-                        d = {};
-                      }
-                      return this.renderItem(index, key, d, queryCondition);
-                    }}
-                    length={reactListLength}
-                  />
+                  <LazyLoading items={items}
+                               length={reactListLength}
+                               pageSize={PER_PAGE}
+                               onRequestPage={(page, cb) => {
+                    fetchMore({
+                      variables: {cursor: nextCursor,},
+                      updateQuery: (prev, {fetchMoreResult}) => {
+                        const {items} = prev.getAucItemList;
+                        return {
+                          getAucItemList: {
+                            ...fetchMoreResult.getAucItemList,
+                            items: [...items, ...fetchMoreResult.getAucItemList.items],
+                          },
+                        };
+                      },
+                    });
+                  }}>
+                    <ReactList
+                      type='variable'
+                      itemRenderer={(index, key) => {
+                        return this.renderItem(index, key, items[index] || {}, queryCondition);
+                      }}
+                      length={reactListLength}
+                    />
+                  </LazyLoading>
                 </div>
               </>
             );
