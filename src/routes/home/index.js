@@ -13,7 +13,7 @@ import Layout from '../../components/Layout';
 
 function action(context) {
   return {
-    title: 'React Starter Kit',
+    title: 'Yet another Yan Yan Yahuoku',
     chunks: ['home'],
     component: (
       <Layout>
