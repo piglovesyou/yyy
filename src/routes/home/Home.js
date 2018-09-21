@@ -11,17 +11,14 @@ import gql from 'graphql-tag';
 import React from 'react';
 import ReactList from 'react-list';
 import LazyLoading from 'react-list-lazy-load';
-import {graphql, ApolloConsumer, Mutation, Query} from 'react-apollo';
+import {Mutation, Query} from 'react-apollo';
 import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 import s from './Home.css';
 import ddMenuStyle from 'react-dd-menu/dist/react-dd-menu.css';
 import Link from '../../components/Link';
-import history from '../../history';
-import {parse as qsParse, stringify as qsStringify} from 'querystring';
 import SearchBox from '../../components/SearchBox';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import remove from 'lodash.remove';
-import findLastIndex from 'lodash.findlastindex';
 
 import {ContextConsumer} from '../../components/ContextProvider';
 import DropdownMenu from 'react-dd-menu';
@@ -141,14 +138,14 @@ class Home extends React.Component<{|
       >
         <Mutation mutation={ARCHIVE_ITEMS}
                   update={(cache, {data: {archiveAucItems: {results}}}) => {
-                    const { getAucItemList } = cache.readQuery(queryCondition);
+                    const {getAucItemList} = cache.readQuery(queryCondition);
 
                     // Update local apollo cache
-                    remove(getAucItemList.items, { id: item.id, });
+                    remove(getAucItemList.items, {id: item.id,});
                     // Also update array for ReactList
-                    remove(this.items, { id: item.id, });
+                    remove(this.items, {id: item.id,});
 
-                    cache.writeQuery({ ...queryCondition, data: { getAucItemList }, });
+                    cache.writeQuery({...queryCondition, data: {getAucItemList},});
                   }}
         >{(archiveItems) => {
           return (
@@ -165,7 +162,11 @@ class Home extends React.Component<{|
           );
         }}</Mutation>
 
-        <div className={s.aucItemImgWrap}><img className={s.aucItemImg} src={item.imgSrc}/></div>
+        <div className={s.aucItemImgWrap}>
+          <a target="_blank" href={item.itemURL + '#abth_lft'}>
+            <img className={s.aucItemImg} src={item.imgSrc}/>
+          </a>
+        </div>
         <div className={s.aucItemDescWrap}>
           <Link to={`/detail/${item.id}`} className={s.aucItemLink}>{item.title}</Link>
         </div>
@@ -188,13 +189,7 @@ class Home extends React.Component<{|
 
     return (
       <div className={s.root}>
-        <Query {...queryCondition}
-            onCompleted={(data) => {
-              console.log(`
-done.....
-              `)
-            }}
-        >
+        <Query {...queryCondition}>
           {({
               loading, error, data, fetchMore
             }) => {
@@ -234,31 +229,35 @@ done.....
 
                 <div className={s.aucListContainer}>
 
-                  <LazyLoading items={items}
-                               length={reactListLength}
-                               pageSize={PER_PAGE}
-                               onRequestPage={(page, cb) => {
-                    fetchMore({
-                      variables: {cursor: nextCursor,},
-                      updateQuery: (prev, {fetchMoreResult}) => {
-                        const {items} = prev.getAucItemList;
-                        return {
-                          getAucItemList: {
-                            ...fetchMoreResult.getAucItemList,
-                            items: [...items, ...fetchMoreResult.getAucItemList.items],
-                          },
-                        };
-                      },
-                    });
-                  }}>
-                    <ReactList
-                      type='variable'
-                      itemRenderer={(index, key) => {
-                        return this.renderItem(index, key, items[index] || {}, queryCondition);
-                      }}
-                      length={reactListLength}
-                    />
-                  </LazyLoading>
+                  {items.length ? (
+                    <LazyLoading items={items}
+                                 length={reactListLength}
+                                 pageSize={PER_PAGE}
+                                 onRequestPage={(page, cb) => {
+                                   fetchMore({
+                                     variables: {cursor: nextCursor,},
+                                     updateQuery: (prev, {fetchMoreResult}) => {
+                                       const {items} = prev.getAucItemList;
+                                       return {
+                                         getAucItemList: {
+                                           ...fetchMoreResult.getAucItemList,
+                                           items: [...items, ...fetchMoreResult.getAucItemList.items],
+                                         },
+                                       };
+                                     },
+                                   });
+                                   cb();
+                                 }}>
+                      <ReactList
+                        type='variable'
+                        itemRenderer={(index, key) => {
+                          return this.renderItem(index, key, items[index] || {}, queryCondition);
+                        }}
+                        length={reactListLength}
+                      />
+                    </LazyLoading>
+                  ) : <div>Empty</div>}
+
                 </div>
               </>
             );

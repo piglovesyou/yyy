@@ -18,7 +18,7 @@ type AucItemList = {
   items: mixed[],
 }
 
-const AUC_LIST_PER_PAGE = 20;
+const AUC_LIST_PER_PAGE = 100;
 
 // const typeDefs = [FS.readFileSync(Path.join(__dirname, 'schema.graphql'))];
 const schema = [typeDefs];
