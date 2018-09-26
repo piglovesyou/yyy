@@ -130,37 +130,39 @@ class Home extends React.Component<{|
     };
   }
 
-  renderItem = (i, key, item, queryCondition) => {
+  renderItem = (i, key, item, queryCondition, isLoggedIn) => {
     return (
       <div key={i}
            className={`${s.aucItem} ${this.state.archivingItems[item.id] ? s.aucItemArchiving : ''}`}
            id={`${i} : ${item.id}`}
       >
-        <Mutation mutation={ARCHIVE_ITEMS}
-                  update={(cache, {data: {archiveAucItems: {results}}}) => {
-                    const {getAucItemList} = cache.readQuery(queryCondition);
+        {isLoggedIn ? (
+          <Mutation mutation={ARCHIVE_ITEMS}
+                    update={(cache, {data: {archiveAucItems: {results}}}) => {
+                      const {getAucItemList} = cache.readQuery(queryCondition);
 
-                    // Update local apollo cache
-                    remove(getAucItemList.items, {id: item.id,});
-                    // Also update array for ReactList
-                    remove(this.items, {id: item.id,});
+                      // Update local apollo cache
+                      remove(getAucItemList.items, {id: item.id,});
+                      // Also update array for ReactList
+                      remove(this.items, {id: item.id,});
 
-                    cache.writeQuery({...queryCondition, data: {getAucItemList},});
-                  }}
-        >{(archiveItems) => {
-          return (
-            <div className={s.aucItemLeftActions}
-                 onClick={() => {
-                   archiveItems({
-                     variables: {
-                       itemIds: [item.id],
-                     },
-                   });
-                 }}>
-              <FontAwesomeIcon icon="archive"/>
-            </div>
-          );
-        }}</Mutation>
+                      cache.writeQuery({...queryCondition, data: {getAucItemList},});
+                    }}
+          >{(archiveItems) => {
+            return (
+              <div className={s.aucItemLeftActions}
+                   onClick={() => {
+                     archiveItems({
+                       variables: {
+                         itemIds: [item.id],
+                       },
+                     });
+                   }}>
+                <FontAwesomeIcon icon="archive"/>
+              </div>
+            );
+          }}</Mutation>
+        ) : null}
 
         <div className={s.aucItemImgWrap}>
           <a target="_blank" href={item.itemURL + '#abth_lft'}>
@@ -188,28 +190,29 @@ class Home extends React.Component<{|
     };
 
     return (
-      <div className={s.root}>
-        <Query {...queryCondition}>
-          {({
-              loading, error, data, fetchMore
-            }) => {
-            if (error) return <div>boom!!!</div>;
-            if (loading) return <div>loading</div>;
 
-            const aucItemList = data.getAucItemList;
-            const {totalCount, items, nextCursor, prevCursor} = aucItemList;
+      <ContextConsumer>
+        {context => {
+          return (
+            <div className={s.root}>
+              <Query {...queryCondition}>
+                {({
+                    loading, error, data, fetchMore
+                  }) => {
+                  if (error) return <div>boom!!!</div>;
+                  if (loading) return <div>loading</div>;
 
-            // const isPrevAvailable = typeof prevCursor === 'number' && prevCursor >= 0;
-            const isNextAvailable = typeof nextCursor === 'number' && nextCursor >= 0;
+                  const aucItemList = data.getAucItemList;
+                  const {totalCount, items, nextCursor, prevCursor} = aucItemList;
 
-            // const minSize = Math.min(10, totalCount);
-            const reactListLength = items.length + (isNextAvailable ? 1 : 0);
+                  // const isPrevAvailable = typeof prevCursor === 'number' && prevCursor >= 0;
+                  const isNextAvailable = typeof nextCursor === 'number' && nextCursor >= 0;
 
-            return (
-              <>
-                <ContextConsumer>
-                  {context => {
-                    return (
+                  // const minSize = Math.min(10, totalCount);
+                  const reactListLength = items.length + (isNextAvailable ? 1 : 0);
+
+                  return (
+                    <>
                       <div className={s.toolbar}>
                         <div className={s.flexSpacer}></div>
                         <Link className={s.brand} to="/" tabIndex={0}>
@@ -223,47 +226,47 @@ class Home extends React.Component<{|
 
                         <div className={s.flexSpacer}>{''}</div>
                       </div>
-                    );
-                  }}
-                </ContextConsumer>
 
-                <div className={s.aucListContainer}>
+                      <div className={s.aucListContainer}>
 
-                  {items.length ? (
-                    <LazyLoading items={items}
-                                 length={reactListLength}
-                                 pageSize={PER_PAGE}
-                                 onRequestPage={(page, cb) => {
-                                   fetchMore({
-                                     variables: {cursor: nextCursor,},
-                                     updateQuery: (prev, {fetchMoreResult}) => {
-                                       const {items} = prev.getAucItemList;
-                                       return {
-                                         getAucItemList: {
-                                           ...fetchMoreResult.getAucItemList,
-                                           items: [...items, ...fetchMoreResult.getAucItemList.items],
-                                         },
-                                       };
-                                     },
-                                   });
-                                   cb();
-                                 }}>
-                      <ReactList
-                        type='variable'
-                        itemRenderer={(index, key) => {
-                          return this.renderItem(index, key, items[index] || {}, queryCondition);
-                        }}
-                        length={reactListLength}
-                      />
-                    </LazyLoading>
-                  ) : <div>Empty</div>}
+                        {items.length ? (
+                          <LazyLoading items={items}
+                                       length={reactListLength}
+                                       pageSize={PER_PAGE}
+                                       onRequestPage={(page, cb) => {
+                                         fetchMore({
+                                           variables: {cursor: nextCursor,},
+                                           updateQuery: (prev, {fetchMoreResult}) => {
+                                             const {items} = prev.getAucItemList;
+                                             return {
+                                               getAucItemList: {
+                                                 ...fetchMoreResult.getAucItemList,
+                                                 items: [...items, ...fetchMoreResult.getAucItemList.items],
+                                               },
+                                             };
+                                           },
+                                         });
+                                         cb();
+                                       }}>
+                            <ReactList
+                              type='variable'
+                              itemRenderer={(index, key) => {
+                                return this.renderItem(index, key, items[index] || {}, queryCondition, !!context.profile);
+                              }}
+                              length={reactListLength}
+                            />
+                          </LazyLoading>
+                        ) : <div>Empty</div>}
 
-                </div>
-              </>
-            );
-          }}
-        </Query>
-      </div>
+                      </div>
+                    </>
+                  );
+                }}
+              </Query>
+            </div>
+          );
+        }}
+      </ContextConsumer>
     );
   }
 }
