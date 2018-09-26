@@ -57,7 +57,7 @@ const resolvers = {
 
       if (typeof c === 'undefined') throw new Error('Never'); // For flow
 
-      const user = request.user;
+      const { user } = request;
       const userId = user && user._id;
       const normalizedQuery = normalizeQuery(query);
 
@@ -257,7 +257,7 @@ async function requestAucItemList(rawReqParams, from): Promise<AucItemList> {
     return rv;
   }
 
-  const totalCount = Number(totalEl.textContent);
+  const totalCount = Number(totalEl.textContent.replace(/[^\d]/, ''));
 
   const items = Array.from(document.querySelectorAll('#list01 .inner .cf'))
     .map((e) => {
