@@ -94,16 +94,13 @@ const config = {
               {
                 targets: {
                   browsers: pkg.browserslist,
-                  forceAllTransforms: !isDebug, // for UglifyJS
                 },
+                forceAllTransforms: !isDebug, // for UglifyJS
                 modules: false,
                 useBuiltIns: false,
                 debug: false,
               },
             ],
-            // Experimental ECMAScript proposals
-            // https://babeljs.io/docs/plugins/#presets-stage-x-experimental-presets-
-            '@babel/preset-stage-2',
             // Flow
             // https://github.com/babel/babel/tree/master/packages/babel-preset-flow
             '@babel/preset-flow',
@@ -112,6 +109,10 @@ const config = {
             ['@babel/preset-react', { development: isDebug }],
           ],
           plugins: [
+            // Experimental ECMAScript proposals
+            '@babel/proposal-class-properties',
+            '@babel/syntax-dynamic-import',
+
             // 'flow-react-proptypes',
 
             // Treat React JSX elements as value types and hoist them to the highest scope

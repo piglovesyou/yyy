@@ -19,9 +19,12 @@ module.exports = {
         },
       },
     ],
-    '@babel/preset-stage-2',
     '@babel/preset-flow',
     '@babel/preset-react',
+  ],
+  plugins: [
+    '@babel/proposal-class-properties',
+    '@babel/syntax-dynamic-import',
   ],
   ignore: ['node_modules', 'build'],
 };
