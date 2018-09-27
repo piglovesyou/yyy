@@ -7,7 +7,7 @@ import bodyParser from 'body-parser';
 import expressGraphQL from 'express-graphql';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
-import {getDataFromTree} from 'react-apollo';
+import { getDataFromTree } from 'react-apollo';
 import PrettyError from 'pretty-error';
 import connectRedis from 'connect-redis';
 import session from 'express-session';
@@ -15,7 +15,7 @@ import session from 'express-session';
 import createApolloClient from './core/createApolloClient';
 import App from './components/App';
 import Html from './components/Html';
-import {ErrorPageWithoutStyle} from './routes/error/ErrorPage';
+import { ErrorPageWithoutStyle } from './routes/error/ErrorPage';
 import errorPageStyle from './routes/error/ErrorPage.css';
 import router from './router';
 import schema from './data/schema';
@@ -24,7 +24,7 @@ import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unr
 import config from './config';
 import passport from './passport';
 import persist from './persist';
-import type {ContextTypes, UserType} from './types';
+import type { ContextTypes, UserType } from './types';
 
 process.on('unhandledRejection', (reason, p) => {
   console.error('Unhandled Rejection at:', p, 'reason:', reason);
@@ -51,13 +51,13 @@ app.set('trust proxy', config.trustProxy);
 // -----------------------------------------------------------------------------
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 const RedisStore = connectRedis(session);
 
 app.use(session({
-  store: new RedisStore({client: persist}),
+  store: new RedisStore({ client: persist }),
   secret: 'keyboard cat',
   resave: false,
 }));
@@ -84,7 +84,7 @@ app.get('/logout', (req, res) => {
 const graphqlMiddleware = expressGraphQL(req => ({
   schema,
   graphiql: true, // __DEV__,
-  rootValue: {request: req},
+  rootValue: { request: req },
   pretty: __DEV__,
 }));
 app.use('/graphql', graphqlMiddleware);
@@ -103,7 +103,7 @@ app.get('*', async (req, res, next) => {
 
     const apolloClient = createApolloClient({
       schema,
-      rootValue: {request: req},
+      rootValue: { request: req },
     });
 
     const initialState = {
@@ -123,7 +123,7 @@ app.get('*', async (req, res, next) => {
       return;
     }
 
-    const data = {...route};
+    const data = { ...route };
     const rootComponent = (
       <App apolloClient={apolloClient}
            insertCss={insertCss}
@@ -133,7 +133,7 @@ app.get('*', async (req, res, next) => {
     // this is here because of Apollo redux APOLLO_QUERY_STOP action
     // await Promise.delay(0);
     data.children = await ReactDOM.renderToString(rootComponent);
-    data.styles = [{id: 'css', cssText: [...css].join('')}];
+    data.styles = [{ id: 'css', cssText: [...css].join('') }];
 
     const scripts = new Set();
     const addChunk = (chunk) => {
@@ -160,10 +160,9 @@ app.get('*', async (req, res, next) => {
 
     const html = ReactDOM.renderToStaticNodeStream(<Html {...data} />);
     res.status(route.status || 200);
-    res.write(`<!doctype html>`);
+    res.write('<!doctype html>');
     html.on('end', res.end.bind(res));
     html.pipe(res);
-
   } catch (err) {
     next(err);
   }
@@ -184,8 +183,8 @@ app.use((err, req, res, next) => {
                                                    styles={[
                                                      {
                                                        id: 'css',
-                                                       cssText: errorPageStyle._getCss()
-                                                     }
+                                                       cssText: errorPageStyle._getCss(),
+                                                     },
                                                    ]} // eslint-disable-line no-underscore-dangle
   >{ReactDOM.renderToString(<ErrorPageWithoutStyle error={err}/>)}
   </Html>);

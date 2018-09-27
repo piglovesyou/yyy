@@ -15,13 +15,12 @@ import Link from '../../components/Link';
 class Login extends React.Component<{|
   title: string,
 |}> {
-
   render() {
     return (
       <div className={s.root}>
         <div className={s.container}>
           <h1>{this.props.title}</h1>
-          <Link to={'/?q=%E3%82%A2%E3%83%BC%E3%83%AD%E3%83%B3%E3%80%80B%E3%80%80%E3%83%95%E3%83%AB'}>(実験！)</Link>
+          <Link to="/?q=%E3%82%A2%E3%83%BC%E3%83%AD%E3%83%B3%E3%80%80B%E3%80%80%E3%83%95%E3%83%AB">(実験！)</Link>
           <p className={s.lead}>
             Log in with your username or company email address.
           </p>

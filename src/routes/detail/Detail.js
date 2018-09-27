@@ -70,7 +70,9 @@ class Detail extends React.Component<{|
               ],
             }
             : data.getAucItemDetail;
-          const { id, title, priceText, images } = aucItemDetail;
+          const {
+ id, title, priceText, images,
+} = aucItemDetail;
           return (
             <div className={s.root}>
               <div className={s.container}>

@@ -1,11 +1,11 @@
 // @flow
 
 import React from 'react';
-import {parse as urlParse} from 'url';
+import { parse as urlParse } from 'url';
 import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 import history from '../../history';
 import s from './SearchBox.css';
-import {stringify as qsStringify} from 'querystring';
+import { stringify as qsStringify } from 'querystring';
 
 class SearchBox extends React.Component<{|
   q: string,
@@ -16,13 +16,13 @@ class SearchBox extends React.Component<{|
   constructor(props) {
     super(props);
 
-    const {q} = props;
-    this.state = {q};
+    const { q } = props;
+    this.state = { q };
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const {q} = this.state;
+    const { q } = this.state;
 
     let search = '';
     const url = urlParse(q, true);
@@ -33,10 +33,10 @@ class SearchBox extends React.Component<{|
     if (isAucURL) {
       search = qsStringify({
         q: url.query.p,
-        ...(url.query && typeof url.query.auccat === 'string' ? {auccat: url.query.auccat} : null),
+        ...(url.query && typeof url.query.auccat === 'string' ? { auccat: url.query.auccat } : null),
       });
     } else if (q) {
-      search = qsStringify({q});
+      search = qsStringify({ q });
     }
 
     history.push({
@@ -45,14 +45,14 @@ class SearchBox extends React.Component<{|
     });
 
     if (isAucURL) {
-      this.setState({q: url.query.p});
+      this.setState({ q: url.query.p });
     }
   };
 
   handleQueryChange = (e) => {
     const q = e.target.value;
 
-    this.setState({q});
+    this.setState({ q });
   };
 
   render() {

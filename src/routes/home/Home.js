@@ -11,16 +11,16 @@ import gql from 'graphql-tag';
 import React from 'react';
 import ReactList from 'react-list';
 import LazyLoading from 'react-list-lazy-load';
-import {Mutation, Query} from 'react-apollo';
+import { Mutation, Query } from 'react-apollo';
 import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 import s from './Home.css';
 import ddMenuStyle from 'react-dd-menu/dist/react-dd-menu.css';
 import Link from '../../components/Link';
 import SearchBox from '../../components/SearchBox';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import remove from 'lodash.remove';
 
-import {ContextConsumer} from '../../components/ContextProvider';
+import { ContextConsumer } from '../../components/ContextProvider';
 import DropdownMenu from 'react-dd-menu';
 // import Ratio from '../ratio/Ratio'
 
@@ -74,7 +74,7 @@ class UserIconMenu extends React.Component<{|
   constructor() {
     super();
     this.state = {
-      isMenuOpen: false
+      isMenuOpen: false,
     };
     this.click = this.click.bind(this);
     this.toggle = this.toggle.bind(this);
@@ -82,11 +82,11 @@ class UserIconMenu extends React.Component<{|
   }
 
   toggle() {
-    this.setState({isMenuOpen: !this.state.isMenuOpen});
+    this.setState({ isMenuOpen: !this.state.isMenuOpen });
   }
 
   close() {
-    this.setState({isMenuOpen: false});
+    this.setState({ isMenuOpen: false });
   }
 
   click() {
@@ -108,8 +108,8 @@ class UserIconMenu extends React.Component<{|
     };
     return (
       <DropdownMenu {...menuOptions}>
-        <li><Link to={'/archived'}>Archived items</Link></li>
-        <li><Link to={'/about'}>What is YYYY</Link></li>
+        <li><Link to="/archived">Archived items</Link></li>
+        <li><Link to="/about">What is YYYY</Link></li>
         <li><a href="/logout">Logout</a></li>
       </DropdownMenu>
     );
@@ -130,26 +130,24 @@ class Home extends React.Component<{|
     };
   }
 
-  renderItem = (i, key, item, queryCondition, isLoggedIn) => {
-    return (
+  renderItem = (i, key, item, queryCondition, isLoggedIn) => (
       <div key={i}
            className={`${s.aucItem} ${this.state.archivingItems[item.id] ? s.aucItemArchiving : ''}`}
            id={`${i} : ${item.id}`}
       >
         {isLoggedIn ? (
           <Mutation mutation={ARCHIVE_ITEMS}
-                    update={(cache, {data: {archiveAucItems: {results}}}) => {
-                      const {getAucItemList} = cache.readQuery(queryCondition);
+                    update={(cache, { data: { archiveAucItems: { results } } }) => {
+                      const { getAucItemList } = cache.readQuery(queryCondition);
 
                       // Update local apollo cache
-                      remove(getAucItemList.items, {id: item.id,});
+                      remove(getAucItemList.items, { id: item.id });
                       // Also update array for ReactList
-                      remove(this.items, {id: item.id,});
+                      remove(this.items, { id: item.id });
 
-                      cache.writeQuery({...queryCondition, data: {getAucItemList},});
+                      cache.writeQuery({ ...queryCondition, data: { getAucItemList } });
                     }}
-          >{(archiveItems) => {
-            return (
+          >{archiveItems => (
               <div className={s.aucItemLeftActions}
                    onClick={() => {
                      archiveItems({
@@ -157,32 +155,30 @@ class Home extends React.Component<{|
                          itemIds: [item.id],
                        },
                        optimisticResponse: {
-                         __typename: "Mutation",
+                         __typename: 'Mutation',
                          archiveAucItems: {
-                           __typename: "ResponseArchiveAucItems",
+                           __typename: 'ResponseArchiveAucItems',
                            results: [true],
-                         }
+                         },
                        },
                      });
                    }}>
                 <FontAwesomeIcon icon="archive"/>
               </div>
-            );
-          }}</Mutation>
+            )}</Mutation>
         ) : null}
 
         <div className={s.aucItemImgWrap}>
-          <a target="_blank" href={item.itemURL + '#abth_lft'}>
+          <a target="_blank" href={`${item.itemURL}#abth_lft`}>
             <img className={s.aucItemImg} src={item.imgSrc}/>
           </a>
         </div>
         <div className={s.aucItemDescWrap}>
           <Link to={`/detail/${item.id}`} className={s.aucItemLink}>{item.title}</Link>
         </div>
-        <div className={s.aucItemRightActions}></div>
+        <div className={s.aucItemRightActions} />
       </div>
-    );
-  };
+  );
 
   render() {
     const queryCondition = {
@@ -199,18 +195,19 @@ class Home extends React.Component<{|
     return (
 
       <ContextConsumer>
-        {context => {
-          return (
+        {context => (
             <div className={s.root}>
               <Query {...queryCondition}>
                 {({
-                    loading, error, data, fetchMore
+                    loading, error, data, fetchMore,
                   }) => {
                   if (error) return <div>boom!!!</div>;
                   if (loading) return <div>loading</div>;
 
                   const aucItemList = data.getAucItemList;
-                  const {totalCount, items, nextCursor, prevCursor} = aucItemList;
+                  const {
+ totalCount, items, nextCursor, prevCursor,
+} = aucItemList;
 
                   // const isPrevAvailable = typeof prevCursor === 'number' && prevCursor >= 0;
                   const isNextAvailable = typeof nextCursor === 'number' && nextCursor >= 0;
@@ -219,9 +216,8 @@ class Home extends React.Component<{|
                   const reactListLength = items.length + (isNextAvailable ? 1 : 0);
 
                   return (
-                    <>
-                      <div className={s.toolbar}>
-                        <div className={s.flexSpacer}></div>
+                    <><div className={s.toolbar}>
+                        <div className={s.flexSpacer} />
                         <Link className={s.brand} to="/" tabIndex={0}>
                           YYYY
                         </Link>
@@ -229,11 +225,10 @@ class Home extends React.Component<{|
                                                                 q={this.props.q}/>}
                         {context.profile
                           ? <UserIconMenu className={s.userIconImg} imageURL={context.profile.image}/>
-                          : <a className={s.loginLinkText} href={'/login/twitter'}>Login</a>}
+                          : <a className={s.loginLinkText} href="/login/twitter">Login</a>}
 
-                        <div className={s.flexSpacer}>{''}</div>
+                        <div className={s.flexSpacer} />
                       </div>
-
                       <div className={s.aucListContainer}>
 
                         {items.length ? (
@@ -242,9 +237,9 @@ class Home extends React.Component<{|
                                        pageSize={PER_PAGE}
                                        onRequestPage={(page, cb) => {
                                          fetchMore({
-                                           variables: {cursor: nextCursor,},
-                                           updateQuery: (prev, {fetchMoreResult}) => {
-                                             const {items} = prev.getAucItemList;
+                                           variables: { cursor: nextCursor },
+                                           updateQuery: (prev, { fetchMoreResult }) => {
+                                             const { items } = prev.getAucItemList;
                                              return {
                                                getAucItemList: {
                                                  ...fetchMoreResult.getAucItemList,
@@ -256,23 +251,19 @@ class Home extends React.Component<{|
                                          cb();
                                        }}>
                             <ReactList
-                              type='variable'
-                              itemRenderer={(index, key) => {
-                                return this.renderItem(index, key, items[index] || {}, queryCondition, !!context.profile);
-                              }}
+                              type="variable"
+                              itemRenderer={(index, key) => this.renderItem(index, key, items[index] || {}, queryCondition, !!context.profile)}
                               length={reactListLength}
                             />
                           </LazyLoading>
                         ) : <div>Empty</div>}
 
-                      </div>
-                    </>
+                      </div></>
                   );
                 }}
               </Query>
             </div>
-          );
-        }}
+          )}
       </ContextConsumer>
     );
   }

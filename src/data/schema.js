@@ -1,17 +1,17 @@
 // @flow
 
 import fetch from 'node-fetch';
-import {JSDOM} from 'jsdom';
-import {makeExecutableSchema} from 'graphql-tools';
-import {basename} from 'path';
-import {URL} from 'url';
-import {fromArray} from 'hole';
+import { JSDOM } from 'jsdom';
+import { makeExecutableSchema } from 'graphql-tools';
+import { basename } from 'path';
+import { URL } from 'url';
+import { fromArray } from 'hole';
 import LRU from 'lru-cache';
 // $FlowFixMe
 import typeDefs from './schema.graphql';
 import persist from '../persist';
-import type {RequestType} from '../types';
-import {stringify as qsStringify} from 'querystring';
+import type { RequestType } from '../types';
+import { stringify as qsStringify } from 'querystring';
 
 type AucItemList = {
   totalCount: number,
@@ -34,8 +34,8 @@ const cache: LRU<string, mixed> = LRU({
 
 const currentProjects = {
   projects: [
-    {id: 'A01234', name: 'Project A', ratio: 1},
-    {id: 'B01234', name: 'Project B', ratio: 2},
+    { id: 'A01234', name: 'Project A', ratio: 1 },
+    { id: 'B01234', name: 'Project B', ratio: 2 },
   ],
 };
 
@@ -47,8 +47,11 @@ function normalizeQuery(query) {
 const resolvers = {
   Query: {
     async getAucItemList(
-      {request}: { request: RequestType },
-      {query, auccat, cursor, cursorBackward, count = 4}: { query: string, auccat?: string, cursor?: number, cursorBackward?: number, count?: number, }) {
+      { request }: { request: RequestType },
+      {
+        query, auccat, cursor, cursorBackward, count = 4,
+      }: { query: string, auccat?: string, cursor?: number, cursorBackward?: number, count?: number, },
+    ) {
       if (typeof cursor !== 'undefined' && typeof cursorBackward !== 'undefined') throw new Error('Kidding me?');
       if (typeof cursor === 'undefined' && typeof cursorBackward === 'undefined') cursor = 0;
 
@@ -62,10 +65,10 @@ const resolvers = {
       const normalizedQuery = normalizeQuery(query);
 
       const firstIndexInPage = getFirstIndexInPage(c);
-      const rawReqParams = { p: normalizedQuery, ...(auccat ? {auccat} : null), };
-      const {totalCount, items} = await requestAucItemList(rawReqParams, firstIndexInPage);
+      const rawReqParams = { p: normalizedQuery, ...(auccat ? { auccat } : null) };
+      const { totalCount, items } = await requestAucItemList(rawReqParams, firstIndexInPage);
 
-      const {collected, nextCursor, prevCursor} = await collectAucItems([], rawReqParams, count, inc, c, c, totalCount, items, userId);
+      const { collected, nextCursor, prevCursor } = await collectAucItems([], rawReqParams, count, inc, c, c, totalCount, items, userId);
 
       return {
         totalCount,
@@ -79,7 +82,7 @@ const resolvers = {
       const res = await fetch(`https://page.auctions.yahoo.co.jp/jp/auction/${args.id}`);
       const html = await res.text();
       const {
-        window: {document},
+        window: { document },
       } = new JSDOM(html);
 
       const title = document.querySelector('.ProductTitle__text').textContent;
@@ -113,7 +116,7 @@ const resolvers = {
         const key = e.textContent;
         const value = a[i + 1].textContent.replace('：', '');
         const valueConverter = itemBodyValueConverters[key] || (e => e);
-        return {...rv, [key]: valueConverter(value)};
+        return { ...rv, [key]: valueConverter(value) };
       }, {});
 
       return {
@@ -131,25 +134,25 @@ const resolvers = {
     },
   },
   Mutation: {
-    async archiveAucItems({request}: { request: RequestType }, {itemIds}: { userId: string, itemIds: [string] })
+    async archiveAucItems({ request }: { request: RequestType }, { itemIds }: { userId: string, itemIds: [string] })
       : Promise<{ userId: string, results: boolean[] }> {
       const user = request.user;
       const userId = user && user._id;
       if (!userId) throw new Error('Not a logged in user.');
       const results = await operateArchivedAucItem(userId, itemIds, 'sadd');
-      return {userId, results};
+      return { userId, results };
     },
 
-    async unarchiveAucItems({request}: { request: RequestType }, {itemIds}: { userId: string, itemIds: [string] })
+    async unarchiveAucItems({ request }: { request: RequestType }, { itemIds }: { userId: string, itemIds: [string] })
       : Promise<{ userId: string, results: boolean[] }> {
       const user = request.user;
       const userId = user && user._id;
       if (!userId) throw new Error('Not a logged in user.');
       const results = await operateArchivedAucItem(userId, itemIds, 'srem');
-      return {userId, results};
+      return { userId, results };
     },
 
-    async updateProjectRatio(req, {projectId, ratio}) {
+    async updateProjectRatio(req, { projectId, ratio }) {
       await new Promise(resolve => setTimeout(resolve, dummyThroughputDelay));
 
       const p = currentProjects.projects.find(p => p.id === projectId);
@@ -171,7 +174,8 @@ async function collectAucItems(
   cursor: number,
   totalCount: number,
   fetchedItems: Array<any>,
-  userId: string): Promise<{
+  userId: string,
+): Promise<{
   collected: Array<any>,
   nextCursor: number,
   prevCursor: number,
@@ -185,7 +189,7 @@ async function collectAucItems(
       inc ? cursor : cursorOnStart + 1;
     const prevCursor = isLeftReached ? -1 :
       inc ? cursorOnStart - 1 : cursor;
-    return {collected, nextCursor, prevCursor,};
+    return { collected, nextCursor, prevCursor };
   }
 
   const cursorInItems = cursor % AUC_LIST_PER_PAGE;
@@ -202,7 +206,7 @@ async function collectAucItems(
 
   if (shouldFlip) {
     const firstInPage = getFirstIndexInPage(nextCursor);
-    const {totalCount, items} = await requestAucItemList(rawReqParams, firstInPage);
+    const { totalCount, items } = await requestAucItemList(rawReqParams, firstInPage);
     return collectAucItems(collected, rawReqParams, count, inc, cursorOnStart, nextCursor, totalCount, items, userId);
   }
 
@@ -241,7 +245,7 @@ async function requestAucItemList(rawReqParams, from): Promise<AucItemList> {
   const res = await fetch(url);
   const html = await res.text();
   const {
-    window: {document},
+    window: { document },
   } = new JSDOM(html);
 
   const totalEl = document.querySelector('#AS-m19 .total em');
@@ -279,7 +283,7 @@ async function requestAucItemList(rawReqParams, from): Promise<AucItemList> {
     })
     .filter(e => e);
 
-  const resolvedValue = {totalCount, items};
+  const resolvedValue = { totalCount, items };
   cache.set(pageCacheKey, resolvedValue);
   cache.set(totalCountCacheKey, totalCount);
 
@@ -298,10 +302,12 @@ async function operateArchivedAucItem(userId, itemIds, operation: 'sadd' | 'srem
   // const operate: Function = multi[operation].bind(multi);
 
   // [0, 1, ...]
-  const results = await itemIds.reduce((multi, itemId) => {
+  const results = await itemIds.reduce(
+    (multi, itemId) =>
     // $FlowFixMe
-    return multi[operation](key, itemId);
-  }, multi).execAsync();
+      multi[operation](key, itemId)
+    , multi,
+  ).execAsync();
 
   // [false, true, ...]
   return results.map(Boolean);
@@ -314,7 +320,7 @@ function getArchivedAucItemsKey(userId) {
 export default makeExecutableSchema({
   typeDefs: schema,
   resolvers,
-  ...(__DEV__ ? {log: e => console.error(e.stack)} : {}),
+  ...(__DEV__ ? { log: e => console.error(e.stack) } : {}),
 });
 
 function makeURL(base, params: Object) {
