@@ -156,6 +156,13 @@ class Home extends React.Component<{|
                        variables: {
                          itemIds: [item.id],
                        },
+                       optimisticResponse: {
+                         __typename: "Mutation",
+                         archiveAucItems: {
+                           __typename: "ResponseArchiveAucItems",
+                           results: [true],
+                         }
+                       },
                      });
                    }}>
                 <FontAwesomeIcon icon="archive"/>
