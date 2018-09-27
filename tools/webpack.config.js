@@ -110,8 +110,7 @@ const config = {
           ],
           plugins: [
 
-            // 'flow-react-proptypes',
-            'flow-react-proptypes',
+            ...(isDebug ? ['flow-react-proptypes'] : []),
 
             // Experimental ECMAScript proposals
             '@babel/syntax-dynamic-import',
