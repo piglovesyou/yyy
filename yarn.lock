@@ -1766,9 +1766,9 @@ babel-plugin-eval@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-eval/-/babel-plugin-eval-1.0.1.tgz#a2faed25ce6be69ade4bfec263f70169195950da"
 
-babel-plugin-flow-react-proptypes@^24.0.1:
-  version "24.0.1"
-  resolved "https://registry.yarnpkg.com/babel-plugin-flow-react-proptypes/-/babel-plugin-flow-react-proptypes-24.0.1.tgz#86db5baebb83156c0bb2fa2d13e6e252712f3318"
+babel-plugin-flow-react-proptypes@^24.1.2:
+  version "24.1.2"
+  resolved "https://registry.yarnpkg.com/babel-plugin-flow-react-proptypes/-/babel-plugin-flow-react-proptypes-24.1.2.tgz#efd10966b609b01b50c4252c29759f1e333a2dc0"
   dependencies:
     babel-core "^6.25.0"
     babel-template "^6.25.0"

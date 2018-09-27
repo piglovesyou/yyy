@@ -8,15 +8,13 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader--react-context/lib/withStyles';
 import s from './Login.css';
 import Link from '../../components/Link';
 
-class Login extends React.Component {
-  static propTypes = {
-    title: PropTypes.string.isRequired,
-  };
+class Login extends React.Component<{|
+  title: string,
+|}> {
 
   render() {
     return (

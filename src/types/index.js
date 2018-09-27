@@ -8,9 +8,9 @@ export type UserType = {
 };
 
 export type ContextTypes = {
-  profile: UserType,
   pathname: string,
-  query: { [string]: string },
+  query: Object,
+  // query: { [string]: string },
   // fetch: Function,
   // insertCss: Function,
   // client: any, // Apollo Client

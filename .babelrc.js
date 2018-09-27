@@ -25,6 +25,7 @@ module.exports = {
   plugins: [
     '@babel/proposal-class-properties',
     '@babel/syntax-dynamic-import',
+    // 'flow-react-proptypes',
   ],
   ignore: ['node_modules', 'build'],
 };

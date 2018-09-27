@@ -26,7 +26,7 @@ import DropdownMenu from 'react-dd-menu';
 
 // import SearchBox from '../../components/SearchBox';
 
-const searchOffset = '?'.length;
+// const searchOffset = '?'.length;
 const PER_PAGE = 10;
 
 const ARCHIVE_ITEMS = gql`
@@ -219,7 +219,7 @@ class Home extends React.Component<{|
                           YYYY
                         </Link>
                         {context.pathname === '/' && <SearchBox className={s.searchBox}
-                                                                q={context.query.q}/>}
+                                                                q={this.props.q}/>}
                         {context.profile
                           ? <UserIconMenu className={s.userIconImg} imageURL={context.profile.image}/>
                           : <a className={s.loginLinkText} href={'/login/twitter'}>Login</a>}

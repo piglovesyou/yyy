@@ -109,11 +109,13 @@ const config = {
             ['@babel/preset-react', { development: isDebug }],
           ],
           plugins: [
-            // Experimental ECMAScript proposals
-            '@babel/proposal-class-properties',
-            '@babel/syntax-dynamic-import',
 
             // 'flow-react-proptypes',
+            'flow-react-proptypes',
+
+            // Experimental ECMAScript proposals
+            '@babel/syntax-dynamic-import',
+            '@babel/proposal-class-properties',
 
             // Treat React JSX elements as value types and hoist them to the highest scope
             // https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-constant-elements
