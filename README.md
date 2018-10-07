@@ -1,16 +1,16 @@
-## YYY
+## YYYY
 
 ### What
 
-Another web client of [Japanese Yahoo! Auction service](https://auctions.yahoo.co.jp/)
+Yet another Yan Yan Yahuoku, another web client of [Japanese Yahoo! Auction service](https://auctions.yahoo.co.jp/).
 
 ### Why
 
-It's hard to list **only newly posted articles** in Yahoo! Auction. It provides a notification system on specific keywords, but some articles need to be checked up every time, in such as apparel category.
+It's hard to list **only articles newly posted** in Yahoo! Auction. It provides a notification system on specific keywords, but some kinds need to be checked up for every pictures, in such as apparel category.
 
 ### How
 
-Twitter login + Redis storage. You can list articles in YYY and **archive** them to not be listed anymore, so that you can always list new products.
+JSDom scraping + Twitter login + Redis storage. You can query articles in YYYY and **archive** them to not be listed anymore, so that you can always list new products.
 
 #### Technology Stack
 
