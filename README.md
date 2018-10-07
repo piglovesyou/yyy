@@ -2,7 +2,7 @@
 
 ### What
 
-**Yet another Yan Yan Yahuoku**, another unofficial web client of [Japanese Yahoo! Auction](https://auctions.yahoo.co.jp/).
+Yet another Yan Yan Yahuoku, another unofficial web client of [Japanese Yahoo! Auction](https://auctions.yahoo.co.jp/).
 
 ### Why
 
@@ -19,17 +19,18 @@ JSDom scraping + Twitter login + Redis storage. You can query articles in YYYY a
 * Node
 	* Server-side Rendering
 	* GraphQL
+    * Apollo Server
 	* Apollo Client
 		* Optimistic response
 		* Skelton screen
-	* Apollo Server
 	* React
     * react-list
     * react-list-lazy-load
 	* JSDom for scraping, since Yahoo! Auction stopped to provide API in early 2018 :(
-	* Project base s†ructure was [React Starter Kit](https://github.com/kriasoft/react-starter-kit)
+	* [React Starter Kit](https://github.com/kriasoft/react-starter-kit) as a project base structure
 * Redis
 * Twitter API
+* Heroku
 
 ### License
 
