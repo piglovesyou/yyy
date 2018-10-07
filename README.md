@@ -2,7 +2,7 @@
 
 ### What
 
-Yet another Yan Yan Yahuoku, another unofficial web client of [Japanese Yahoo! Auction](https://auctions.yahoo.co.jp/).
+Yet another Yan Yan Yahuoku, another unofficial web client of [Japanese Yahoo! Auction](https://auctions.yahoo.co.jp/), [hosted on HEROKU](https://yyygql.herokuapp.com/), [source code on Github](https://github.com/piglovesyou/yyy).
 
 ### Why
 

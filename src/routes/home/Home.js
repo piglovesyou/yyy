@@ -109,8 +109,7 @@ class UserIconMenu extends React.Component<{|
     };
     return (
       <DropdownMenu {...menuOptions}>
-        <li><Link to="/archived">Archived items</Link></li>
-        <li><Link to="/about">What is YYYY</Link></li>
+        <li><Link to="/about">YYYY is what</Link></li>
         <li><a href="/logout">Logout</a></li>
       </DropdownMenu>
     );

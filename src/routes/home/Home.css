@@ -57,7 +57,7 @@
   width :32px;
 }
 .loginLinkText {
-  font-size: 0.7em;
+  font-size: 0.85em;
 }
 
 .aucItem {
@@ -109,7 +109,7 @@
   max-height: 100%;
 }
 .aucItemLink {
-  font-size: .85em;
+  font-size: 0.85em;
 }
 
 .aucListContainer {
@@ -117,7 +117,7 @@
 }
 
 .totalCount {
-  font-size: 85%;
+  font-size: 0.85em;
   font-weight: bold;
   margin-right: 8px;
   color: #aaaaaa;
