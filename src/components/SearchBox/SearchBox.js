@@ -9,6 +9,7 @@ import { stringify as qsStringify } from 'querystring';
 
 class SearchBox extends React.Component<{|
   q: string,
+  auccat: ?string,
   className: string,
 |}, {|
   q: string,
@@ -23,6 +24,7 @@ class SearchBox extends React.Component<{|
   handleSubmit = (e) => {
     e.preventDefault();
     const { q } = this.state;
+    const { auccat } = this.props;
 
     let search = '';
     const url = urlParse(q, true);
@@ -36,7 +38,7 @@ class SearchBox extends React.Component<{|
         ...(url.query && typeof url.query.auccat === 'string' ? { auccat: url.query.auccat } : null),
       });
     } else if (q) {
-      search = qsStringify({ q });
+      search = qsStringify({ q, auccat });
     }
 
     history.push({

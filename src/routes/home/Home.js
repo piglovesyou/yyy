@@ -229,8 +229,11 @@ class Home extends React.Component<{|
                         {items.length
                           ? <span className={s.totalCount}>{totalCount - archivedCount}</span>
                           : null}
-                        {context.pathname === '/' && <SearchBox className={s.searchBox}
-                                                                q={this.props.q}/>}
+                        {context.pathname === '/'
+                          && <SearchBox className={s.searchBox}
+                                        q={this.props.q}
+                                        auccat={this.props.auccat}/>
+                        }
                         {context.profile
                           ? <UserIconMenu className={s.userIconImg} imageURL={context.profile.image}/>
                           : <a className={s.loginLinkText} href="/login/twitter">Login</a>}
