@@ -67,12 +67,21 @@ app.use(passport.session());
 //
 // Authentication
 // -----------------------------------------------------------------------------
-app.get('/login/twitter', passport.authenticate('twitter'));
+const referrerCookieKay = 'login_referrer';
+
+app.get('/login/twitter', (req, res, next) => {
+  res.cookie(referrerCookieKay, req.headers.referer);
+  next();
+}, passport.authenticate('twitter'));
+
 app.get('/login/twitter/callback', passport.authenticate('twitter', {
   failureRedirect: '/login',
 }), (req, res) => {
-  res.redirect('/');
+  const to = req.cookies[referrerCookieKay] || '/';
+  res.clearCookie(referrerCookieKay);
+  res.redirect(to);
 });
+
 app.get('/logout', (req, res) => {
   if (req.session) req.session.destroy();
   res.redirect('/');
@@ -176,7 +185,7 @@ pe.skipNodeFiles();
 pe.skipPackage('express');
 
 // eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   console.error(pe.render(err));
   const html = ReactDOM.renderToStaticMarkup(<Html title="Internal Server Error"
                                                    description={err.message}
