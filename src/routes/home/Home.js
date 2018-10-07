@@ -251,6 +251,7 @@ class Home extends React.Component<{|
                                          cb();
                                        }}>
                             <ReactList
+                              minSize={5} // For SSR
                               type="variable"
                               itemRenderer={(index, key) => this.renderItem(index, key, items[index] || {}, queryCondition, !!context.profile)}
                               length={reactListLength}
