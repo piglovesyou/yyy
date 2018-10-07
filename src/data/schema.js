@@ -5,7 +5,6 @@ import { JSDOM } from 'jsdom';
 import { makeExecutableSchema } from 'graphql-tools';
 import { basename } from 'path';
 import { URL } from 'url';
-import { fromArray } from 'hole';
 import LRU from 'lru-cache';
 // $FlowFixMe
 import typeDefs from './schema.graphql';
@@ -68,10 +67,16 @@ const resolvers = {
       const rawReqParams = { p: normalizedQuery, ...(auccat ? { auccat } : null) };
       const { totalCount, items } = await requestAucItemList(rawReqParams, firstIndexInPage);
 
-      const { collected, nextCursor, prevCursor } = await collectAucItems([], rawReqParams, count, inc, c, c, totalCount, items, userId);
+      const {
+        collected,
+        archivedCount,
+        nextCursor,
+        prevCursor,
+      } = await collectAucItems([], rawReqParams, count, inc, c, c, totalCount, items, userId, 0);
 
       return {
         totalCount,
+        archivedCount,
         nextCursor,
         prevCursor,
         items: collected,
@@ -175,8 +180,10 @@ async function collectAucItems(
   totalCount: number,
   fetchedItems: Array<any>,
   userId: string,
+  archivedCount: number,
 ): Promise<{
   collected: Array<any>,
+  archivedCount: number,
   nextCursor: number,
   prevCursor: number,
 }> {
@@ -189,7 +196,7 @@ async function collectAucItems(
       inc ? cursor : cursorOnStart + 1;
     const prevCursor = isLeftReached ? -1 :
       inc ? cursorOnStart - 1 : cursor;
-    return { collected, nextCursor, prevCursor };
+    return { collected, nextCursor, prevCursor, archivedCount, };
   }
 
   const cursorInItems = cursor % AUC_LIST_PER_PAGE;
@@ -199,7 +206,12 @@ async function collectAucItems(
 
   const isArchivedItem = userId && await isArchivedAucItem(userId, cursoredItem.id);
 
-  if (!isArchivedItem) collected.push(cursoredItem);
+  if (isArchivedItem) {
+    // eslint-disable-next-line no-param-reassign
+    archivedCount += 1;
+  } else {
+    collected.push(cursoredItem);
+  }
 
   const nextCursor = cursor + (inc ? 1 : -1);
   const shouldFlip = nextCursor % AUC_LIST_PER_PAGE === 0;
@@ -207,10 +219,10 @@ async function collectAucItems(
   if (shouldFlip) {
     const firstInPage = getFirstIndexInPage(nextCursor);
     const { totalCount, items } = await requestAucItemList(rawReqParams, firstInPage);
-    return collectAucItems(collected, rawReqParams, count, inc, cursorOnStart, nextCursor, totalCount, items, userId);
+    return collectAucItems(collected, rawReqParams, count, inc, cursorOnStart, nextCursor, totalCount, items, userId, archivedCount);
   }
 
-  return collectAucItems(collected, rawReqParams, count, inc, cursorOnStart, nextCursor, totalCount, fetchedItems, userId);
+  return collectAucItems(collected, rawReqParams, count, inc, cursorOnStart, nextCursor, totalCount, fetchedItems, userId, archivedCount);
 }
 
 async function requestAucItemList(rawReqParams, from): Promise<AucItemList> {

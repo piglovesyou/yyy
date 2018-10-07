@@ -115,3 +115,10 @@
 .aucListContainer {
   flex: 1;
 }
+
+.totalCount {
+  font-size: 85%;
+  font-weight: bold;
+  margin-right: 8px;
+  color: #aaaaaa;
+}

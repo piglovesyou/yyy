@@ -53,6 +53,7 @@ const GQL_GET_AUC_ITEM_LIST = gql`
       count: $count,
     ) {
       totalCount
+      archivedCount
       nextCursor
       prevCursor
       items {
@@ -144,6 +145,8 @@ class Home extends React.Component<{|
                       remove(getAucItemList.items, { id: item.id });
                       // Also update array for ReactList
                       remove(this.items, { id: item.id });
+                      // Update archivedCount
+                      getAucItemList.archivedCount += 1;
 
                       cache.writeQuery({ ...queryCondition, data: { getAucItemList } });
                     }}
@@ -206,8 +209,11 @@ class Home extends React.Component<{|
 
                   const aucItemList = data.getAucItemList;
                   const {
- totalCount, items, nextCursor, prevCursor,
-} = aucItemList;
+                    items,
+                    nextCursor,
+                    totalCount,
+                    archivedCount,
+                  } = aucItemList;
 
                   // const isPrevAvailable = typeof prevCursor === 'number' && prevCursor >= 0;
                   const isNextAvailable = typeof nextCursor === 'number' && nextCursor >= 0;
@@ -221,6 +227,9 @@ class Home extends React.Component<{|
                         <Link className={s.brand} to="/" tabIndex={0}>
                           YYYY
                         </Link>
+                        {items.length
+                          ? <span className={s.totalCount}>{totalCount - archivedCount}</span>
+                          : null}
                         {context.pathname === '/' && <SearchBox className={s.searchBox}
                                                                 q={this.props.q}/>}
                         {context.profile
@@ -239,10 +248,11 @@ class Home extends React.Component<{|
                                          fetchMore({
                                            variables: { cursor: nextCursor },
                                            updateQuery: (prev, { fetchMoreResult }) => {
-                                             const { items } = prev.getAucItemList;
+                                             const { items, archivedCount, } = prev.getAucItemList;
                                              return {
                                                getAucItemList: {
                                                  ...fetchMoreResult.getAucItemList,
+                                                 archivedCount: archivedCount + fetchMoreResult.getAucItemList.archivedCount,
                                                  items: [...items, ...fetchMoreResult.getAucItemList.items],
                                                },
                                              };

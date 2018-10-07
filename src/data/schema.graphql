@@ -25,6 +25,7 @@ type AucItem {
 
 type AucItemList {
   totalCount: Int!
+  archivedCount: Int!
   nextCursor: Int!
   prevCursor: Int!
   items: [AucItem!]
